@@ -22,6 +22,25 @@ def mask_from_shp(img_f, shp_f):
     mask = rasterio.features.geometry_mask(geometry, img.shape, img.transform, all_touched=False, invert=True)
     return mask
 
+def split(array):
+    # split a given 3d array into 4 equal chunks
+    if len(array.shape) == 2:
+        mid_x = int(array.shape[0]/2)
+        mid_y = int(array.shape[1]/2)
+        first = array[:mid_x, :mid_y]
+        second = array[mid_x:, :mid_y]
+        third = array[:mid_x, mid_y:]
+        fourth = array[mid_x:, mid_y:]
+    else:
+        mid_x = int(array.shape[1]/2)
+        mid_y = int(array.shape[2]/2)
+        first = array[:, :mid_x, :mid_y]
+        second = array[:, mid_x:, :mid_y]
+        third = array[:, :mid_x, mid_y:]
+        fourth = array[:, mid_x:, mid_y:]
+    chunks = [first, second, third, fourth]
+    return chunks
+
 
 # given the name of an image file and the corresponding .shp array mask, outputs an array of image windows and mask windows
 def get_windows(img_f, mask):
@@ -29,12 +48,16 @@ def get_windows(img_f, mask):
     with rasterio.open(img_f) as src:
         for ji, window in src.block_windows():
             # get the window from the mask
-            mask_check = mask[window.row_off:window.row_off + window.height,
-                         window.col_off:window.col_off + window.width]
+            mask_check = mask[window.row_off:window.row_off+window.height, window.col_off:window.col_off+window.width]
             if True in mask_check:
+                # need to split into tiles
                 r = src.read(window=window)
+                r_chunks = split(r)
+                mask_chunks = split(mask_check)
+                for i in range(4):
+                    samples.append((torch.from_numpy(r_chunks[i]), torch.from_numpy(mask_chunks[i])))
                 # also can probably convert to tensors here as well
-                samples.append((torch.from_numpy(r), torch.from_numpy(mask_check)))
+               # samples.append((torch.from_numpy(r),torch.from_numpy(mask_check)))
             else:
                 pass
     return samples
