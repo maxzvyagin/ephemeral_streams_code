@@ -6,6 +6,7 @@ import rasterio.features
 import geopandas as gpd
 import torch
 from torch.utils.data import Dataset
+import math
 
 
 def mask_from_shp(img_f, shp_f):
@@ -62,6 +63,31 @@ def get_windows(img_f, mask):
                 pass
     return samples
 
+# given the name of an image file and the corresponding .shp array mask, outputs an array of calculated vegetation index values and mask
+def get_vegetation_index_windows(img_f, mask):
+    samples = []
+    with rasterio.open(img_f) as src:
+        for ji, window in src.block_windows():
+            # get the window from the mask
+            mask_check = mask[window.row_off:window.row_off+window.height, window.col_off:window.col_off+window.width]
+            if True in mask_check:
+                # need to split into tiles
+                r = src.read(2, window=window)
+                i = src.read(3, window=window)
+                msavi = msavi(r, i)
+                chunks = split(msavi)
+                mask_chunks = split(mask_check)
+                for i in range(4):
+                    samples.append((torch.from_numpy(r_chunks[i]), torch.from_numpy(mask_chunks[i])))
+                # also can probably convert to tensors here as well
+               # samples.append((torch.from_numpy(r),torch.from_numpy(mask_check)))
+            else:
+                pass
+    return samples
+
+# given red and infrared reflectance values, calculate the vegetation index
+def msavi(red, infrared):
+    return ((2*infrared)+1-math.sqrt((2*infrared+1)**2-(8*(infrared-red)))/2)
 
 class GISDataset(Dataset):
     # need to be given a list of tuple consisting of filepaths, (img, shp) to get pairs of windows for training
