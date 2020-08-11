@@ -7,6 +7,7 @@ import geopandas as gpd
 import torch
 from torch.utils.data import Dataset
 import math
+import numpy as np
 
 
 def mask_from_shp(img_f, shp_f):
@@ -74,12 +75,13 @@ def get_vegetation_index_windows(img_f, mask):
                 # need to split into tiles
                 r = src.read(2, window=window)
                 i = src.read(3, window=window)
-                msavi = msavi(r, i)
-                chunks = split(msavi)
+                veg = numpy_msavi(r, i)
+                chunks = split(veg)
                 mask_chunks = split(mask_check)
+                # the split function return 4 separate quadrants from the original window
                 for i in range(4):
-                    samples.append((torch.from_numpy(r_chunks[i]), torch.from_numpy(mask_chunks[i])))
-                # also can probably convert to tensors here as well
+                    samples.append((torch.from_numpy(chunks[i]), torch.from_numpy(mask_chunks[i])))
+                # also can probably convert to tensors here as well,
                # samples.append((torch.from_numpy(r),torch.from_numpy(mask_check)))
             else:
                 pass
@@ -89,6 +91,8 @@ def get_vegetation_index_windows(img_f, mask):
 def msavi(red, infrared):
     return ((2*infrared)+1-math.sqrt((2*infrared+1)**2-(8*(infrared-red)))/2)
 
+numpy_msavi = np.vectorize(msavi)
+
 class GISDataset(Dataset):
     # need to be given a list of tuple consisting of filepaths, (img, shp) to get pairs of windows for training
     def __init__(self, img_and_shps):
@@ -97,6 +101,29 @@ class GISDataset(Dataset):
             # process each pair and generate the windows
             mask = mask_from_shp(pair[0], pair[1])
             windows = get_windows(pair[0], mask)
+            self.samples.extend(windows)
+
+    def __len__(self):
+        return len(self.samples)
+
+    def __getitem__(self, index):
+        res = {}
+        pulled_sample = self.samples[index]
+        res['image'] = pulled_sample[0]
+        res['mask'] = pulled_sample[1]
+        return res
+
+
+# this dataset will not provide all 4 spectral bands, will only produce a single channel image which has the calculated vegetation index
+class MSAVIDataset(Dataset):
+        # need to be given a list of tuple consisting of filepaths, (img, shp) to get pairs of windows for training
+    def __init__(self, img_and_shps):
+        self.samples = []
+        for pair in img_and_shps:
+            # process each pair and generate the windows
+            mask = mask_from_shp(pair[0], pair[1])
+            ### this is the key difference from the GISDataset class ###
+            windows = get_vegetation_index_windows(pair[0], mask)
             self.samples.extend(windows)
 
     def __len__(self):
