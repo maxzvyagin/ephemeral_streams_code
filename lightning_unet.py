@@ -120,7 +120,7 @@ if __name__ == "__main__":
     if args.max_epochs:
         MAX_EPOCHS = args.max_epochs
     if args.lr:
-        LR = args.lr
+        LR = float(args.lr)
     if args.tags:
         tags = args.tags.split(",")
     # need to figure out how many input channels we have
