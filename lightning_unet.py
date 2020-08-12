@@ -113,8 +113,9 @@ if __name__ == "__main__":
         IMAGE_TYPE = args.image_type
     if args.batchsize:
         BATCHSIZE = args.batchsize
-    if args.num_gpus:
-        NUM_GPUS = args.num_gpus
+    if args.gpus:
+        gpus = args.gpus.split(",")
+        NUM_GPUS = len(gpus)
     if args.max_epochs:
         MAX_EPOCHS = args.max_epochs
     if args.lr:
@@ -149,7 +150,7 @@ if __name__ == "__main__":
                            params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
                                    "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS}, tags=tags)
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
-    trainer = pl.Trainer(gpus=[3], max_epochs=MAX_EPOCHS, logger=nep)
+    trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep)
     start = time.time()
     trainer.fit(model)
     end = time.time()
