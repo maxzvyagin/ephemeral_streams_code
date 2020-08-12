@@ -138,7 +138,7 @@ if __name__ == "__main__":
     # initialize a model
     f = []
     for x in args.training_files:
-        latest = tuple(x.split(","))
+        latest = tuple(str(x.split(",")))
         f.append(latest)
     print(f[0][1])
     nep = NeptuneLogger(api_key="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vdWkubmVwdHVuZS5haSIsImFwaV91cmwiOiJodHRwczovL3VpLm5"
