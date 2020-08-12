@@ -4,6 +4,7 @@ import torch
 from torch.utils.data import DataLoader
 import argparse
 from pytorch_lightning.logging.neptune import NeptuneLogger
+import time
 
 # Defining Global Variables
 MAX_EPOCHS = 25
@@ -103,7 +104,7 @@ if __name__ == "__main__":
     parser.add_argument("-i", "--image_type", help="Specify if using all 4 channels, just RGB, IR, HSV, etc.",
                         required=True)
     parser.add_argument("-b", "--batchsize")
-    parser.add_argument("-n", "--num_gpus")
+    parser.add_argument("-g", "--gpus", required=True, help="Comma separated list of selected GPUs.")
     parser.add_argument("-m", "--max_epochs")
     parser.add_argument("-l", "--lr")
     args = parser.parse_args()
@@ -141,10 +142,13 @@ if __name__ == "__main__":
         f.append(latest)
     nep = NeptuneLogger(api_key="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vdWkubmVwdHVuZS5haSIsImFwaV91cmwiOiJodHRwczovL3VpLm5"
                                    "lcHR1bmUuYWkiLCJhcGlfa2V5IjoiOGE5NDI0YTktNmE2ZC00ZWZjLTlkMjAtNjNmMTIwM2Q2ZTQzIn0=",
-                           project_name="maxzvyagin/GIS", experiment_name=args.experiment_name,
+                           project_name="maxzvyagin/GIS", experiment_name=args.experiment_name, close_after_fit=False,
                            params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
                                    "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS})
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
     trainer = pl.Trainer(gpus=[3], max_epochs=MAX_EPOCHS, logger=nep)
+    start = time.time()
     trainer.fit(model)
+    end = time.time()
+    nep.log_metric("clock_time(s)", end-start)
     trainer.test(model)
