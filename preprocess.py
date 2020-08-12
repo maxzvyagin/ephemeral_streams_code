@@ -12,7 +12,7 @@ from skimage.color import rgb2hsv
 from functools import lru_cache
 
 
-@lru_cache(maxsize=2)
+#@lru_cache(maxsize=2)
 def mask_from_shp(img_f, shp_f):
     # this function will also perform the reprojection onto the image file that we're masking (CRS adjustment)
     # read in the shp file
@@ -49,7 +49,7 @@ def split(array):
 
 
 # given the name of an image file and the corresponding .shp array mask, outputs an array of image windows and mask windows
-@lru_cache(maxsize=2)
+#@lru_cache(maxsize=2)
 def get_windows(img_f, mask):
     samples = []
     with rasterio.open(img_f) as src:
@@ -70,7 +70,7 @@ def get_windows(img_f, mask):
 
 
 # return 3 channel image of rgb reflectance values
-@lru_cache(maxsize=2)
+#@lru_cache(maxsize=2)
 def get_rgb_windows(img_f, mask):
     samples = []
     with rasterio.open(img_f) as src:
@@ -92,7 +92,7 @@ def get_rgb_windows(img_f, mask):
 
 
 # return single channel image of solely infrared reflectance values
-@lru_cache(maxsize=2)
+#@lru_cache(maxsize=2)
 def get_ir_windows(img_f, mask):
     samples = []
     with rasterio.open(img_f) as src:
@@ -114,7 +114,7 @@ def get_ir_windows(img_f, mask):
 
 
 # return 3 channels of rgb converted to hsv
-@lru_cache(maxsize=2)
+#@lru_cache(maxsize=2)
 def get_hsv_windows(img_f, mask):
     samples = []
     with rasterio.open(img_f) as src:
@@ -136,7 +136,7 @@ def get_hsv_windows(img_f, mask):
 
 
 # return rgb converted to hsv in addition to infrared channel
-@lru_cache(maxsize=2)
+#@lru_cache(maxsize=2)
 def get_hsv_with_ir_windows(img_f, mask):
     samples = []
     with rasterio.open(img_f) as src:
@@ -159,7 +159,7 @@ def get_hsv_with_ir_windows(img_f, mask):
 
 
 # given the name of an image file and the corresponding .shp array mask, outputs an array of calculated vegetation index values and mask
-@lru_cache(maxsize=2)
+#@lru_cache(maxsize=2)
 def get_vegetation_index_windows(img_f, mask):
     samples = []
     with rasterio.open(img_f) as src:

@@ -96,7 +96,6 @@ class LitUNet(pl.LightningModule):
 
 
 if __name__ == "__main__":
-    print("in main")
     # parsing arguments and parameters for the model
     parser = argparse.ArgumentParser(description="Input Parameters for UNet Model Training")
     parser.add_argument("-e", "--experiment_name", required=True)
@@ -140,7 +139,6 @@ if __name__ == "__main__":
     for x in args.training_files:
         latest = tuple(x[0].split(","))
         f.append(latest)
-    print(f[0][1])
     nep = NeptuneLogger(api_key="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vdWkubmVwdHVuZS5haSIsImFwaV91cmwiOiJodHRwczovL3VpLm5"
                                    "lcHR1bmUuYWkiLCJhcGlfa2V5IjoiOGE5NDI0YTktNmE2ZC00ZWZjLTlkMjAtNjNmMTIwM2Q2ZTQzIn0=",
                            project_name="maxzvyagin/GIS", experiment_name=args.experiment_name,
