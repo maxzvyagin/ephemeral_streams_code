@@ -145,6 +145,6 @@ if __name__ == "__main__":
                            params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
                                    "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS})
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
-    trainer = pl.Trainer(gpus=NUM_GPUS, auto_select_gpus=True, max_epochs=MAX_EPOCHS, logger=nep)
+    trainer = pl.Trainer(gpus=[3], max_epochs=MAX_EPOCHS, logger=nep)
     trainer.fit(model)
     trainer.test(model)
