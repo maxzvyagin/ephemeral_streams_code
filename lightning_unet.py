@@ -104,9 +104,10 @@ if __name__ == "__main__":
     parser.add_argument("-i", "--image_type", help="Specify if using all 4 channels, just RGB, IR, HSV, etc.",
                         required=True)
     parser.add_argument("-b", "--batchsize")
-    parser.add_argument("-g", "--gpus", required=True, help="Comma separated list of selected GPUs.")
+    parser.add_argument("-g", "--gpus", required=True, help="Comma separated list of selected GPUs, string format.")
     parser.add_argument("-m", "--max_epochs")
     parser.add_argument("-l", "--lr")
+    parser.add_argument("-t", "--tags", help="Comma separated list of tags for Neptune, string format.")
     args = parser.parse_args()
     if args.image_type:
         IMAGE_TYPE = args.image_type
@@ -118,6 +119,8 @@ if __name__ == "__main__":
         MAX_EPOCHS = args.max_epochs
     if args.lr:
         LR = args.lr
+    if args.tags:
+        tags = args.tags.split(",")
     # need to figure out how many input channels we have
     if IMAGE_TYPE == "full_channel":
         INPUT_CHANNELS = 4
@@ -144,7 +147,7 @@ if __name__ == "__main__":
                                    "lcHR1bmUuYWkiLCJhcGlfa2V5IjoiOGE5NDI0YTktNmE2ZC00ZWZjLTlkMjAtNjNmMTIwM2Q2ZTQzIn0=",
                            project_name="maxzvyagin/GIS", experiment_name=args.experiment_name, close_after_fit=False,
                            params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
-                                   "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS})
+                                   "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS}, tags=tags)
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
     trainer = pl.Trainer(gpus=[3], max_epochs=MAX_EPOCHS, logger=nep)
     start = time.time()
