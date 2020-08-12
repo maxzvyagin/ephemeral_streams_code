@@ -115,6 +115,7 @@ if __name__ == "__main__":
         BATCHSIZE = args.batchsize
     if args.gpus:
         gpus = args.gpus.split(",")
+        gpus = list(map(int, gpus))
         NUM_GPUS = len(gpus)
     if args.max_epochs:
         MAX_EPOCHS = args.max_epochs
