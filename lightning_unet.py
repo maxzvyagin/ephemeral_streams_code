@@ -14,6 +14,7 @@ INPUT_CHANNELS = 4
 OUTPUT_CHANNELS = 1
 NUM_GPUS = 1
 IMAGE_TYPE = "full_channel"
+REP = 32
 
 
 class LitUNet(pl.LightningModule):
@@ -108,6 +109,7 @@ if __name__ == "__main__":
     parser.add_argument("-m", "--max_epochs")
     parser.add_argument("-l", "--lr")
     parser.add_argument("-t", "--tags", help="Comma separated list of tags for Neptune, string format.")
+    parser.add_argument("-r", "--representation", help="Enter 16 if 16 bit representation is desired. Else leave off.")
     args = parser.parse_args()
     if args.image_type:
         IMAGE_TYPE = args.image_type
@@ -123,6 +125,13 @@ if __name__ == "__main__":
         LR = float(args.lr)
     if args.tags:
         tags = args.tags.split(",")
+    if args.representation:
+        r = int(args.representation)
+        if r == 32:
+            pass
+        else:
+            REP = 16
+            print("NOTE: Using 16 bit integer representation.")
     # need to figure out how many input channels we have
     if IMAGE_TYPE == "full_channel":
         INPUT_CHANNELS = 4
@@ -151,9 +160,13 @@ if __name__ == "__main__":
                            params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
                                    "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS}, tags=tags)
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
-    trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep)
+    if REP == 16:
+        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, precision=16)
+    else:
+        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep)
     start = time.time()
     trainer.fit(model)
     end = time.time()
     nep.log_metric("clock_time(s)", end-start)
+    # run the test set
     trainer.test(model)
