@@ -9,10 +9,12 @@ from torch.utils.data import Dataset
 import math
 import numpy as np
 from skimage.color import rgb2hsv
-from functools import lru_cache
+import pickle
+from os import path
+import sys
 
 
-#@lru_cache(maxsize=2)
+# @lru_cache(maxsize=2)
 def mask_from_shp(img_f, shp_f):
     # this function will also perform the reprojection onto the image file that we're masking (CRS adjustment)
     # read in the shp file
@@ -49,7 +51,7 @@ def split(array):
 
 
 # given the name of an image file and the corresponding .shp array mask, outputs an array of image windows and mask windows
-#@lru_cache(maxsize=2)
+# @lru_cache(maxsize=2)
 def get_windows(img_f, mask):
     samples = []
     with rasterio.open(img_f) as src:
@@ -70,7 +72,7 @@ def get_windows(img_f, mask):
 
 
 # return 3 channel image of rgb reflectance values
-#@lru_cache(maxsize=2)
+# @lru_cache(maxsize=2)
 def get_rgb_windows(img_f, mask):
     samples = []
     with rasterio.open(img_f) as src:
@@ -92,7 +94,7 @@ def get_rgb_windows(img_f, mask):
 
 
 # return single channel image of solely infrared reflectance values
-#@lru_cache(maxsize=2)
+# @lru_cache(maxsize=2)
 def get_ir_windows(img_f, mask):
     samples = []
     with rasterio.open(img_f) as src:
@@ -114,7 +116,7 @@ def get_ir_windows(img_f, mask):
 
 
 # return 3 channels of rgb converted to hsv
-#@lru_cache(maxsize=2)
+# @lru_cache(maxsize=2)
 def get_hsv_windows(img_f, mask):
     samples = []
     with rasterio.open(img_f) as src:
@@ -137,7 +139,7 @@ def get_hsv_windows(img_f, mask):
 
 
 # return rgb converted to hsv in addition to infrared channel
-#@lru_cache(maxsize=2)
+# @lru_cache(maxsize=2)
 def get_hsv_with_ir_windows(img_f, mask):
     samples = []
     with rasterio.open(img_f) as src:
@@ -161,7 +163,7 @@ def get_hsv_with_ir_windows(img_f, mask):
 
 
 # given the name of an image file and the corresponding .shp array mask, outputs an array of calculated vegetation index values and mask
-#@lru_cache(maxsize=2)
+# @lru_cache(maxsize=2)
 def get_vegetation_index_windows(img_f, mask):
     samples = []
     with rasterio.open(img_f) as src:
@@ -200,23 +202,39 @@ class GISDataset(Dataset):
         self.samples = []
         self.image_type = image_type
         for pair in img_and_shps:
+            # check if there is a cached object available
+            name = "/tmp/"
+            name += pair[0].split("/")[-1]
+            name += image_type
+            name += "dataset.pkl"
+            if path.exists(name):
+                try:
+                    cache_object = open(name, "rb")
+                    windows = pickle.load(cache_object)
+                except:
+                    print("ERROR: could not load from cache file. Please try removing " + name + " and try again.")
+                    sys.exit()
             # process each pair and generate the windows
-            mask = mask_from_shp(pair[0], pair[1])
-            if image_type == "full_channel":
-                windows = get_windows(pair[0], mask)
-            elif image_type == "rgb":
-                windows = get_rgb_windows(pair[0], mask)
-            elif image_type == "ir":
-                windows = get_ir_windows(pair[0], mask)
-            elif image_type == "hsv":
-                windows = get_hsv_windows(pair[0], mask)
-            elif image_type == "hsv_with_ir":
-                windows = get_hsv_with_ir_windows(pair[0], mask)
-            elif image_type == "veg_index":
-                windows = get_vegetation_index_windows(pair[0], mask)
             else:
-                print("WARNING: no image type match, defaulting to RGB+IR")
-                windows = get_windows(pair[0], mask)
+                mask = mask_from_shp(pair[0], pair[1])
+                if image_type == "full_channel":
+                    windows = get_windows(pair[0], mask)
+                elif image_type == "rgb":
+                    windows = get_rgb_windows(pair[0], mask)
+                elif image_type == "ir":
+                    windows = get_ir_windows(pair[0], mask)
+                elif image_type == "hsv":
+                    windows = get_hsv_windows(pair[0], mask)
+                elif image_type == "hsv_with_ir":
+                    windows = get_hsv_with_ir_windows(pair[0], mask)
+                elif image_type == "veg_index":
+                    windows = get_vegetation_index_windows(pair[0], mask)
+                else:
+                    print("WARNING: no image type match, defaulting to RGB+IR")
+                    windows = get_windows(pair[0], mask)
+                # cache the windows
+                cache_object = open(name, "wb+")
+                pickle.dump(windows, cache_object)
             self.samples.extend(windows)
 
     def __len__(self):
