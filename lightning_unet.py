@@ -172,4 +172,4 @@ if __name__ == "__main__":
     # run the test set
     trainer.test(model)
     torch.save(model.state_dict(), "/tmp/latest_model.pkl")
-    nep.log_artifact("saved_model", "/tmp/latest_model.pkl")
+    nep.log_artifact("/tmp/latest_model.pkl")

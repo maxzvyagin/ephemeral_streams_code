@@ -1,0 +1,7 @@
+For nucleus:
+
+For lambda:
+
+For iota:
+
+python lightning_unet.py -f "/lus/iota-fs0/projects/CVD_Research/mzvyagin/Ephemeral_Channels/Imagery/vhr_2012_refl.img,/lus/iota-fs0/projects/CVD_Research/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp" -f "/lus/iota-fs0/projects/CVD_Research/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img,/lus/iota-fs0/projects/CVD_Research/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp" -e "run2" -i full_channel -g "7" -l 1e-4 -t "iota, 16bit" -r 16
