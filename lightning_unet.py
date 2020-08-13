@@ -102,7 +102,7 @@ if __name__ == "__main__":
     # parsing arguments and parameters for the model
     parser = argparse.ArgumentParser(description="Input Parameters for UNet Model Training")
     parser.add_argument("-e", "--experiment_name", required=True)
-    parser.add_argument("-f", "--training_files", required=True, action="append", nargs="+", type=str)
+    parser.add_argument("-f", "--machine", required=True)
     parser.add_argument("-i", "--image_type", help="Specify if using all 4 channels, just RGB, IR, HSV, etc.",
                         required=True)
     parser.add_argument("-b", "--batchsize")
@@ -151,10 +151,22 @@ if __name__ == "__main__":
         INPUT_CHANNELS = 4
         IMAGE_TYPE = "full_channel"
     # initialize a model
-    f = []
-    for x in args.training_files:
-        latest = tuple(x[0].split(","))
-        f.append(latest)
+    if args.machine == "nucleus":
+        f = [("/vol/ml/EphemeralStreamData/Ephemeral_Channels/Imagery/vhr_2012_refl.img"
+              ,"/vol/ml/EphemeralStreamData/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
+             ("/vol/ml/EphemeralStreamData/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
+              "/vol/ml/EphemeralStreamData/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
+    elif args.machine == "lambda":
+        f = [("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2012_refl.img",
+              "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
+             ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
+              "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
+    else:
+        f = [("/lus/iota-fs0/projects/CVD_Research/mzvyagin/Ephemeral_Channels/Imagery/vhr_2012_refl.img",
+              "/lus/iota-fs0/projects/CVD_Research/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
+             ("/lus/iota-fs0/projects/CVD_Research/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
+              "/lus/iota-fs0/projects/CVD_Research/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
+
     nep = NeptuneLogger(api_key="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vdWkubmVwdHVuZS5haSIsImFwaV91cmwiOiJodHRwczovL3VpLm5"
                                    "lcHR1bmUuYWkiLCJhcGlfa2V5IjoiOGE5NDI0YTktNmE2ZC00ZWZjLTlkMjAtNjNmMTIwM2Q2ZTQzIn0=",
                            project_name="maxzvyagin/GIS", experiment_name=args.experiment_name, close_after_fit=False,

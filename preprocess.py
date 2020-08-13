@@ -21,7 +21,7 @@ def mask_from_shp(img_f, shp_f):
     # get the crs from the image file
     new_crs = str(img.crs).lower()
     # perform the reprojection
-    shp_reproject = shp.to_crs({'init': new_crs})
+    shp_reproject = shp.to_crs(new_crs)
     # now that the shapes are lined up, get the mask from the .shp geometry
     geometry = shp_reproject['geometry']
     mask = rasterio.features.geometry_mask(geometry, img.shape, img.transform, all_touched=False, invert=True)
