@@ -5,8 +5,9 @@ from torch.utils.data import DataLoader
 import argparse
 from pytorch_lightning.logging.neptune import NeptuneLogger
 import time
+import pickle
 
-# Defining Global Variables
+# Defining Environment Variables
 MAX_EPOCHS = 25
 LR = 1e-3
 BATCHSIZE = 64
@@ -170,3 +171,4 @@ if __name__ == "__main__":
     nep.log_metric("clock_time(s)", end-start)
     # run the test set
     trainer.test(model)
+    nep.log_artifact("saved_model", pickle.dumps(model))
