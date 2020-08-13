@@ -115,13 +115,13 @@ if __name__ == "__main__":
     if args.image_type:
         IMAGE_TYPE = args.image_type
     if args.batchsize:
-        BATCHSIZE = args.batchsize
+        BATCHSIZE = int(args.batchsize)
     if args.gpus:
         gpus = args.gpus.split(",")
         gpus = list(map(int, gpus))
         NUM_GPUS = len(gpus)
     if args.max_epochs:
-        MAX_EPOCHS = args.max_epochs
+        MAX_EPOCHS = int(args.max_epochs)
     if args.lr:
         LR = float(args.lr)
     if args.tags:

@@ -128,7 +128,8 @@ def get_hsv_windows(img_f, mask):
                 r_chunks = split(r)
                 mask_chunks = split(mask_check)
                 for i in range(4):
-                    new_val = rgb2hsv(r_chunks[i][:3])
+                    new_val = rgb2hsv(np.moveaxis(r_chunks[i][:3], 0, -1))
+                    new_val = np.moveaxis(new_val, -1, 0)
                     samples.append((torch.from_numpy(new_val).float(), torch.from_numpy(mask_chunks[i]).float()))
             else:
                 pass
@@ -150,7 +151,8 @@ def get_hsv_with_ir_windows(img_f, mask):
                 r_chunks = split(r)
                 mask_chunks = split(mask_check)
                 for i in range(4):
-                    new_val = rgb2hsv(r_chunks[i][:3])
+                    new_val = rgb2hsv(np.moveaxis(r_chunks[i][:3], 0, -1))
+                    new_val = np.moveaxis(new_val, -1, 0)
                     all_channels = np.concatenate((new_val, r_chunks[i][3]), axis=0)
                     samples.append((torch.from_numpy(all_channels).float(), torch.from_numpy(mask_chunks[i]).float()))
             else:
