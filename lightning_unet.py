@@ -171,4 +171,5 @@ if __name__ == "__main__":
     nep.log_metric("clock_time(s)", end-start)
     # run the test set
     trainer.test(model)
-    nep.log_artifact("saved_model", pickle.dumps(model))
+    torch.save(model.state_dict(), "/tmp/latest_model.pkl")
+    nep.log_artifact("saved_model", "/tmp/latest_model.pkl")
