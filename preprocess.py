@@ -180,9 +180,8 @@ def get_vegetation_index_windows(img_f, mask):
                 mask_chunks = split(mask_check)
                 # the split function return 4 separate quadrants from the original window
                 for i in range(4):
-                    samples.append((torch.from_numpy(chunks[i]).float().unsqueeze(0), torch.from_numpy(mask_chunks[i]).float()))
-                # also can probably convert to tensors here as well,
-            # samples.append((torch.from_numpy(r),torch.from_numpy(mask_check)))
+                    samples.append((torch.from_numpy(chunks[i]).float().unsqueeze(0),
+                                    torch.from_numpy(mask_chunks[i]).float()))
             else:
                 pass
     return samples
