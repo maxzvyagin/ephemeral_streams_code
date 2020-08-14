@@ -70,12 +70,12 @@ class LitUNet(pl.LightningModule):
         logits = self.forward(x)
         loss = self.criterion(logits, y)
         end = time.time()
-        time_spent = end-start
+        time_spent = end - start
         logs = {'train_loss': loss, 'batch_time': time_spent}
-        return {'loss': loss, 'batch_time': time_spent,'log': logs}
+        return {'loss': loss, 'batch_time': time_spent, 'log': logs}
 
     def training_epoch_end(self, outputs):
-        avg_time_per_batch = torch.stack([x['batch_time'] for x in outputs]).mean()
+        avg_time_per_batch = [x['batch_time'] for x in outputs].mean()
         tensorboard_logs = {'avg_time_per_batch': avg_time_per_batch}
         return {'avg_time_per_batch': avg_time_per_batch, 'log': tensorboard_logs}
 
@@ -166,7 +166,7 @@ if __name__ == "__main__":
     # initialize a model
     if args.machine == "nucleus":
         f = [("/vol/ml/EphemeralStreamData/Ephemeral_Channels/Imagery/vhr_2012_refl.img"
-              ,"/vol/ml/EphemeralStreamData/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
+              , "/vol/ml/EphemeralStreamData/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
              ("/vol/ml/EphemeralStreamData/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
               "/vol/ml/EphemeralStreamData/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
     elif args.machine == "lambda":
@@ -181,10 +181,10 @@ if __name__ == "__main__":
               "/lus/iota-fs0/projects/CVD_Research/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
 
     nep = NeptuneLogger(api_key="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vdWkubmVwdHVuZS5haSIsImFwaV91cmwiOiJodHRwczovL3VpLm5"
-                                   "lcHR1bmUuYWkiLCJhcGlfa2V5IjoiOGE5NDI0YTktNmE2ZC00ZWZjLTlkMjAtNjNmMTIwM2Q2ZTQzIn0=",
-                           project_name="maxzvyagin/GIS", experiment_name=args.experiment_name, close_after_fit=False,
-                           params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
-                                   "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision":REP}, tags=tags)
+                                "lcHR1bmUuYWkiLCJhcGlfa2V5IjoiOGE5NDI0YTktNmE2ZC00ZWZjLTlkMjAtNjNmMTIwM2Q2ZTQzIn0=",
+                        project_name="maxzvyagin/GIS", experiment_name=args.experiment_name, close_after_fit=False,
+                        params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
+                                "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP}, tags=tags)
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
     if REP == 16:
         trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, precision=16)
@@ -193,7 +193,7 @@ if __name__ == "__main__":
     start = time.time()
     trainer.fit(model)
     end = time.time()
-    nep.log_metric("clock_time(s)", end-start)
+    nep.log_metric("clock_time(s)", end - start)
     # run the test set
     trainer.test(model)
     torch.save(model.state_dict(), "/tmp/latest_model.pkl")
