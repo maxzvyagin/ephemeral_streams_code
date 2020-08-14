@@ -7,7 +7,7 @@ from pytorch_lightning.logging.neptune import NeptuneLogger
 import time
 import pickle
 
-# Defining Environment Variables
+# Defining Environment Variables - defaults defined here and edited using command line args
 MAX_EPOCHS = 25
 LR = 1e-3
 BATCHSIZE = 64
@@ -61,6 +61,7 @@ class LitUNet(pl.LightningModule):
         return optimizer
 
     def training_step(self, train_batch, batch_idx):
+        start = time.time()
         x = train_batch['image']
         if IMAGE_TYPE == "veg_index":
             x = x.unsqueeze(1)
@@ -68,9 +69,15 @@ class LitUNet(pl.LightningModule):
         # x, y = train_batch
         logits = self.forward(x)
         loss = self.criterion(logits, y)
-
-        logs = {'train_loss': loss}
+        end = time.time()
+        time_spent = end-start
+        logs = {'train_loss': loss, 'batch_time':time_spent}
         return {'loss': loss, 'log': logs}
+
+    def training_epoch_end(self, training_step_outputs):
+        avg_time_per_batch = torch.stack([x['batch_time'] for x in outputs]).mean()
+        tensorboard_logs = {'avg_time_per_batch': avg_time_per_batch}
+        return {'avg_time_per_batch': avg_time_per_batch, 'log': tensorboard_logs}
 
     def test_step(self, batch, batch_idx):
         x = batch['image']
