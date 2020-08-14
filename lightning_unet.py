@@ -71,8 +71,8 @@ class LitUNet(pl.LightningModule):
         loss = self.criterion(logits, y)
         end = time.time()
         time_spent = end-start
-        logs = {'train_loss': loss, 'batch_time':time_spent}
-        return {'loss': loss, 'log': logs}
+        logs = {'train_loss': loss, 'batch_time': time_spent}
+        return {'loss': loss, 'batch_time': time_spent,'log': logs}
 
     def training_epoch_end(self, outputs):
         avg_time_per_batch = torch.stack([x['batch_time'] for x in outputs]).mean()
