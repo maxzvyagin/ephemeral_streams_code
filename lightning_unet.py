@@ -90,7 +90,7 @@ class LitUNet(pl.LightningModule):
         return {'test_loss': loss}
 
     def test_epoch_end(self, outputs):
-        avg_loss = torch.stack([x['test_loss'] for x in outputs]).mean()
+        avg_loss = torch.stack([torch.Tensor(x['test_loss']) for x in outputs]).mean()
         tensorboard_logs = {'test_loss': avg_loss}
         return {'avg_test_loss': avg_loss, 'log': tensorboard_logs}
 
