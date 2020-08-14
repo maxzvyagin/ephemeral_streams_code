@@ -62,6 +62,8 @@ class LitUNet(pl.LightningModule):
 
     def training_step(self, train_batch, batch_idx):
         x = train_batch['image']
+        if IMAGE_TYPE == "veg_index":
+            x = x.unsqueeze(1)
         y = train_batch['mask'].unsqueeze(1)
         # x, y = train_batch
         logits = self.forward(x)
@@ -72,6 +74,8 @@ class LitUNet(pl.LightningModule):
 
     def test_step(self, batch, batch_idx):
         x = batch['image']
+        if IMAGE_TYPE == "veg_index":
+            x = x.unsqueeze(1)
         y = batch['mask'].unsqueeze(1)
         # x, y = batch
         logits = self.forward(x)
@@ -85,6 +89,8 @@ class LitUNet(pl.LightningModule):
 
     def validation_step(self, val_batch, batch_idx):
         x = val_batch['image']
+        if IMAGE_TYPE == "veg_index":
+            x = x.unsqueeze(1)
         y = val_batch['mask'].unsqueeze(1)
         # x, y = val_batch
         logits = self.forward(x)
