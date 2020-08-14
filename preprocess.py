@@ -52,7 +52,7 @@ def split(array):
 
 # given the name of an image file and the corresponding .shp array mask, outputs an array of image windows and mask windows
 # @lru_cache(maxsize=2)
-def get_windows(img_f, mask):
+def get_windows(img_f, mask, large_image=False):
     samples = []
     with rasterio.open(img_f) as src:
         for ji, window in src.block_windows():
@@ -60,12 +60,16 @@ def get_windows(img_f, mask):
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
             if True in mask_check:
-                # need to split into tiles
                 r = src.read(window=window)
-                r_chunks = split(r)
-                mask_chunks = split(mask_check)
-                for i in range(4):
-                    samples.append((torch.from_numpy(r_chunks[i]).float(), torch.from_numpy(mask_chunks[i]).float()))
+                if large_image:
+                    samples.append((torch.from_numpy(r).float(), torch.from_numpy(mask_check).float()))
+                else:
+                    # need to split into tiles
+                    r_chunks = split(r)
+                    mask_chunks = split(mask_check)
+                    for i in range(4):
+                        samples.append(
+                            (torch.from_numpy(r_chunks[i]).float(), torch.from_numpy(mask_chunks[i]).float()))
             else:
                 pass
     return samples
@@ -73,7 +77,7 @@ def get_windows(img_f, mask):
 
 # return 3 channel image of rgb reflectance values
 # @lru_cache(maxsize=2)
-def get_rgb_windows(img_f, mask):
+def get_rgb_windows(img_f, mask, large_image=False):
     samples = []
     with rasterio.open(img_f) as src:
         for ji, window in src.block_windows():
@@ -81,13 +85,16 @@ def get_rgb_windows(img_f, mask):
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
             if True in mask_check:
-                # need to split into tiles
                 r = src.read(window=window)
-                r_chunks = split(r)
-                mask_chunks = split(mask_check)
-                for i in range(4):
-                    samples.append(
-                        (torch.from_numpy(r_chunks[i][:3]).float(), torch.from_numpy(mask_chunks[i]).float()))
+                if large_image:
+                    samples.append((torch.from_numpy(r[:3]).float(), torch.from_numpy(mask_check).float()))
+                else:
+                    # need to split into tiles
+                    r_chunks = split(r)
+                    mask_chunks = split(mask_check)
+                    for i in range(4):
+                        samples.append(
+                            (torch.from_numpy(r_chunks[i][:3]).float(), torch.from_numpy(mask_chunks[i]).float()))
             else:
                 pass
     return samples
@@ -95,7 +102,7 @@ def get_rgb_windows(img_f, mask):
 
 # return single channel image of solely infrared reflectance values
 # @lru_cache(maxsize=2)
-def get_ir_windows(img_f, mask):
+def get_ir_windows(img_f, mask, large_image=False):
     samples = []
     with rasterio.open(img_f) as src:
         for ji, window in src.block_windows():
@@ -103,13 +110,16 @@ def get_ir_windows(img_f, mask):
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
             if True in mask_check:
-                # need to split into tiles
                 r = src.read(window=window)
-                r_chunks = split(r)
-                mask_chunks = split(mask_check)
-                for i in range(4):
-                    samples.append(
-                        (torch.from_numpy(r_chunks[i][3:]).float(), torch.from_numpy(mask_chunks[i]).float()))
+                if large_image:
+                    samples.append((torch.from_numpy(r[3]).float(), torch.from_numpy(mask_check).float()))
+                else:
+                    # need to split into tiles
+                    r_chunks = split(r)
+                    mask_chunks = split(mask_check)
+                    for i in range(4):
+                        samples.append(
+                            (torch.from_numpy(r_chunks[i][3]).float(), torch.from_numpy(mask_chunks[i]).float()))
             else:
                 pass
     return samples
@@ -117,7 +127,7 @@ def get_ir_windows(img_f, mask):
 
 # return 3 channels of rgb converted to hsv
 # @lru_cache(maxsize=2)
-def get_hsv_windows(img_f, mask):
+def get_hsv_windows(img_f, mask, large_image=False):
     samples = []
     with rasterio.open(img_f) as src:
         for ji, window in src.block_windows():
@@ -125,22 +135,26 @@ def get_hsv_windows(img_f, mask):
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
             if True in mask_check:
-                # need to split into tiles
                 r = src.read(window=window)
-                r_chunks = split(r)
-                mask_chunks = split(mask_check)
-                for i in range(4):
-                    new_val = rgb2hsv(np.moveaxis(r_chunks[i][:3], 0, -1))
+                if large_image:
+                    new_val = rgb2hsv(np.moveaxis(r[:3], 0, -1))
                     new_val = np.moveaxis(new_val, -1, 0)
-                    samples.append((torch.from_numpy(new_val).float(), torch.from_numpy(mask_chunks[i]).float()))
+                    samples.append((torch.from_numpy(new_val).float(), torch.from_numpy(mask_check).float()))
+                else:
+                    # need to split into tiles
+                    r_chunks = split(r)
+                    mask_chunks = split(mask_check)
+                    for i in range(4):
+                        new_val = rgb2hsv(np.moveaxis(r_chunks[i][:3], 0, -1))
+                        new_val = np.moveaxis(new_val, -1, 0)
+                        samples.append((torch.from_numpy(new_val).float(), torch.from_numpy(mask_chunks[i]).float()))
             else:
                 pass
     return samples
 
 
 # return rgb converted to hsv in addition to infrared channel
-# @lru_cache(maxsize=2)
-def get_hsv_with_ir_windows(img_f, mask):
+def get_hsv_with_ir_windows(img_f, mask, large_image=False):
     samples = []
     with rasterio.open(img_f) as src:
         for ji, window in src.block_windows():
@@ -148,23 +162,29 @@ def get_hsv_with_ir_windows(img_f, mask):
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
             if True in mask_check:
-                # need to split into tiles
-                r = src.read(window=window)
-                r_chunks = split(r)
-                mask_chunks = split(mask_check)
-                for i in range(4):
-                    new_val = rgb2hsv(np.moveaxis(r_chunks[i][:3], 0, -1))
-                    new_val = np.moveaxis(new_val, -1, 0)
-                    all_channels = np.concatenate((new_val, np.expand_dims(r_chunks[i][3], 0)), axis=0)
-                    samples.append((torch.from_numpy(all_channels).float(), torch.from_numpy(mask_chunks[i]).float()))
+                if True in mask_check:
+                    r = src.read(window=window)
+                    if large_image:
+                        new_val = rgb2hsv(np.moveaxis(r[:3], 0, -1))
+                        new_val = np.moveaxis(new_val, -1, 0)
+                        all_channels = np.concatenate((new_val, np.expand_dims(r[3], 0)), axis=0)
+                        samples.append((torch.from_numpy(all_channels).float(), torch.from_numpy(mask_check).float()))
+                    else:
+                        # need to split into tiles
+                        r_chunks = split(r)
+                        mask_chunks = split(mask_check)
+                        for i in range(4):
+                            new_val = rgb2hsv(np.moveaxis(r_chunks[i][:3], 0, -1))
+                            new_val = np.moveaxis(new_val, -1, 0)
+                            all_channels = np.concatenate((new_val, np.expand_dims(r_chunks[i][3], 0)), axis=0)
+                            samples.append((torch.from_numpy(all_channels).float(), torch.from_numpy(mask_chunks[i]).float()))
             else:
                 pass
     return samples
 
 
 # given the name of an image file and the corresponding .shp array mask, outputs an array of calculated vegetation index values and mask
-# @lru_cache(maxsize=2)
-def get_vegetation_index_windows(img_f, mask):
+def get_vegetation_index_windows(img_f, mask, large_image=False):
     samples = []
     with rasterio.open(img_f) as src:
         for ji, window in src.block_windows():
@@ -172,16 +192,18 @@ def get_vegetation_index_windows(img_f, mask):
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
             if True in mask_check:
-                # need to split into tiles
                 r = src.read(2, window=window)
                 i = src.read(3, window=window)
                 veg = numpy_msavi(r, i)
-                chunks = split(veg)
-                mask_chunks = split(mask_check)
-                # the split function return 4 separate quadrants from the original window
-                for i in range(4):
-                    samples.append((torch.from_numpy(chunks[i]).float(),
-                                    torch.from_numpy(mask_chunks[i]).float()))
+                if large_image:
+                    samples.append((torch.from_numpy(veg).float(), torch.from_numpy(mask_check).float()))
+                else:
+                    chunks = split(veg)
+                    mask_chunks = split(mask_check)
+                    # the split function return 4 separate quadrants from the original window
+                    for i in range(4):
+                        samples.append((torch.from_numpy(chunks[i]).float(),
+                                        torch.from_numpy(mask_chunks[i]).float()))
             else:
                 pass
     return samples
@@ -197,7 +219,7 @@ numpy_msavi = np.vectorize(msavi)
 
 class GISDataset(Dataset):
     # need to be given a list of tuple consisting of filepaths, (img, shp) to get pairs of windows for training
-    def __init__(self, img_and_shps, image_type):
+    def __init__(self, img_and_shps, image_type, large_image=False):
         self.samples = []
         self.image_type = image_type
         for pair in img_and_shps:
@@ -205,6 +227,8 @@ class GISDataset(Dataset):
             name = "/tmp/"
             name += pair[0].split("/")[-1]
             name += image_type
+            if large_image:
+                name += "large_image"
             name += "dataset.pkl"
             if path.exists(name):
                 try:
@@ -217,20 +241,20 @@ class GISDataset(Dataset):
             else:
                 mask = mask_from_shp(pair[0], pair[1])
                 if image_type == "full_channel":
-                    windows = get_windows(pair[0], mask)
+                    windows = get_windows(pair[0], mask, large_image)
                 elif image_type == "rgb":
-                    windows = get_rgb_windows(pair[0], mask)
+                    windows = get_rgb_windows(pair[0], mask, large_image)
                 elif image_type == "ir":
-                    windows = get_ir_windows(pair[0], mask)
+                    windows = get_ir_windows(pair[0], mask, large_image)
                 elif image_type == "hsv":
-                    windows = get_hsv_windows(pair[0], mask)
+                    windows = get_hsv_windows(pair[0], mask, large_image)
                 elif image_type == "hsv_with_ir":
-                    windows = get_hsv_with_ir_windows(pair[0], mask)
+                    windows = get_hsv_with_ir_windows(pair[0], mask, large_image)
                 elif image_type == "veg_index":
-                    windows = get_vegetation_index_windows(pair[0], mask)
+                    windows = get_vegetation_index_windows(pair[0], mask, large_image)
                 else:
                     print("WARNING: no image type match, defaulting to RGB+IR")
-                    windows = get_windows(pair[0], mask)
+                    windows = get_windows(pair[0], mask, large_image)
                 # cache the windows
                 cache_object = open(name, "wb+")
                 pickle.dump(windows, cache_object)

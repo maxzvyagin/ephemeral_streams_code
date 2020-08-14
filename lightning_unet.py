@@ -16,6 +16,7 @@ OUTPUT_CHANNELS = 1
 NUM_GPUS = 1
 IMAGE_TYPE = "full_channel"
 REP = 32
+LARGE_IMAGE=False
 
 
 class LitUNet(pl.LightningModule):
@@ -36,7 +37,7 @@ class LitUNet(pl.LightningModule):
         return self.model(x)
 
     def prepare_data(self):
-        all_data = preprocess.GISDataset(self.file_pairs, IMAGE_TYPE)
+        all_data = preprocess.GISDataset(self.file_pairs, IMAGE_TYPE, LARGE_IMAGE)
         # calculate the splits
         total = len(all_data)
         train = int(total * .7)
@@ -128,6 +129,7 @@ if __name__ == "__main__":
     parser.add_argument("-l", "--lr")
     parser.add_argument("-t", "--tags", help="Comma separated list of tags for Neptune, string format.")
     parser.add_argument("-r", "--representation", help="Enter 16 if 16 bit representation is desired. Else leave off.")
+    parser.add_argument("-b", "--big_image", help="Enter True if 512 image is desired, instead of 256.")
     args = parser.parse_args()
     if args.image_type:
         IMAGE_TYPE = args.image_type
@@ -150,6 +152,8 @@ if __name__ == "__main__":
         else:
             REP = 16
             print("NOTE: Using 16 bit integer representation.")
+    if args.big_image:
+        LARGE_IMAGE=True
     # need to figure out how many input channels we have
     if IMAGE_TYPE == "full_channel":
         INPUT_CHANNELS = 4
