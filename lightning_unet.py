@@ -129,7 +129,7 @@ if __name__ == "__main__":
     parser.add_argument("-l", "--lr")
     parser.add_argument("-t", "--tags", help="Comma separated list of tags for Neptune, string format.")
     parser.add_argument("-r", "--representation", help="Enter 16 if 16 bit representation is desired. Else leave off.")
-    parser.add_argument("-b", "--big_image", help="Enter True if 512 image is desired, instead of 256.")
+    parser.add_argument("-s", "--big_image", help="Enter True if 512 image is desired, instead of 256.")
     args = parser.parse_args()
     if args.image_type:
         IMAGE_TYPE = args.image_type
