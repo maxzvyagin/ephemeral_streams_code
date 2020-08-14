@@ -155,7 +155,7 @@ def get_hsv_with_ir_windows(img_f, mask):
                 for i in range(4):
                     new_val = rgb2hsv(np.moveaxis(r_chunks[i][:3], 0, -1))
                     new_val = np.moveaxis(new_val, -1, 0)
-                    all_channels = np.concatenate((new_val, r_chunks[i][3]), axis=0)
+                    all_channels = np.concatenate((new_val, np.expand_dims(r_chunks[i][3], 0)), axis=0)
                     samples.append((torch.from_numpy(all_channels).float(), torch.from_numpy(mask_chunks[i]).float()))
             else:
                 pass
@@ -180,7 +180,7 @@ def get_vegetation_index_windows(img_f, mask):
                 mask_chunks = split(mask_check)
                 # the split function return 4 separate quadrants from the original window
                 for i in range(4):
-                    samples.append((torch.from_numpy(chunks[i]).float(), torch.from_numpy(mask_chunks[i]).float()))
+                    samples.append((torch.from_numpy(chunks[i]).float().unsqueeze(0), torch.from_numpy(mask_chunks[i]).float()))
                 # also can probably convert to tensors here as well,
             # samples.append((torch.from_numpy(r),torch.from_numpy(mask_check)))
             else:
