@@ -5,7 +5,7 @@ from torch.utils.data import DataLoader
 import argparse
 from pytorch_lightning.logging.neptune import NeptuneLogger
 import time
-import pickle
+import numpy as np
 
 # Defining Environment Variables - defaults defined here and edited using command line args
 MAX_EPOCHS = 25
@@ -75,7 +75,7 @@ class LitUNet(pl.LightningModule):
         return {'loss': loss, 'batch_time': time_spent, 'log': logs}
 
     def training_epoch_end(self, outputs):
-        avg_time_per_batch = [x['batch_time'] for x in outputs].mean()
+        avg_time_per_batch = torch.stack([x['batch_time'] for x in outputs]).mean()
         tensorboard_logs = {'avg_time_per_batch': avg_time_per_batch}
         return {'avg_time_per_batch': avg_time_per_batch, 'log': tensorboard_logs}
 
