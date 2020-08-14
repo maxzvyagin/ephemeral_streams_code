@@ -74,7 +74,7 @@ class LitUNet(pl.LightningModule):
         logs = {'train_loss': loss, 'batch_time':time_spent}
         return {'loss': loss, 'log': logs}
 
-    def training_epoch_end(self, training_step_outputs):
+    def training_epoch_end(self, outputs):
         avg_time_per_batch = torch.stack([x['batch_time'] for x in outputs]).mean()
         tensorboard_logs = {'avg_time_per_batch': avg_time_per_batch}
         return {'avg_time_per_batch': avg_time_per_batch, 'log': tensorboard_logs}
