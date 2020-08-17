@@ -99,6 +99,7 @@ class LitUNet(pl.LightningModule):
         for x in outputs:
             loss.append(x['test_loss'])
         avg_loss = statistics.mean(loss)
+        # not sure why below is failing because it's getting a CUDA tensor instead of Cpu
         #avg_loss = torch.stack([torch.Tensor(x['test_loss']).cpu() for x in outputs]).mean()
         tensorboard_logs = {'test_loss': avg_loss}
         return {'avg_test_loss': avg_loss, 'log': tensorboard_logs}
