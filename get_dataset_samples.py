@@ -2,6 +2,7 @@
 
 from preprocess import GISDataset
 import pickle
+from copy import deepcopy
 
 if __name__ == "__main__":
     files = [("/Users/mzvyagin/Documents/GISProject/nucleus_data/Ephemeral_Channels/Imagery/vhr_2012_refl.img",
@@ -17,10 +18,9 @@ if __name__ == "__main__":
         print("Getting samples from " + i + " dataset...")
         # get specific image type
         data = GISDataset(files, i)
-        samples = [data[1000], data[2000], data[3000]]
+        samples = [deepcopy(data[1000]), deepcopy([2000]), deepcopy([3000])]
         # garbage collector helper due to massive size of datasets
         del data
-        del samples
         image_samples[i] = samples
 
     # serialize the dict and save to pickled file
