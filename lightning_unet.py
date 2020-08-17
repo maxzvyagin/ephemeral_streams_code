@@ -97,7 +97,7 @@ class LitUNet(pl.LightningModule):
     def test_epoch_end(self, outputs):
         loss = []
         for x in outputs:
-            loss.append(x['test_loss'])
+            loss.append(float(x['test_loss']))
         avg_loss = statistics.mean(loss)
         # not sure why below is failing because it's getting a CUDA tensor instead of Cpu
         #avg_loss = torch.stack([torch.Tensor(x['test_loss']).cpu() for x in outputs]).mean()
