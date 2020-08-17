@@ -5,10 +5,14 @@ import pickle
 from copy import deepcopy
 
 if __name__ == "__main__":
-    files = [("/Users/mzvyagin/Documents/GISProject/nucleus_data/Ephemeral_Channels/Imagery/vhr_2012_refl.img",
-              "/Users/mzvyagin/Documents/GISProject/nucleus_data/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
-             ("/Users/mzvyagin/Documents/GISProject/nucleus_data/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
-              "/Users/mzvyagin/Documents/GISProject/nucleus_data/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
+    # files = [("/Users/mzvyagin/Documents/GISProject/nucleus_data/Ephemeral_Channels/Imagery/vhr_2012_refl.img",
+    #           "/Users/mzvyagin/Documents/GISProject/nucleus_data/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
+    #          ("/Users/mzvyagin/Documents/GISProject/nucleus_data/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
+    #           "/Users/mzvyagin/Documents/GISProject/nucleus_data/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
+    files = [("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2012_refl.img",
+      "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
+     ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
+      "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
 
     image_types = ['full_channel', 'rgb', 'ir', 'hsv', 'hsv_with_ir', 'veg_index']
 
