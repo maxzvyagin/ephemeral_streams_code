@@ -1,0 +1,1 @@
+ python lightning_unet.py -f iota -e iota_full_512 -i full_channel -g 7 -l 5e-6 -m 50 -t iota,itype,size -s True
