@@ -22,7 +22,7 @@ if __name__ == "__main__":
         print("Getting samples from " + i + " dataset...")
         # get specific image type
         data = GISDataset(files, i)
-        samples = [deepcopy(data[1000]), deepcopy([2000]), deepcopy([3000])]
+        samples = [deepcopy(data[1000]), deepcopy(data[2000]), deepcopy(data[3000])]
         # garbage collector helper due to massive size of datasets
         del data
         image_samples[i] = samples
