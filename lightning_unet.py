@@ -188,10 +188,10 @@ if __name__ == "__main__":
              ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
               "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
     else:
-        f = [("/home/Ephemeral_Channels/Imagery/vhr_2012_refl.img",
-              "/home/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
-             ("/home/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
-              "/home/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
+        f = [("Imagery/vhr_2012_refl.img",
+              "Reference/reference_2012_merge.shp"),
+             ("Imagery/vhr_2014_refl.img",
+              "Reference/reference_2014_merge.shp")]
 
     nep = NeptuneLogger(api_key="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vdWkubmVwdHVuZS5haSIsImFwaV91cmwiOiJodHRwczovL3VpLm5"
                                 "lcHR1bmUuYWkiLCJhcGlfa2V5IjoiOGE5NDI0YTktNmE2ZC00ZWZjLTlkMjAtNjNmMTIwM2Q2ZTQzIn0=",
