@@ -28,6 +28,6 @@ if __name__ == "__main__":
         image_samples[i] = samples
 
     # serialize the dict and save to pickled file
-    f = open("image_samples.pkl", "w+")
+    f = open("image_samples.pkl", "wb+")
     pickle.dump(image_samples, f)
     print("Image samples [1000, 2000, 3000] have been saved to the file image_samples.pkl.\n")
