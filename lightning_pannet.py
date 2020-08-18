@@ -11,7 +11,7 @@ import segmentation_models_pytorch as smp
 # Defining Environment Variables - defaults defined here and edited using command line args
 MAX_EPOCHS = 25
 LR = 1e-3
-BATCHSIZE = 1
+BATCHSIZE = 64
 INPUT_CHANNELS = 4
 OUTPUT_CHANNELS = 1
 NUM_GPUS = 1
