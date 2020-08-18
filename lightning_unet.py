@@ -200,9 +200,9 @@ if __name__ == "__main__":
                                 "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP}, tags=tags)
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
     if REP == 16:
-        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, precision=16)
+        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=16)
     else:
-        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep)
+        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, profiler=True, logger=nep)
     start = time.time()
     trainer.fit(model)
     end = time.time()
