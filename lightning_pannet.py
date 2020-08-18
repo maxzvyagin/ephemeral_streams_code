@@ -65,7 +65,7 @@ class LitUNet(pl.LightningModule):
         x = train_batch['image']
         if IMAGE_TYPE == "veg_index":
             x = x.unsqueeze(1)
-        y = train_batch['mask'].unsqueeze(1)
+        y = train_batch['mask'].unsqueeze(1).long()
         # x, y = train_batch
         logits = self.forward(x)
         loss = self.criterion(logits, y)
@@ -87,7 +87,7 @@ class LitUNet(pl.LightningModule):
         x = batch['image']
         if IMAGE_TYPE == "veg_index":
             x = x.unsqueeze(1)
-        y = batch['mask'].unsqueeze(1)
+        y = batch['mask'].unsqueeze(1).long()
         # x, y = batch
         logits = self.forward(x)
         loss = self.criterion(logits, y)
@@ -107,7 +107,7 @@ class LitUNet(pl.LightningModule):
         x = val_batch['image']
         if IMAGE_TYPE == "veg_index":
             x = x.unsqueeze(1)
-        y = val_batch['mask'].unsqueeze(1)
+        y = val_batch['mask'].unsqueeze(1).long()
         # x, y = val_batch
         logits = self.forward(x)
         loss = self.criterion(logits, y)
