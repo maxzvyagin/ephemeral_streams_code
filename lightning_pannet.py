@@ -24,7 +24,7 @@ class LitUNet(pl.LightningModule):
 
     def __init__(self, file_pairs, input_num=4, output_num=1, initial_feat=32, trained=False):
         super().__init__()
-        self.model = smp.pan.model.PAN(classes='2', in_channels=INPUT_CHANNELS)
+        self.model = smp.pan.model.PAN(classes=2, in_channels=INPUT_CHANNELS)
         self.file_pairs = file_pairs
         self.criterion = torch.nn.CrossEntropyLoss()
         # initialize dataset variables
