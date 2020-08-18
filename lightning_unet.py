@@ -6,6 +6,7 @@ import argparse
 from pytorch_lightning.logging.neptune import NeptuneLogger
 import time
 import statistics
+import segmentation_models_pytorch as smp
 
 # Defining Environment Variables - defaults defined here and edited using command line args
 MAX_EPOCHS = 25
@@ -16,16 +17,18 @@ OUTPUT_CHANNELS = 1
 NUM_GPUS = 1
 IMAGE_TYPE = "full_channel"
 REP = 32
-LARGE_IMAGE=False
+LARGE_IMAGE = False
+ENCODER = None
 
 
 class LitUNet(pl.LightningModule):
 
     def __init__(self, file_pairs, input_num=4, output_num=1, initial_feat=32, trained=False):
         super().__init__()
-        self.model = torch.hub.load('mateuszbuda/brain-segmentation-pytorch', 'unet', in_channels=input_num,
-                                    out_channels=output_num,
-                                    init_features=initial_feat, pretrained=trained)
+        if not ENCODER:
+            self.model = smp.UNet(classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS)
+        else:
+            self.model = smp.UNet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS)
         self.file_pairs = file_pairs
         self.criterion = torch.nn.MSELoss(reduction="mean")
         # initialize dataset variables
@@ -135,6 +138,8 @@ if __name__ == "__main__":
     parser.add_argument("-t", "--tags", help="Comma separated list of tags for Neptune, string format.")
     parser.add_argument("-r", "--representation", help="Enter 16 if 16 bit representation is desired. Else leave off.")
     parser.add_argument("-s", "--big_image", help="Enter True if 512 image is desired, instead of 256.")
+    parser.add_argument("-a", "--encoder", help="Specify an encoder for unet if desired, default is blank."
+                                                "See Github for SMP for options.")
     args = parser.parse_args()
     if args.image_type:
         IMAGE_TYPE = args.image_type
@@ -157,6 +162,8 @@ if __name__ == "__main__":
         else:
             REP = 16
             print("NOTE: Using 16 bit integer representation.")
+    if args.encoder:
+        ENCODER = args.encoder
     if args.big_image:
         LARGE_IMAGE=True
     # need to figure out how many input channels we have
