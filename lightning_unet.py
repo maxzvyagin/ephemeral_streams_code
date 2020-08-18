@@ -26,7 +26,7 @@ class LitUNet(pl.LightningModule):
     def __init__(self, file_pairs, input_num=4, output_num=1, initial_feat=32, trained=False):
         super().__init__()
         if not ENCODER:
-            self.model = smp.UNet(classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS)
+            self.model = smp.Unet(classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS)
         else:
             self.model = smp.UNet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS)
         self.file_pairs = file_pairs
