@@ -11,7 +11,7 @@ import segmentation_models_pytorch as smp
 # Defining Environment Variables - defaults defined here and edited using command line args
 MAX_EPOCHS = 25
 LR = 1e-3
-BATCHSIZE = 64
+BATCHSIZE = 1
 INPUT_CHANNELS = 4
 OUTPUT_CHANNELS = 1
 NUM_GPUS = 1
@@ -63,9 +63,9 @@ class LitUNet(pl.LightningModule):
     def training_step(self, train_batch, batch_idx):
         start = time.time()
         x = train_batch['image']
-        if IMAGE_TYPE == "veg_index":
-            x = x.unsqueeze(1)
-        y = train_batch['mask'].unsqueeze(1).long()
+        # if IMAGE_TYPE == "veg_index":
+        #     x = x.unsqueeze(1)
+        y = train_batch['mask'].long()
         # x, y = train_batch
         logits = self.forward(x)
         loss = self.criterion(logits, y)
@@ -85,9 +85,9 @@ class LitUNet(pl.LightningModule):
 
     def test_step(self, batch, batch_idx):
         x = batch['image']
-        if IMAGE_TYPE == "veg_index":
-            x = x.unsqueeze(1)
-        y = batch['mask'].unsqueeze(1).long()
+        # if IMAGE_TYPE == "veg_index":
+        #     x = x.unsqueeze(1)
+        y = batch['mask'].long()
         # x, y = batch
         logits = self.forward(x)
         loss = self.criterion(logits, y)
@@ -105,9 +105,9 @@ class LitUNet(pl.LightningModule):
 
     def validation_step(self, val_batch, batch_idx):
         x = val_batch['image']
-        if IMAGE_TYPE == "veg_index":
-            x = x.unsqueeze(1)
-        y = val_batch['mask'].unsqueeze(1).long()
+        # if IMAGE_TYPE == "veg_index":
+        #     x = x.unsqueeze(1)
+        y = val_batch['mask'].long()
         # x, y = val_batch
         logits = self.forward(x)
         loss = self.criterion(logits, y)

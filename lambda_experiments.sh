@@ -9,3 +9,4 @@ python lightning_unet.py -f lambda -e lambda_veg_index -i veg_index -g 7 -l 5e-6
 
 
 # python lightning_unet.py -f lambda -e lambda_fullchannel -i full_channel -g 7 -l 5e-6 -m 100 -t lambda,itype,size -s True
+# python lightning_unet.py -f lambda -e lambda_fullchannel -i full_channel -g 7 -l 5e-6 -m 25 -t lambda,profiling
