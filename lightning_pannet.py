@@ -6,7 +6,7 @@ import argparse
 from pytorch_lightning.logging.neptune import NeptuneLogger
 import time
 import statistics
-import importlib
+import segmentation_models_pytorch as smp
 
 # Defining Environment Variables - defaults defined here and edited using command line args
 MAX_EPOCHS = 25
@@ -24,8 +24,7 @@ class LitUNet(pl.LightningModule):
 
     def __init__(self, file_pairs, input_num=4, output_num=1, initial_feat=32, trained=False):
         super().__init__()
-        model_file = importlib.import_module('erfnet')
-        self.model = model_file.Net(1).to('CUDA')
+        self.model = smp.PAN(classes='2', in_channels=INPUT_CHANNELS)
         self.file_pairs = file_pairs
         self.criterion = torch.nn.CrossEntropyLoss()
         # initialize dataset variables
