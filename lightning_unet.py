@@ -21,6 +21,19 @@ LARGE_IMAGE = False
 ENCODER = None
 
 
+### copy paste from https://discuss.pytorch.org/t/implementation-of-dice-loss/53552
+class diceloss(torch.nn.Module):
+    def init(self):
+        super(diceLoss, self).init()
+    def forward(self,pred, target):
+       smooth = 1.
+       iflat = pred.contiguous().view(-1)
+       tflat = target.contiguous().view(-1)
+       intersection = (iflat * tflat).sum()
+       A_sum = torch.sum(iflat * iflat)
+       B_sum = torch.sum(tflat * tflat)
+       return 1 - ((2. * intersection + smooth) / (A_sum + B_sum + smooth) )
+
 class LitUNet(pl.LightningModule):
 
     def __init__(self, file_pairs, input_num=4, output_num=1, initial_feat=32, trained=False):
@@ -30,7 +43,8 @@ class LitUNet(pl.LightningModule):
         else:
             self.model = smp.Unet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS)
         self.file_pairs = file_pairs
-        self.criterion = torch.nn.MSELoss(reduction="mean")
+        # self.criterion = torch.nn.MSELoss(reduction="mean")
+        self.criterion = diceloss()
         # initialize dataset variables
         self.train_set = None
         self.validate_set = None

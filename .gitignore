@@ -1,2 +1,4 @@
 
 output.zip
+*.zip
+output/latest_model.pkl
