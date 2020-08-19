@@ -28,7 +28,7 @@ class LitUNet(pl.LightningModule):
         if not ENCODER:
             self.model = smp.Unet(classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS)
         else:
-            self.model = smp.UNet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS)
+            self.model = smp.Unet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS)
         self.file_pairs = file_pairs
         self.criterion = torch.nn.MSELoss(reduction="mean")
         # initialize dataset variables
