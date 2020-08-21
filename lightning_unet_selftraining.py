@@ -119,7 +119,7 @@ if __name__ == "__main__":
         print("Iteration {}...".format(i))
         all_data = model.train_set + model.validate_set + model.test_set
         for x in range(len(unlabelled)):
-            res = model(unlabelled[x])
+            res = model(unlabelled[x].unsqueeze(0))
             all_data.append({'image': unlabelled[x], 'mask': res})
         model.all_data = all_data
         model.manually_prepare_data()
