@@ -23,124 +23,6 @@ LARGE_IMAGE = False
 ENCODER = None
 
 
-### copy paste from https://discuss.pytorch.org/t/implementation-of-dice-loss/53552
-class diceloss(torch.nn.Module):
-    def init(self):
-        super(diceLoss, self).init()
-
-    def forward(self,pred, target):
-       smooth = 1.
-       iflat = pred.contiguous().view(-1)
-       tflat = target.contiguous().view(-1)
-       intersection = (iflat * tflat).sum()
-       A_sum = torch.sum(iflat * iflat)
-       B_sum = torch.sum(tflat * tflat)
-       return 1 - ((2. * intersection + smooth) / (A_sum + B_sum + smooth) )
-
-class LitUNet(pl.LightningModule):
-
-    def __init__(self, file_pairs, input_num=4, output_num=1, initial_feat=32, trained=False):
-        super().__init__()
-        if not ENCODER:
-            self.model = smp.Unet(classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS)
-        else:
-            self.model = smp.Unet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS)
-        self.file_pairs = file_pairs
-        # self.criterion = torch.nn.MSELoss(reduction="mean")
-        self.criterion = diceloss()
-        # initialize dataset variables
-        self.train_set = None
-        self.validate_set = None
-        self.test_set = None
-
-    def forward(self, x):
-        return self.model(x)
-
-    def prepare_data(self):
-        all_data = preprocess.GISDataset(self.file_pairs, IMAGE_TYPE, LARGE_IMAGE)
-        # calculate the splits
-        total = len(all_data)
-        train = int(total * .7)
-        val = int(total * .15)
-        if train + (val * 2) != total:
-            diff = total - train - (val * 2)
-            train += diff
-        # get splits and store in object
-        self.train_set, self.validate_set, self.test_set = torch.utils.data.random_split(all_data, [train, val, val])
-
-    def train_dataloader(self):
-        return DataLoader(self.train_set, batch_size=BATCHSIZE, num_workers=10)
-
-    def val_dataloader(self):
-        return DataLoader(self.validate_set, batch_size=BATCHSIZE, num_workers=10)
-
-    def test_dataloader(self):
-        return DataLoader(self.test_set, batch_size=BATCHSIZE)
-
-    def configure_optimizers(self):
-        optimizer = torch.optim.Adam(self.parameters(), lr=LR)
-        return optimizer
-
-    def training_step(self, train_batch, batch_idx):
-        start = time.time()
-        x = train_batch['image']
-        if IMAGE_TYPE == "veg_index":
-            x = x.unsqueeze(1)
-        y = train_batch['mask'].unsqueeze(1)
-        # x, y = train_batch
-        logits = self.forward(x)
-        loss = self.criterion(logits, y)
-        end = time.time()
-        time_spent = end - start
-        logs = {'train_loss': loss, 'batch_time': time_spent}
-        return {'loss': loss, 'batch_time': time_spent, 'log': logs}
-
-    def training_epoch_end(self, outputs):
-        times = []
-        for x in outputs:
-            times.append(x['batch_time'])
-        avg_time_per_batch = statistics.mean(times)
-        #avg_time_per_batch = torch.stack([x['batch_time'] for x in outputs]).mean()
-        tensorboard_logs = {'avg_time_per_batch': avg_time_per_batch}
-        return {'avg_time_per_batch': avg_time_per_batch, 'log': tensorboard_logs}
-
-    def test_step(self, batch, batch_idx):
-        x = batch['image']
-        if IMAGE_TYPE == "veg_index":
-            x = x.unsqueeze(1)
-        y = batch['mask'].unsqueeze(1)
-        # x, y = batch
-        logits = self.forward(x)
-        loss = self.criterion(logits, y)
-        return {'test_loss': loss}
-
-    def test_epoch_end(self, outputs):
-        loss = []
-        for x in outputs:
-            loss.append(float(x['test_loss']))
-        avg_loss = statistics.mean(loss)
-        # not sure why below is failing because it's getting a CUDA tensor instead of Cpu
-        #avg_loss = torch.stack([torch.Tensor(x['test_loss']).cpu() for x in outputs]).mean()
-        tensorboard_logs = {'test_loss': avg_loss}
-        return {'avg_test_loss': avg_loss, 'log': tensorboard_logs}
-
-    def validation_step(self, val_batch, batch_idx):
-        x = val_batch['image']
-        if IMAGE_TYPE == "veg_index":
-            x = x.unsqueeze(1)
-        y = val_batch['mask'].unsqueeze(1)
-        # x, y = val_batch
-        logits = self.forward(x)
-        loss = self.criterion(logits, y)
-        return {'val_loss': loss}
-
-    def validation_epoch_end(self, outputs):
-        # called at the end of the validation epoch
-        avg_loss = torch.stack([x['val_loss'] for x in outputs]).mean()
-        tensorboard_logs = {'val_loss': avg_loss}
-        return {'avg_val_loss': avg_loss, 'log': tensorboard_logs}
-
-
 if __name__ == "__main__":
     # parsing arguments and parameters for the model
     parser = argparse.ArgumentParser(description="Input Parameters for UNet Model Training")
@@ -222,6 +104,7 @@ if __name__ == "__main__":
                         project_name="maxzvyagin/GIS", experiment_name=args.experiment_name, close_after_fit=False,
                         params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
                                 "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP}, tags=tags)
+    ### set up the initial model and train on the labelled images
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
     if REP == 16:
         trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=16)
@@ -231,7 +114,18 @@ if __name__ == "__main__":
     trainer.fit(model)
     end = time.time()
     nep.log_metric("clock_time(s)", end - start)
-    # run the test set
-    trainer.test(model)
+    # perform self training for 10 iterations
+    print("\n\nBeginning self training...\n\n")
+    unlabelled = preprocess.UnlabelledGISDataset(f, IMAGE_TYPE, LARGE_IMAGE)
+    for i in range(10):
+        print("Iteration {}...".format(i))
+        all_data = model.train_set + model.validate_set + model.test_set
+        more_data = model(unlabelled)
+        for x in len(unlabelled):
+            all_data.append({'image': unlabelled[x], 'mask': more_data[x]})
+        model.all_data = all_data
+        model.manually_prepare_data()
+        # train the model again
+        trainer.fit(model)
     torch.save(model.state_dict(), "/tmp/latest_model.pkl")
     nep.log_artifact("/tmp/latest_model.pkl")
