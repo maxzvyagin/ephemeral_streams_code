@@ -133,7 +133,7 @@ if __name__ == "__main__":
             #     print(res.size())
             # except:
             #     print(res.shape)
-            new_data.append((unlabelled[x], torch.from_numpy(reshaped)))
+            new_data.append((unlabelled[x], torch.from_numpy(reshaped).cuda()))
             # new_data.append({'image': unlabelled[x], 'mask': res})
             #all_data.append({'image': unlabelled[x], 'mask': res}
         all_data = all_data + preprocess.GISDataset(None, IMAGE_TYPE, list=new_data)
