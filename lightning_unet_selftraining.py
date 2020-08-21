@@ -126,10 +126,10 @@ if __name__ == "__main__":
             res = model(unlabelled[x].unsqueeze(0))
             res = res.squeeze(0)
             res = res.squeeze(0)
-            try:
-                print(res.size())
-            except:
-                print(res.shape)
+            # try:
+            #     print(res.size())
+            # except:
+            #     print(res.shape)
             new_data.append((unlabelled[x], res))
             # new_data.append({'image': unlabelled[x], 'mask': res})
             #all_data.append({'image': unlabelled[x], 'mask': res}
