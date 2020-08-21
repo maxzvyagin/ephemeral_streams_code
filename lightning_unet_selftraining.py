@@ -120,7 +120,7 @@ if __name__ == "__main__":
         all_data = model.train_set + model.validate_set + model.test_set
         new_data = []
         for x in range(len(unlabelled)):
-            res = model(unlabelled[x].unsqueeze(0))
+            res = model(unlabelled[x])
             new_data.append({'image': unlabelled[x], 'mask': res})
             #all_data.append({'image': unlabelled[x], 'mask': res}
         all_data = all_data + Dataset(new_data)
