@@ -116,6 +116,7 @@ if __name__ == "__main__":
     model.first_run_flag = False
     print("\n\nBeginning self training...\n\n")
     unlabelled = preprocess.UnlabelledGISDataset(f, IMAGE_TYPE, LARGE_IMAGE)
+    torch.autograd.set_detect_anomaly(True)
     for i in range(10):
         print("Iteration {}...".format(i))
         all_data = model.train_set
