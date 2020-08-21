@@ -125,8 +125,9 @@ if __name__ == "__main__":
         for x in range(len(unlabelled)):
             # need to unsqueeze in order to fix batch issue
             res = model(unlabelled[x].unsqueeze(0))
-            res = res.clone().squeeze(0)
-            res = res.clone().squeeze(0)
+            reshaped = torch.reshape(res, (256, 256))
+            # res = res.clone().squeeze(0)
+            # res = res.clone().squeeze(0)
             # try:
             #     print(res.size())
             # except:
