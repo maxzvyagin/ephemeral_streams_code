@@ -119,7 +119,7 @@ if __name__ == "__main__":
     torch.autograd.set_detect_anomaly(True)
     for i in range(10):
         print("Iteration {}...".format(i))
-        all_data = model.train_set
+        all_data = model.original_train_set
         new_data = []
         # model.eval()
         for x in range(len(unlabelled)):

@@ -51,6 +51,7 @@ class LitUNet(pl.LightningModule):
         self.test_set = None
         self.all_data = None
         self.first_run_flag = True
+        self.original_train_set = None
 
     def forward(self, x):
         return self.model(x)
@@ -68,6 +69,7 @@ class LitUNet(pl.LightningModule):
                 train += diff
             # get splits and store in object
             self.train_set, self.validate_set, self.test_set = torch.utils.data.random_split(all_data, [train, val, val])
+            self.original_train_set = self.train_set
         else:
             pass
 
