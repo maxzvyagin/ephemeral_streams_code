@@ -77,12 +77,16 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False):
                 if unlabelled:
                     r = src.read(window=window)
                     if large_image:
-                        samples.append(torch.from_numpy(r).float())
+                        chunk_size = r.size()
+                        if chunk_size[-1] == 512 and chunk_size[-2] == 512:
+                            samples.append(torch.from_numpy(r).float())
                     else:
                         # need to split into tiles
                         r_chunks = split(r)
                         for i in range(4):
-                            samples.append(torch.from_numpy(r_chunks[i]).float())
+                            chunk_size = r_chunks[i].size()
+                            if chunk_size[-1] == 256 and chunk_size[-2] == 256:
+                                samples.append(torch.from_numpy(r_chunks[i]).float())
     return samples
 
 
@@ -113,12 +117,16 @@ def get_rgb_windows(img_f, mask, large_image=False, unlabelled=False):
                 if unlabelled:
                     r = src.read(window=window)
                     if large_image:
-                        samples.append(torch.from_numpy(r[:3]).float())
+                        chunk_size = r.size()
+                        if chunk_size[-1] == 512 and chunk_size[-2] == 512:
+                            samples.append(torch.from_numpy(r[:3]).float())
                     else:
                         # need to split into tiles
                         r_chunks = split(r)
                         for i in range(4):
-                            samples.append(torch.from_numpy(r_chunks[i][:3]).float())
+                            chunk_size = r_chunks[i].size()
+                            if chunk_size[-1] == 256 and chunk_size[-2] == 256:
+                                samples.append(torch.from_numpy(r_chunks[i][:3]).float())
     return samples
 
 
@@ -149,12 +157,16 @@ def get_ir_windows(img_f, mask, large_image=False, unlabelled=False):
                 if unlabelled:
                     r = src.read(window=window)
                     if large_image:
-                        samples.append(torch.from_numpy(r[3]).float())
+                        chunk_size = r.size()
+                        if chunk_size[-1] == 512 and chunk_size[-2] == 512:
+                            samples.append(torch.from_numpy(r[3]).float())
                     else:
                         # need to split into tiles
                         r_chunks = split(r)
                         for i in range(4):
-                            samples.append(torch.from_numpy(r_chunks[i][3]).float())
+                            chunk_size = r_chunks[i].size()
+                            if chunk_size[-1] == 256 and chunk_size[-2] == 256:
+                                samples.append(torch.from_numpy(r_chunks[i][3]).float())
     return samples
 
 
@@ -188,16 +200,20 @@ def get_hsv_windows(img_f, mask, large_image=False, unlabelled=False):
                 if unlabelled:
                     r = src.read(window=window)
                     if large_image:
-                        new_val = rgb2hsv(np.moveaxis(r[:3], 0, -1))
-                        new_val = np.moveaxis(new_val, -1, 0)
-                        samples.append(torch.from_numpy(new_val).float())
+                        chunk_size = r.size()
+                        if chunk_size[-1] == 512 and chunk_size[-2] == 512:
+                            new_val = rgb2hsv(np.moveaxis(r[:3], 0, -1))
+                            new_val = np.moveaxis(new_val, -1, 0)
+                            samples.append(torch.from_numpy(new_val).float())
                     else:
                         # need to split into tiles
                         r_chunks = split(r)
                         for i in range(4):
-                            new_val = rgb2hsv(np.moveaxis(r_chunks[i][:3], 0, -1))
-                            new_val = np.moveaxis(new_val, -1, 0)
-                            samples.append(torch.from_numpy(new_val).float())
+                            chunk_size = r_chunks[i].size()
+                            if chunk_size[-1] == 256 and chunk_size[-2] == 256:
+                                new_val = rgb2hsv(np.moveaxis(r_chunks[i][:3], 0, -1))
+                                new_val = np.moveaxis(new_val, -1, 0)
+                                samples.append(torch.from_numpy(new_val).float())
                 pass
     return samples
 
@@ -234,18 +250,22 @@ def get_hsv_with_ir_windows(img_f, mask, large_image=False, unlabelled=False):
             if unlabelled:
                 r = src.read(window=window)
                 if large_image:
-                    new_val = rgb2hsv(np.moveaxis(r[:3], 0, -1))
-                    new_val = np.moveaxis(new_val, -1, 0)
-                    all_channels = np.concatenate((new_val, np.expand_dims(r[3], 0)), axis=0)
-                    samples.append(torch.from_numpy(all_channels).float())
+                    chunk_size = r.size()
+                    if chunk_size[-1] == 512 and chunk_size[-2] == 512:
+                        new_val = rgb2hsv(np.moveaxis(r[:3], 0, -1))
+                        new_val = np.moveaxis(new_val, -1, 0)
+                        all_channels = np.concatenate((new_val, np.expand_dims(r[3], 0)), axis=0)
+                        samples.append(torch.from_numpy(all_channels).float())
                 else:
                     # need to split into tiles
                     r_chunks = split(r)
                     for i in range(4):
-                        new_val = rgb2hsv(np.moveaxis(r_chunks[i][:3], 0, -1))
-                        new_val = np.moveaxis(new_val, -1, 0)
-                        all_channels = np.concatenate((new_val, np.expand_dims(r_chunks[i][3], 0)), axis=0)
-                        samples.append(torch.from_numpy(all_channels).float())
+                        chunk_size = r_chunks[i].size()
+                        if chunk_size[-1] == 256 and chunk_size[-2] == 256:
+                            new_val = rgb2hsv(np.moveaxis(r_chunks[i][:3], 0, -1))
+                            new_val = np.moveaxis(new_val, -1, 0)
+                            all_channels = np.concatenate((new_val, np.expand_dims(r_chunks[i][3], 0)), axis=0)
+                            samples.append(torch.from_numpy(all_channels).float())
     return samples
 
 
@@ -279,12 +299,16 @@ def get_vegetation_index_windows(img_f, mask, large_image=False, unlabelled=Fals
                     i = src.read(3, window=window)
                     veg = numpy_msavi(r, i)
                     if large_image:
-                        samples.append(torch.from_numpy(veg).float())
+                        chunk_size = veg.size()
+                        if chunk_size[-1] == 512 and chunk_size[-2] == 512:
+                            samples.append(torch.from_numpy(veg).float())
                     else:
-                        chunks = split(veg)
+                        r_chunks = split(veg)
                         # the split function return 4 separate quadrants from the original window
                         for i in range(4):
-                            samples.append(torch.from_numpy(chunks[i]).float())
+                            chunk_size = r_chunks[i].size()
+                            if chunk_size[-1] == 256 and chunk_size[-2] == 256:
+                                samples.append(torch.from_numpy(chunks[i]).float())
                 pass
     return samples
 
