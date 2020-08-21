@@ -398,8 +398,4 @@ class UnlabelledGISDataset(Dataset):
         return len(self.samples)
 
     def __getitem__(self, index):
-        res = {}
-        pulled_sample = self.samples[index]
-        res['image'] = pulled_sample[0]
-        res['mask'] = pulled_sample[1]
-        return res
+        return self.samples[index]
