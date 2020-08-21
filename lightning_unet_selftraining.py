@@ -119,6 +119,7 @@ if __name__ == "__main__":
         print("Iteration {}...".format(i))
         all_data = model.train_set + model.validate_set + model.test_set
         new_data = []
+        model.eval()
         for x in range(len(unlabelled)):
             # need to unsqueeze in order to fix batch issue
             res = model(unlabelled[x].unsqueeze(0))
@@ -126,6 +127,7 @@ if __name__ == "__main__":
             #all_data.append({'image': unlabelled[x], 'mask': res}
         all_data = all_data + Dataset(new_data)
         model.all_data = all_data
+        #model.train()
         model.manually_prepare_data()
         # train the model again using the augemented data set
         trainer.fit(model)
