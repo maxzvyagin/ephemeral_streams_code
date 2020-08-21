@@ -125,14 +125,15 @@ if __name__ == "__main__":
         for x in range(len(unlabelled)):
             # need to unsqueeze in order to fix batch issue
             res = model(unlabelled[x].unsqueeze(0))
-            reshaped = torch.reshape(res, (256, 256))
+            reshaped = torch.reshape(res, (256, 256)).detach().numpy()
+
             # res = res.clone().squeeze(0)
             # res = res.clone().squeeze(0)
             # try:
             #     print(res.size())
             # except:
             #     print(res.shape)
-            new_data.append((unlabelled[x], reshaped))
+            new_data.append((unlabelled[x], torch.from_numpy(reshaped)))
             # new_data.append({'image': unlabelled[x], 'mask': res})
             #all_data.append({'image': unlabelled[x], 'mask': res}
         all_data = all_data + preprocess.GISDataset(None, IMAGE_TYPE, list=new_data)
