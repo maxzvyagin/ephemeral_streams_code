@@ -124,7 +124,8 @@ if __name__ == "__main__":
         for x in range(len(unlabelled)):
             # need to unsqueeze in order to fix batch issue
             res = model(unlabelled[x].unsqueeze(0))
-            new_data.append({'image': unlabelled[x], 'mask': res})
+            new_data.append((unlabelled[x], res))
+            # new_data.append({'image': unlabelled[x], 'mask': res})
             #all_data.append({'image': unlabelled[x], 'mask': res}
         all_data = all_data + preprocess.GISDataset(None, IMAGE_TYPE, list=new_data)
         model.train_set = all_data
