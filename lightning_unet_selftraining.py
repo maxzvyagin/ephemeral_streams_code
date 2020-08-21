@@ -118,9 +118,12 @@ if __name__ == "__main__":
     for i in range(10):
         print("Iteration {}...".format(i))
         all_data = model.train_set + model.validate_set + model.test_set
+        new_data = []
         for x in range(len(unlabelled)):
             res = model(unlabelled[x].unsqueeze(0))
-            all_data.append({'image': unlabelled[x], 'mask': res})
+            new_data.append({'image': unlabelled[x], 'mask': res})
+            #all_data.append({'image': unlabelled[x], 'mask': res}
+        all_data = all_data + Dataset(new_data)
         model.all_data = all_data
         model.manually_prepare_data()
         # train the model again using the augemented data set
