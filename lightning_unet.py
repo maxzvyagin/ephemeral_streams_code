@@ -72,13 +72,13 @@ class LitUNet(pl.LightningModule):
             pass
 
     def train_dataloader(self):
-        return DataLoader(self.train_set, batch_size=BATCHSIZE, num_workers=0)
+        return DataLoader(self.train_set, batch_size=BATCHSIZE, num_workers=10)
 
     def val_dataloader(self):
-        return DataLoader(self.validate_set, batch_size=BATCHSIZE, num_workers=0)
+        return DataLoader(self.validate_set, batch_size=BATCHSIZE, num_workers=10)
 
     def test_dataloader(self):
-        return DataLoader(self.test_set, batch_size=BATCHSIZE)
+        return DataLoader(self.test_set, batch_size=BATCHSIZE, num_workers=10)
 
     def configure_optimizers(self):
         optimizer = torch.optim.Adam(self.parameters(), lr=LR)
