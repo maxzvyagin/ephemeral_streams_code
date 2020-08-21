@@ -122,7 +122,7 @@ if __name__ == "__main__":
         model.eval()
         for x in range(len(unlabelled)):
             # need to unsqueeze in order to fix batch issue
-            print(unlabelled[x].unsqueeze(0).size)
+            print(unlabelled[x].unsqueeze(0).size())
             res = model(unlabelled[x].unsqueeze(0))
             new_data.append({'image': unlabelled[x], 'mask': res})
             #all_data.append({'image': unlabelled[x], 'mask': res}
