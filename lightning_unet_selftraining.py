@@ -125,5 +125,6 @@ if __name__ == "__main__":
         model.manually_prepare_data()
         # train the model again
         trainer.fit(model)
+    trainer.test(model)
     torch.save(model.state_dict(), "/tmp/latest_model.pkl")
     nep.log_artifact("/tmp/latest_model.pkl")
