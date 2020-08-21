@@ -3,12 +3,10 @@
 import preprocess
 import pytorch_lightning as pl
 import torch
-from torch.utils.data import DataLoader
 import argparse
 from pytorch_lightning.logging.neptune import NeptuneLogger
 import time
-import statistics
-import segmentation_models_pytorch as smp
+import lightning_unet
 
 # Defining Environment Variables - defaults defined here and edited using command line args
 MAX_EPOCHS = 25
@@ -105,7 +103,7 @@ if __name__ == "__main__":
                         params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
                                 "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP}, tags=tags)
     ### set up the initial model and train on the labelled images
-    model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
+    model = lightning_unet.LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
     if REP == 16:
         trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=16)
     else:
