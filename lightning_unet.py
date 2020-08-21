@@ -50,22 +50,26 @@ class LitUNet(pl.LightningModule):
         self.validate_set = None
         self.test_set = None
         self.all_data = None
+        self.first_run_flag = True
 
     def forward(self, x):
         return self.model(x)
 
     def prepare_data(self):
-        print("Prepare data called")
-        all_data = preprocess.GISDataset(self.file_pairs, IMAGE_TYPE, LARGE_IMAGE)
-        # calculate the splits
-        total = len(all_data)
-        train = int(total * .7)
-        val = int(total * .15)
-        if train + (val * 2) != total:
-            diff = total - train - (val * 2)
-            train += diff
-        # get splits and store in object
-        self.train_set, self.validate_set, self.test_set = torch.utils.data.random_split(all_data, [train, val, val])
+        if self.first_run_flag:
+            print("Prepare data called")
+            all_data = preprocess.GISDataset(self.file_pairs, IMAGE_TYPE, LARGE_IMAGE)
+            # calculate the splits
+            total = len(all_data)
+            train = int(total * .7)
+            val = int(total * .15)
+            if train + (val * 2) != total:
+                diff = total - train - (val * 2)
+                train += diff
+            # get splits and store in object
+            self.train_set, self.validate_set, self.test_set = torch.utils.data.random_split(all_data, [train, val, val])
+        else:
+            pass
 
     def train_dataloader(self):
         return DataLoader(self.train_set, batch_size=BATCHSIZE, num_workers=10)

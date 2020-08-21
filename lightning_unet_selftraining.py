@@ -113,6 +113,7 @@ if __name__ == "__main__":
     end = time.time()
     nep.log_metric("clock_time(s)", end - start)
     # perform self training for 10 iterations
+    model.first_run_flag = False
     print("\n\nBeginning self training...\n\n")
     unlabelled = preprocess.UnlabelledGISDataset(f, IMAGE_TYPE, LARGE_IMAGE)
     for i in range(10):
