@@ -118,12 +118,12 @@ if __name__ == "__main__":
     for i in range(10):
         print("Iteration {}...".format(i))
         all_data = model.train_set + model.validate_set + model.test_set
-        more_data = model(unlabelled)
         for x in len(unlabelled):
-            all_data.append({'image': unlabelled[x], 'mask': more_data[x]})
+            res = model(unlabelled[x])
+            all_data.append({'image': unlabelled[x], 'mask': res})
         model.all_data = all_data
         model.manually_prepare_data()
-        # train the model again
+        # train the model again using the augemented data set
         trainer.fit(model)
     trainer.test(model)
     torch.save(model.state_dict(), "/tmp/latest_model.pkl")
