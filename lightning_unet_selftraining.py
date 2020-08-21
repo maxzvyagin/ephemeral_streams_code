@@ -117,7 +117,7 @@ if __name__ == "__main__":
     unlabelled = preprocess.UnlabelledGISDataset(f, IMAGE_TYPE, LARGE_IMAGE)
     for i in range(10):
         print("Iteration {}...".format(i))
-        all_data = model.train_set + model.validate_set + model.test_set
+        all_data = model.train_set
         new_data = []
         model.eval()
         for x in range(len(unlabelled)):
@@ -126,9 +126,7 @@ if __name__ == "__main__":
             new_data.append({'image': unlabelled[x], 'mask': res})
             #all_data.append({'image': unlabelled[x], 'mask': res}
         all_data = all_data + preprocess.GISDataset(None, IMAGE_TYPE, list=new_data)
-        model.all_data = all_data
-        #model.train()
-        model.manually_prepare_data()
+        model.train_set = all_data
         # train the model again using the augemented data set
         trainer.fit(model)
     trainer.test(model)

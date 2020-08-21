@@ -67,17 +67,6 @@ class LitUNet(pl.LightningModule):
         # get splits and store in object
         self.train_set, self.validate_set, self.test_set = torch.utils.data.random_split(all_data, [train, val, val])
 
-    def manually_prepare_data(self):
-        # calculate the splits
-        total = len(self.all_data)
-        train = int(total * .7)
-        val = int(total * .15)
-        if train + (val * 2) != total:
-            diff = total - train - (val * 2)
-            train += diff
-        # get splits and store in object
-        self.train_set, self.validate_set, self.test_set = torch.utils.data.random_split(all_data, [train, val, val])
-
     def train_dataloader(self):
         return DataLoader(self.train_set, batch_size=BATCHSIZE, num_workers=10)
 
