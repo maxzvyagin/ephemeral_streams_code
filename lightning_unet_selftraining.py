@@ -136,6 +136,7 @@ if __name__ == "__main__":
         all_data = all_data + preprocess.GISDataset(None, IMAGE_TYPE, list=new_data)
         model.train_set = all_data
         # train the model again using the augemented data set
+        model.train()
         trainer.fit(model)
     trainer.test(model)
     torch.save(model.state_dict(), "/tmp/latest_model.pkl")
