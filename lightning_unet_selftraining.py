@@ -120,7 +120,7 @@ if __name__ == "__main__":
         print("Iteration {}...".format(i))
         all_data = model.train_set
         new_data = []
-        model.eval()
+        # model.eval()
         for x in range(len(unlabelled)):
             # need to unsqueeze in order to fix batch issue
             res = model(unlabelled[x].unsqueeze(0))
@@ -136,7 +136,6 @@ if __name__ == "__main__":
         all_data = all_data + preprocess.GISDataset(None, IMAGE_TYPE, list=new_data)
         model.train_set = all_data
         # train the model again using the augemented data set
-        model.train()
         trainer.fit(model)
     trainer.test(model)
     torch.save(model.state_dict(), "/tmp/latest_model.pkl")
