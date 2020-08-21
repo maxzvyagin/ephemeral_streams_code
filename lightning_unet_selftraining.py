@@ -118,7 +118,7 @@ if __name__ == "__main__":
     for i in range(10):
         print("Iteration {}...".format(i))
         all_data = model.train_set + model.validate_set + model.test_set
-        for x in len(unlabelled):
+        for x in range(len(unlabelled)):
             res = model(unlabelled[x])
             all_data.append({'image': unlabelled[x], 'mask': res})
         model.all_data = all_data
