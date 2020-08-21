@@ -322,46 +322,51 @@ numpy_msavi = np.vectorize(msavi)
 
 class GISDataset(Dataset):
     # need to be given a list of tuple consisting of filepaths, (img, shp) to get pairs of windows for training
-    def __init__(self, img_and_shps, image_type, large_image=False):
-        self.samples = []
-        self.image_type = image_type
-        for pair in img_and_shps:
-            # check if there is a cached object available
-            name = "/tmp/"
-            name += pair[0].split("/")[-1]
-            name += image_type
-            if large_image:
-                name += "large_image"
-            name += "dataset.pkl"
-            if path.exists(name):
-                try:
-                    cache_object = open(name, "rb")
-                    windows = pickle.load(cache_object)
-                except:
-                    print("ERROR: could not load from cache file. Please try removing " + name + " and try again.")
-                    sys.exit()
-            # process each pair and generate the windows
-            else:
-                mask = mask_from_shp(pair[0], pair[1])
-                if image_type == "full_channel":
-                    windows = get_windows(pair[0], mask, large_image)
-                elif image_type == "rgb":
-                    windows = get_rgb_windows(pair[0], mask, large_image)
-                elif image_type == "ir":
-                    windows = get_ir_windows(pair[0], mask, large_image)
-                elif image_type == "hsv":
-                    windows = get_hsv_windows(pair[0], mask, large_image)
-                elif image_type == "hsv_with_ir":
-                    windows = get_hsv_with_ir_windows(pair[0], mask, large_image)
-                elif image_type == "veg_index":
-                    windows = get_vegetation_index_windows(pair[0], mask, large_image)
+    def __init__(self, img_and_shps, image_type, large_image=False, list=None):
+        # can be initialized from a list of samples instead of from files
+        if list:
+            self.samples = list
+            self.image_type = image_type
+        else:
+            self.samples = []
+            self.image_type = image_type
+            for pair in img_and_shps:
+                # check if there is a cached object available
+                name = "/tmp/"
+                name += pair[0].split("/")[-1]
+                name += image_type
+                if large_image:
+                    name += "large_image"
+                name += "dataset.pkl"
+                if path.exists(name):
+                    try:
+                        cache_object = open(name, "rb")
+                        windows = pickle.load(cache_object)
+                    except:
+                        print("ERROR: could not load from cache file. Please try removing " + name + " and try again.")
+                        sys.exit()
+                # process each pair and generate the windows
                 else:
-                    print("WARNING: no image type match, defaulting to RGB+IR")
-                    windows = get_windows(pair[0], mask, large_image)
-                # cache the windows
-                cache_object = open(name, "wb+")
-                pickle.dump(windows, cache_object)
-            self.samples.extend(windows)
+                    mask = mask_from_shp(pair[0], pair[1])
+                    if image_type == "full_channel":
+                        windows = get_windows(pair[0], mask, large_image)
+                    elif image_type == "rgb":
+                        windows = get_rgb_windows(pair[0], mask, large_image)
+                    elif image_type == "ir":
+                        windows = get_ir_windows(pair[0], mask, large_image)
+                    elif image_type == "hsv":
+                        windows = get_hsv_windows(pair[0], mask, large_image)
+                    elif image_type == "hsv_with_ir":
+                        windows = get_hsv_with_ir_windows(pair[0], mask, large_image)
+                    elif image_type == "veg_index":
+                        windows = get_vegetation_index_windows(pair[0], mask, large_image)
+                    else:
+                        print("WARNING: no image type match, defaulting to RGB+IR")
+                        windows = get_windows(pair[0], mask, large_image)
+                    # cache the windows
+                    cache_object = open(name, "wb+")
+                    pickle.dump(windows, cache_object)
+                self.samples.extend(windows)
 
     def __len__(self):
         return len(self.samples)

@@ -7,7 +7,6 @@ import argparse
 from pytorch_lightning.logging.neptune import NeptuneLogger
 import time
 import lightning_unet
-from torch.utils.data import Dataset
 
 # Defining Environment Variables - defaults defined here and edited using command line args
 MAX_EPOCHS = 25
@@ -126,7 +125,7 @@ if __name__ == "__main__":
             res = model(unlabelled[x].unsqueeze(0))
             new_data.append({'image': unlabelled[x], 'mask': res})
             #all_data.append({'image': unlabelled[x], 'mask': res}
-        all_data = all_data + Dataset(new_data)
+        all_data = all_data + preprocess.GISDataset(None, IMAGE_TYPE, list=new_data)
         model.all_data = all_data
         #model.train()
         model.manually_prepare_data()
