@@ -126,7 +126,7 @@ if __name__ == "__main__":
             # need to unsqueeze in order to fix batch issue
             model.cuda()
             res = model(unlabelled[x].unsqueeze(0).cuda())
-            reshaped = torch.reshape(res, (256, 256)).detach().numpy()
+            reshaped = torch.reshape(res, (256, 256)).cpu().detach().numpy()
             # res = res.clone().squeeze(0)
             # res = res.clone().squeeze(0)
             # try:
