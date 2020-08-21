@@ -57,7 +57,7 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False):
     with rasterio.open(img_f) as src:
         for ji, window in src.block_windows():
             if len(samples) >= 2000:
-                return samples
+                return samplesss
             # get the window from the mask
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
