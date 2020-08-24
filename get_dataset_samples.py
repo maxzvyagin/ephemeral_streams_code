@@ -14,14 +14,17 @@ if __name__ == "__main__":
      ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
       "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
 
-    image_types = ['full_channel', 'rgb', 'ir', 'hsv', 'hsv_with_ir', 'veg_index']
+    image_types = ['full_channel', 'rgb', 'ir', 'hsv', 'hsv_with_ir', 'veg_index', 'large_full_channel']
 
     # load up each kind of dataset, and pull a select few images from it
     image_samples = {}
     for i in image_types:
         print("Getting samples from " + i + " dataset...")
         # get specific image type
-        data = GISDataset(files, i)
+        if i != 'large_full_channel':
+            data = GISDataset(files, i)
+        else:
+            data = GISDataset(files, 'full_channel', large_image=True)
         samples = [deepcopy(data[1000]), deepcopy(data[2000]), deepcopy(data[3000])]
         # garbage collector helper due to massive size of datasets
         del data
