@@ -7,6 +7,7 @@ from pytorch_lightning.logging.neptune import NeptuneLogger
 import time
 import statistics
 import segmentation_models_pytorch as smp
+from sklearn.metrics import f1_score
 
 # Defining Environment Variables - defaults defined here and edited using command line args
 MAX_EPOCHS = 25
@@ -44,7 +45,7 @@ class LitUNet(pl.LightningModule):
             self.model = smp.Unet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS)
         self.file_pairs = file_pairs
         # self.criterion = torch.nn.MSELoss(reduction="mean")
-        self.criterion = diceloss()
+        self.criterion = f1_score
         # initialize dataset variables
         self.train_set = None
         self.validate_set = None
