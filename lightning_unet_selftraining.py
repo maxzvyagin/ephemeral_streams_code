@@ -4,7 +4,7 @@ import preprocess
 import pytorch_lightning as pl
 import torch
 import argparse
-from pytorch_lightning.logging.neptune import NeptuneLogger
+from pytorch_lightning.loggers.neptune import NeptuneLogger
 import time
 import lightning_unet
 
