@@ -57,7 +57,7 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
     samples = []
     with rasterio.open(img_f) as src:
         if rand:
-            image = random.shuffle(src.block_windows())
+            image = random.shuffle(list(src.block_windows()))
         else:
             image = src.block_windows()
         for ji, window in image:
@@ -101,7 +101,7 @@ def get_rgb_windows(img_f, mask, large_image=False, unlabelled=False, num=500, g
     samples = []
     with rasterio.open(img_f) as src:
         if rand:
-            image = random.shuffle(src.block_windows())
+            image = random.shuffle(list(src.block_windows()))
         else:
             image = src.block_windows()
         for ji, window in image:
@@ -145,7 +145,7 @@ def get_ir_windows(img_f, mask, large_image=False, unlabelled=False, num=500, ge
     samples = []
     with rasterio.open(img_f) as src:
         if rand:
-            image = random.shuffle(src.block_windows())
+            image = random.shuffle(list(src.block_windows()))
         else:
             image = src.block_windows()
         for ji, window in image:
@@ -189,7 +189,7 @@ def get_hsv_windows(img_f, mask, large_image=False, unlabelled=False, num=500, g
     samples = []
     with rasterio.open(img_f) as src:
         if rand:
-            image = random.shuffle(src.block_windows())
+            image = random.shuffle(list(src.block_windows()))
         else:
             image = src.block_windows()
         for ji, window in image:
@@ -240,7 +240,7 @@ def get_hsv_with_ir_windows(img_f, mask, large_image=False, unlabelled=False, nu
     samples = []
     with rasterio.open(img_f) as src:
         if rand:
-            image = random.shuffle(src.block_windows())
+            image = random.shuffle(list(src.block_windows()))
         else:
             image = src.block_windows()
         for ji, window in image:
@@ -295,7 +295,7 @@ def get_vegetation_index_windows(img_f, mask, large_image=False, unlabelled=Fals
     samples = []
     with rasterio.open(img_f) as src:
         if rand:
-            image = random.shuffle(src.block_windows())
+            image = random.shuffle(list(src.block_windows()))
         else:
             image = src.block_windows()
         for ji, window in image:
