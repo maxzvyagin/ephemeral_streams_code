@@ -12,6 +12,7 @@ from skimage.color import rgb2hsv
 import pickle
 from os import path
 import sys
+import random
 
 
 # @lru_cache(maxsize=2)
@@ -52,11 +53,15 @@ def split(array):
 
 # given the name of an image file and the corresponding .shp array mask, outputs an array of image windows and mask windows
 # @lru_cache(maxsize=2)
-def get_windows(img_f, mask, large_image=False, unlabelled=False):
+def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_max=True, random=False):
     samples = []
     with rasterio.open(img_f) as src:
-        for ji, window in src.block_windows():
-            if len(samples) >= 500:
+        if random:
+            image = random.shuffle(src.block_windows())
+        else:
+            image = src.block_windows()
+        for ji, window in image:
+            if len(samples) >= num and not get_max:
                 return samples
             # get the window from the mask
             mask_check = mask[window.row_off:window.row_off + window.height,
@@ -92,11 +97,15 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False):
 
 # return 3 channel image of rgb reflectance values
 # @lru_cache(maxsize=2)
-def get_rgb_windows(img_f, mask, large_image=False, unlabelled=False):
+def get_rgb_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_max=True):
     samples = []
     with rasterio.open(img_f) as src:
-        for ji, window in src.block_windows():
-            if len(samples) >= 500:
+        if random:
+            image = random.shuffle(src.block_windows())
+        else:
+            image = src.block_windows()
+        for ji, window in image:
+            if len(samples) >= num and not get_max:
                 return samples
             # get the window from the mask
             mask_check = mask[window.row_off:window.row_off + window.height,
@@ -132,11 +141,15 @@ def get_rgb_windows(img_f, mask, large_image=False, unlabelled=False):
 
 # return single channel image of solely infrared reflectance values
 # @lru_cache(maxsize=2)
-def get_ir_windows(img_f, mask, large_image=False, unlabelled=False):
+def get_ir_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_max=True):
     samples = []
     with rasterio.open(img_f) as src:
-        for ji, window in src.block_windows():
-            if len(samples) >= 500:
+        if random:
+            image = random.shuffle(src.block_windows())
+        else:
+            image = src.block_windows()
+        for ji, window in image:
+            if len(samples) >= num and not get_max:
                 return samples
             # get the window from the mask
             mask_check = mask[window.row_off:window.row_off + window.height,
@@ -172,11 +185,15 @@ def get_ir_windows(img_f, mask, large_image=False, unlabelled=False):
 
 # return 3 channels of rgb converted to hsv
 # @lru_cache(maxsize=2)
-def get_hsv_windows(img_f, mask, large_image=False, unlabelled=False):
+def get_hsv_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_max=True):
     samples = []
     with rasterio.open(img_f) as src:
-        for ji, window in src.block_windows():
-            if len(samples) >= 500:
+        if random:
+            image = random.shuffle(src.block_windows())
+        else:
+            image = src.block_windows()
+        for ji, window in image:
+            if len(samples) >= num and not get_max:
                 return samples
             # get the window from the mask
             mask_check = mask[window.row_off:window.row_off + window.height,
@@ -195,7 +212,8 @@ def get_hsv_windows(img_f, mask, large_image=False, unlabelled=False):
                         for i in range(4):
                             new_val = rgb2hsv(np.moveaxis(r_chunks[i][:3], 0, -1))
                             new_val = np.moveaxis(new_val, -1, 0)
-                            samples.append((torch.from_numpy(new_val).float(), torch.from_numpy(mask_chunks[i]).float()))
+                            samples.append(
+                                (torch.from_numpy(new_val).float(), torch.from_numpy(mask_chunks[i]).float()))
             else:
                 if unlabelled:
                     r = src.read(window=window)
@@ -218,11 +236,15 @@ def get_hsv_windows(img_f, mask, large_image=False, unlabelled=False):
 
 
 # return rgb converted to hsv in addition to infrared channel
-def get_hsv_with_ir_windows(img_f, mask, large_image=False, unlabelled=False):
+def get_hsv_with_ir_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_max=True):
     samples = []
     with rasterio.open(img_f) as src:
-        for ji, window in src.block_windows():
-            if len(samples) >= 500:
+        if random:
+            image = random.shuffle(src.block_windows())
+        else:
+            image = src.block_windows()
+        for ji, window in image:
+            if len(samples) >= num and not get_max:
                 return samples
             # get the window from the mask
             mask_check = mask[window.row_off:window.row_off + window.height,
@@ -269,11 +291,15 @@ def get_hsv_with_ir_windows(img_f, mask, large_image=False, unlabelled=False):
 
 
 # given the name of an image file and the corresponding .shp array mask, outputs an array of calculated vegetation index values and mask
-def get_vegetation_index_windows(img_f, mask, large_image=False, unlabelled=False):
+def get_vegetation_index_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_max=True):
     samples = []
     with rasterio.open(img_f) as src:
-        for ji, window in src.block_windows():
-            if len(samples) >= 500:
+        if random:
+            image = random.shuffle(src.block_windows())
+        else:
+            image = src.block_windows()
+        for ji, window in image:
+            if len(samples) >= num and not get_max:
                 return samples
             # get the window from the mask
             mask_check = mask[window.row_off:window.row_off + window.height,
@@ -381,7 +407,7 @@ class GISDataset(Dataset):
 
 class UnlabelledGISDataset(Dataset):
     # need to be given a list of tuple consisting of filepaths, (img, shp) to get pairs of windows for training
-    def __init__(self, img_and_shps, image_type, large_image=False):
+    def __init__(self, img_and_shps, image_type, large_image=False, num_images=500):
         self.samples = []
         self.image_type = image_type
         for pair in img_and_shps:
@@ -403,20 +429,22 @@ class UnlabelledGISDataset(Dataset):
             else:
                 mask = mask_from_shp(pair[0], pair[1])
                 if image_type == "full_channel":
-                    windows = get_windows(pair[0], mask, large_image, unlabelled=True)
+                    windows = get_windows(pair[0], mask, large_image, unlabelled=True, num=num_images, get_max=False)
                 elif image_type == "rgb":
-                    windows = get_rgb_windows(pair[0], mask, large_image, unlabelled=True)
+                    windows = get_rgb_windows(pair[0], mask, large_image, unlabelled=True, num=num_images, get_max=False)
                 elif image_type == "ir":
-                    windows = get_ir_windows(pair[0], mask, large_image, unlabelled=True)
+                    windows = get_ir_windows(pair[0], mask, large_image, unlabelled=True, num=num_images, get_max=False)
                 elif image_type == "hsv":
-                    windows = get_hsv_windows(pair[0], mask, large_image, unlabelled=True)
+                    windows = get_hsv_windows(pair[0], mask, large_image, unlabelled=True, num=num_images, get_max=False)
                 elif image_type == "hsv_with_ir":
-                    windows = get_hsv_with_ir_windows(pair[0], mask, large_image, unlabelled=True)
+                    windows = get_hsv_with_ir_windows(pair[0], mask, large_image, unlabelled=True, num=num_images,
+                                                      get_max=False)
                 elif image_type == "veg_index":
-                    windows = get_vegetation_index_windows(pair[0], mask, large_image, unlabelled=True)
+                    windows = get_vegetation_index_windows(pair[0], mask, large_image, unlabelled=True, num=num_images,
+                                                           get_max=False)
                 else:
                     print("WARNING: no image type match, defaulting to RGB+IR")
-                    windows = get_windows(pair[0], mask, large_image, unlabelled=True)
+                    windows = get_windows(pair[0], mask, large_image, unlabelled=True, num=num_images)
                 # cache the windows
                 cache_object = open(name, "wb+")
                 pickle.dump(windows, cache_object)
