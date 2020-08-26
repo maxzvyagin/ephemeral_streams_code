@@ -39,6 +39,7 @@ class diceloss(torch.nn.Module):
 
 def get_category(output):
     # given output, get mask
+    print("Getting category")
     final_shape = output.shape
     a = output[:, 0, :, :]
     a = torch.flatten(a)
