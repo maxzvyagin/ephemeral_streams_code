@@ -47,7 +47,7 @@ class LitUNet(pl.LightningModule):
             self.model = smp.Unet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, activation='sigmoid')
         self.file_pairs = file_pairs
         # self.criterion = torch.nn.MSELoss(reduction="mean")
-        self.criterion = diceloss()
+        self.criterion = torch.nn.BCELoss()
         # initialize dataset variables
         self.train_set = None
         self.validate_set = None
@@ -57,11 +57,12 @@ class LitUNet(pl.LightningModule):
         self.original_train_set = None
 
     def forward(self, x):
-        values, indices = torch.max(self.model(x), 1)
-        #indices = torch.cuda.FloatTensor(indices)
-        #indices.type(torch.cuda.FloatTensor)
-        #indices.requires_grad = True
-        return indices
+        return self.model(x)
+        # values, indices = torch.max(self.model(x), 1)
+        # #indices = torch.cuda.FloatTensor(indices)
+        # #indices.type(torch.cuda.FloatTensor)
+        # #indices.requires_grad = True
+        # return indices
 
     def prepare_data(self):
         if self.first_run_flag:
