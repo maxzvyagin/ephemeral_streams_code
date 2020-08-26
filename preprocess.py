@@ -34,7 +34,15 @@ def mask_from_output(model_output):
     # given model output, softmax probability for 2 classes, generate a mask corresponding to segmentation
     # get final shape of output
     final_shape = model_output.shape()[-2:].unsqueeze(0)
-    pass
+    print(final_shape)
+    result = []
+    for one, two in model_output[0], model_output[1]:
+        if one >= two:
+            result.append(0)
+        else:
+            result.append(1)
+    result = torch.reshape(torch.FloatTensor(result), final_shape)
+    return result
 
 
 

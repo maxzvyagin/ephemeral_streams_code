@@ -55,7 +55,7 @@ class LitUNet(pl.LightningModule):
         self.original_train_set = None
 
     def forward(self, x):
-        return self.model(x)
+        return preprocess.mask_from_output(self.model(x))
 
     def prepare_data(self):
         if self.first_run_flag:
