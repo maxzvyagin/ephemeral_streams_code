@@ -59,8 +59,8 @@ class LitUNet(pl.LightningModule):
     def forward(self, x):
         values, indices = torch.max(self.model(x), 1)
         #indices = torch.cuda.FloatTensor(indices)
-        indices.type(torch.cuda.FloatTensor)
-        indices.requires_grad = True
+        #indices.type(torch.cuda.FloatTensor)
+        #indices.requires_grad = True
         return indices
 
     def prepare_data(self):
