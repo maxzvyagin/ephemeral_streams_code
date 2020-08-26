@@ -41,7 +41,9 @@ def get_category(output):
     # given output, get mask
     final_shape = output.shape
     a = output[:, 0, :, :]
+    a = torch.flatten(a)
     b = output[:, 1, :, :]
+    b = torch.flatten(b)
     res = []
     for i in range(len(a)):
         if a[i] >= b[i]:
