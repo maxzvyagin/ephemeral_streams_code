@@ -4,3 +4,5 @@ output.zip
 output/latest_model.pkl
 *.zip
 *.pkl
+*.ipynb
+*.zip
