@@ -37,35 +37,14 @@ class diceloss(torch.nn.Module):
         return 1 - ((2. * intersection + smooth) / (A_sum + B_sum + smooth))
 
 
-def get_category(output):
-    # given output, get mask
-    print("Getting category")
-    final_shape = output.shape
-    a = output[:, 0, :, :]
-    a = torch.flatten(a)
-    b = output[:, 1, :, :]
-    b = torch.flatten(b)
-    res = []
-    for i in range(len(a)):
-        if a[i] >= b[i]:
-            res.append(1)
-        else:
-            res.append(0)
-    # reshape and return
-    res = torch.FloatTensor(res)
-    res = torch.reshape(res, (final_shape[0], final_shape[2], final_shape[3]))
-    return res
-
-
-
 class LitUNet(pl.LightningModule):
 
     def __init__(self, file_pairs, input_num=4, output_num=1, initial_feat=32, trained=False):
         super().__init__()
         if not ENCODER:
-            self.model = smp.Unet(classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, activation='softmax')
+            self.model = smp.Unet(classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, activation='sigmoid')
         else:
-            self.model = smp.Unet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, activation='softmax')
+            self.model = smp.Unet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, activation='sigmoid')
         self.file_pairs = file_pairs
         # self.criterion = torch.nn.MSELoss(reduction="mean")
         self.criterion = diceloss()
@@ -78,11 +57,8 @@ class LitUNet(pl.LightningModule):
         self.original_train_set = None
 
     def forward(self, x):
-        # output = self.model(x)
-        # res = get_category(output)
-        # return res
         values, indices = torch.max(self.model(x), 1)
-        # indices = torch.FloatTensor(indices)
+        indices = torch.FloatTensor(indices)
         indices.requires_grad = True
         return indices
 
