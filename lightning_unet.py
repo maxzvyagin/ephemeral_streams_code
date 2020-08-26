@@ -59,6 +59,7 @@ class LitUNet(pl.LightningModule):
         output = self.model(x)
         print(output.shape)
         res = torch.max(output[0], output[1])
+        print(res.shape)
         return res
 
     def prepare_data(self):
