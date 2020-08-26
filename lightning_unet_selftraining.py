@@ -131,7 +131,7 @@ if __name__ == "__main__":
             res = model(unlabelled[x].unsqueeze(0).cuda())
             reshaped = torch.reshape(res, (256, 256)).cpu().detach().numpy()
             # need to only append the new example here if we reach a certain confidence threshold
-            # also need to do some post processing here, rounding?
+            # also need to do some post processing here, get the confidence for each class and create the mask
             new_data.append((unlabelled[x], torch.from_numpy(reshaped)))
             # new_data.append({'image': unlabelled[x], 'mask': res})
             #all_data.append({'image': unlabelled[x], 'mask': res}

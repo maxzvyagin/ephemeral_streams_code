@@ -15,7 +15,6 @@ import sys
 import random
 
 
-# @lru_cache(maxsize=2)
 def mask_from_shp(img_f, shp_f):
     # this function will also perform the reprojection onto the image file that we're masking (CRS adjustment)
     # read in the shp file
@@ -29,6 +28,15 @@ def mask_from_shp(img_f, shp_f):
     geometry = shp_reproject['geometry']
     mask = rasterio.features.geometry_mask(geometry, img.shape, img.transform, all_touched=False, invert=True)
     return mask
+
+
+def mask_from_output(model_output):
+    # given model output, softmax probability for 2 classes, generate a mask corresponding to segmentation
+    # get final shape of output
+    final_shape = model_output.shape()[-2:].unsqueeze(0)
+    pass
+
+
 
 
 def split(array):
