@@ -43,7 +43,7 @@ def get_category(output):
     a = output[:, 0, :, :]
     b = output[:, 1, :, :]
     res = []
-    for i in len(a):
+    for i in range(len(a)):
         if a[i] >= b[i]:
             res.append(1)
         else:
