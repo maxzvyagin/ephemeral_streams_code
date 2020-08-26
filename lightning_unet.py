@@ -82,8 +82,9 @@ class LitUNet(pl.LightningModule):
         # res = get_category(output)
         # return res
         values, indices = torch.max(self.model(x), 1)
+        indices.requires_grad = True
         #print(indices)
-        return values
+        return indices
 
     def prepare_data(self):
         if self.first_run_flag:
