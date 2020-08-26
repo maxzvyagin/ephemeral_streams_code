@@ -78,10 +78,10 @@ class LitUNet(pl.LightningModule):
         self.original_train_set = None
 
     def forward(self, x):
-        # return preprocess.mask_from_output(self.model(x))
-        output = self.model(x)
-        res = get_category(output)
-        return res
+        # output = self.model(x)
+        # res = get_category(output)
+        # return res
+        return torch.argmax(self.model(x), 1)
 
     def prepare_data(self):
         if self.first_run_flag:
