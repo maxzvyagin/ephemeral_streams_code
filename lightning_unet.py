@@ -26,14 +26,16 @@ ENCODER = None
 class diceloss(torch.nn.Module):
     def init(self):
         super(diceLoss, self).init()
-    def forward(self,pred, target):
-       smooth = 1.
-       iflat = pred.contiguous().view(-1)
-       tflat = target.contiguous().view(-1)
-       intersection = (iflat * tflat).sum()
-       A_sum = torch.sum(iflat * iflat)
-       B_sum = torch.sum(tflat * tflat)
-       return 1 - ((2. * intersection + smooth) / (A_sum + B_sum + smooth) )
+
+    def forward(self, pred, target):
+        smooth = 1.
+        iflat = pred.contiguous().view(-1)
+        tflat = target.contiguous().view(-1)
+        intersection = (iflat * tflat).sum()
+        A_sum = torch.sum(iflat * iflat)
+        B_sum = torch.sum(tflat * tflat)
+        return 1 - ((2. * intersection + smooth) / (A_sum + B_sum + smooth))
+
 
 class LitUNet(pl.LightningModule):
 
@@ -55,10 +57,10 @@ class LitUNet(pl.LightningModule):
         self.original_train_set = None
 
     def forward(self, x):
-        #return preprocess.mask_from_output(self.model(x))
-        output = self.model(x).squeeze(0)
+        # return preprocess.mask_from_output(self.model(x))
+        output = self.model(x)
         print(output.shape)
-        res = torch.max(output[0], output[1])
+        res = torch.max(output[:, 0, :, :], output[:, 1, :, :])
         print(res.shape)
         return res
 
@@ -74,7 +76,8 @@ class LitUNet(pl.LightningModule):
                 diff = total - train - (val * 2)
                 train += diff
             # get splits and store in object
-            self.train_set, self.validate_set, self.test_set = torch.utils.data.random_split(all_data, [train, val, val])
+            self.train_set, self.validate_set, self.test_set = torch.utils.data.random_split(all_data,
+                                                                                             [train, val, val])
             self.original_train_set = self.train_set
         else:
             pass
@@ -111,7 +114,7 @@ class LitUNet(pl.LightningModule):
         for x in outputs:
             times.append(x['batch_time'])
         avg_time_per_batch = statistics.mean(times)
-        #avg_time_per_batch = torch.stack([x['batch_time'] for x in outputs]).mean()
+        # avg_time_per_batch = torch.stack([x['batch_time'] for x in outputs]).mean()
         tensorboard_logs = {'avg_time_per_batch': avg_time_per_batch}
         return {'avg_time_per_batch': avg_time_per_batch, 'log': tensorboard_logs}
 
@@ -131,7 +134,7 @@ class LitUNet(pl.LightningModule):
             loss.append(float(x['test_loss']))
         avg_loss = statistics.mean(loss)
         # not sure why below is failing because it's getting a CUDA tensor instead of Cpu
-        #avg_loss = torch.stack([torch.Tensor(x['test_loss']).cpu() for x in outputs]).mean()
+        # avg_loss = torch.stack([torch.Tensor(x['test_loss']).cpu() for x in outputs]).mean()
         tensorboard_logs = {'test_loss': avg_loss}
         return {'avg_test_loss': avg_loss, 'log': tensorboard_logs}
 
@@ -193,7 +196,7 @@ if __name__ == "__main__":
     if args.encoder:
         ENCODER = args.encoder
     if args.big_image:
-        LARGE_IMAGE=True
+        LARGE_IMAGE = True
     # need to figure out how many input channels we have
     if IMAGE_TYPE == "full_channel":
         INPUT_CHANNELS = 4
