@@ -36,7 +36,7 @@ def mask_from_output(model_output):
     final_shape = model_output.shape[-2:]
     print(final_shape)
     result = []
-    for one, two in torch.flatten(model_output[0]), torch.flatten(model_output[1]):
+    for one, two in zip(torch.flatten(model_output[0]), torch.flatten(model_output[1])):
         if one >= two:
             result.append(0)
         else:
