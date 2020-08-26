@@ -56,7 +56,7 @@ class LitUNet(pl.LightningModule):
 
     def forward(self, x):
         #return preprocess.mask_from_output(self.model(x))
-        output = self.model(x)
+        output = self.model(x).squeeze(0)
         print(output.shape)
         res = torch.max(output[0], output[1])
         print(res.shape)
