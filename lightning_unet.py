@@ -81,6 +81,7 @@ class LitUNet(pl.LightningModule):
         # output = self.model(x)
         # res = get_category(output)
         # return res
+        print(torch.argmax(self.model(x), 1))
         return torch.argmax(self.model(x), 1).detach()
 
     def prepare_data(self):
