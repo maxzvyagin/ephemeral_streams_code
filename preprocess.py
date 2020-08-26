@@ -36,8 +36,10 @@ def mask_from_output(model_output):
     final_shape = model_output.shape[-2:]
     print(final_shape)
     result = []
-    for one, two in zip(torch.flatten(model_output[0]), torch.flatten(model_output[1])):
-        if one >= two:
+    channel_one = torch.flatten(model_output[0])
+    channel_two = torch.flatten(model_output[1])
+    for i in range(len(torch.flatten(model_output[0]))):
+        if channel_one[i] >= channel_two[i]:
             result.append(0)
         else:
             result.append(1)
