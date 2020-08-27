@@ -14,7 +14,7 @@ MAX_EPOCHS = 25
 LR = 1e-3
 BATCHSIZE = 64
 INPUT_CHANNELS = 4
-OUTPUT_CHANNELS = 2
+OUTPUT_CHANNELS = 1
 NUM_GPUS = 1
 IMAGE_TYPE = "full_channel"
 REP = 32
@@ -57,12 +57,13 @@ class LitUNet(pl.LightningModule):
         self.original_train_set = None
 
     def forward(self, x):
-        # return self.model(x)
-        values, indices = torch.max(self.model(x), 1)
-        # indices = torch.cuda.FloatTensor(indices)
-        res = indices.float()
-        res.requires_grad = True
-        return res
+        # # return self.model(x)
+        # values, indices = torch.max(self.model(x), 1)
+        # # indices = torch.cuda.FloatTensor(indices)
+        # res = indices.float()
+        # res.requires_grad = True
+        # return res
+        return self.model(x)
 
     def prepare_data(self):
         if self.first_run_flag:
