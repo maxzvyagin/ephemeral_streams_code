@@ -60,9 +60,8 @@ class LitUNet(pl.LightningModule):
         # return self.model(x)
         values, indices = torch.max(self.model(x), 1)
         # indices = torch.cuda.FloatTensor(indices)
-        res = torch.cuda.FloatTensor(indices)
-        # indices.type(torch.cuda.FloatTensor)
-        # indices.requires_grad = True
+        res = indices.float()
+        res.requires_grad = True
         return res
 
     def prepare_data(self):
