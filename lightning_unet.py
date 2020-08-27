@@ -47,7 +47,7 @@ class LitUNet(pl.LightningModule):
             self.model = smp.Unet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, activation='sigmoid')
         self.file_pairs = file_pairs
         # self.criterion = torch.nn.MSELoss(reduction="mean")
-        self.criterion = torch.nn.BCELoss()
+        self.criterion = diceloss()
         # initialize dataset variables
         self.train_set = None
         self.validate_set = None
