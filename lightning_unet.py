@@ -42,12 +42,12 @@ class LitUNet(pl.LightningModule):
     def __init__(self, file_pairs, input_num=4, output_num=1, initial_feat=32, trained=False):
         super().__init__()
         if not ENCODER:
-            self.model = smp.Unet(classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, activation='sigmoid')
+            self.model = smp.Unet(classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS)
         else:
-            self.model = smp.Unet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, activation='sigmoid')
+            self.model = smp.Unet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS)
         self.file_pairs = file_pairs
         # self.criterion = torch.nn.MSELoss(reduction="mean")
-        self.criterion = diceloss()
+        self.criterion = torch.nn.BCEWithLogitsLoss()
         # initialize dataset variables
         self.train_set = None
         self.validate_set = None
