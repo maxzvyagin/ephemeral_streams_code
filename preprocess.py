@@ -367,7 +367,7 @@ numpy_msavi = np.vectorize(msavi)
 class GISDataset(Dataset):
     """Generates a dataset for Pytorch of image and labelled mask."""
     # need to be given a list of tuple consisting of filepaths, (img, shp) to get pairs of windows for training
-    def __init__(self, img_and_shps, image_type, large_image=False, list=None):
+    def __init__(self, img_and_shps, image_type, large_image=False, list=None, iota=False):
         # can be initialized from a list of samples instead of from files
         if list:
             self.samples = list
@@ -377,7 +377,10 @@ class GISDataset(Dataset):
             self.image_type = image_type
             for pair in img_and_shps:
                 # check if there is a cached object available
-                name = "/tmp/"
+                if iota:
+                    name = "/raid/scratch/mzvyagin/"
+                else:
+                    name = "/tmp/"
                 name += pair[0].split("/")[-1]
                 name += image_type
                 if large_image:

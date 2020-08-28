@@ -20,6 +20,7 @@ IMAGE_TYPE = "full_channel"
 REP = 32
 LARGE_IMAGE = False
 ENCODER = None
+IOTA = False
 
 
 ### copy paste from https://discuss.pytorch.org/t/implementation-of-dice-loss/53552
@@ -67,7 +68,7 @@ class LitUNet(pl.LightningModule):
 
     def prepare_data(self):
         if self.first_run_flag:
-            all_data = preprocess.GISDataset(self.file_pairs, IMAGE_TYPE, LARGE_IMAGE)
+            all_data = preprocess.GISDataset(self.file_pairs, IMAGE_TYPE, LARGE_IMAGE, iota=IOTA)
             # calculate the splits
             total = len(all_data)
             train = int(total * .7)
@@ -230,6 +231,7 @@ if __name__ == "__main__":
               "/lus/iota-fs0/projects/CVD_Research/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
              ("/lus/iota-fs0/projects/CVD_Research/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
               "/lus/iota-fs0/projects/CVD_Research/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
+        IOTA = True
 
     nep = NeptuneLogger(api_key="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vdWkubmVwdHVuZS5haSIsImFwaV91cmwiOiJodHRwczovL3VpLm5"
                                 "lcHR1bmUuYWkiLCJhcGlfa2V5IjoiOGE5NDI0YTktNmE2ZC00ZWZjLTlkMjAtNjNmMTIwM2Q2ZTQzIn0=",
