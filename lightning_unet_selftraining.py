@@ -136,7 +136,7 @@ if __name__ == "__main__":
             new_data.append((unlabelled[x], torch.from_numpy(reshaped)))
             # new_data.append({'image': unlabelled[x], 'mask': res})
             #all_data.append({'image': unlabelled[x], 'mask': res}
-        all_data = all_data + preprocess.GISDataset(None, IMAGE_TYPE, list=new_data)
+        all_data = all_data + preprocess.GISDataset(None, IMAGE_TYPE, data_list=new_data)
         model.train_set = all_data
         # train the model again using the augemented data set
         trainer.fit(model)

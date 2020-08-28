@@ -366,10 +366,10 @@ numpy_msavi = np.vectorize(msavi)
 class GISDataset(Dataset):
     """Generates a dataset for Pytorch of image and labelled mask."""
     # need to be given a list of tuple consisting of filepaths, (img, shp) to get pairs of windows for training
-    def __init__(self, img_and_shps, image_type, large_image=False, list=None, iota=False):
+    def __init__(self, img_and_shps, image_type, large_image=False, data_list=None, iota=False):
         # can be initialized from a list of samples instead of from files
-        if list:
-            self.samples = list
+        if data_list:
+            self.samples = data_list
             self.image_type = image_type
         else:
             self.samples = []
