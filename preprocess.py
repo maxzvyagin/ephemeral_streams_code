@@ -47,8 +47,6 @@ def mask_from_output(model_output):
     return result
 
 
-
-
 def split(array):
     # split a given 3d array into 4 equal chunks
     if len(array.shape) == 2:
@@ -365,10 +363,11 @@ numpy_msavi = np.vectorize(msavi)
 
 class GISDataset(Dataset):
     """Generates a dataset for Pytorch of image and labelled mask."""
+
     # need to be given a list of tuple consisting of filepaths, (img, shp) to get pairs of windows for training
     def __init__(self, img_and_shps, image_type, large_image=False, data_list=None, iota=False):
         # can be initialized from a list of samples instead of from files
-        if data_list:
+        if data_list is not None:
             self.samples = data_list
             self.image_type = image_type
             return
@@ -429,6 +428,7 @@ class GISDataset(Dataset):
 
 class UnlabelledGISDataset(Dataset):
     """ Used for sampling for unsupervised learning purposes."""
+
     def __init__(self, img_and_shps, image_type, large_image=False, num_images=500):
         self.samples = []
         self.image_type = image_type
@@ -454,13 +454,15 @@ class UnlabelledGISDataset(Dataset):
                     windows = get_windows(pair[0], mask, large_image, unlabelled=True, num=num_images, get_max=False,
                                           rand=True)
                 elif image_type == "rgb":
-                    windows = get_rgb_windows(pair[0], mask, large_image, unlabelled=True, num=num_images, get_max=False,
+                    windows = get_rgb_windows(pair[0], mask, large_image, unlabelled=True, num=num_images,
+                                              get_max=False,
                                               rand=True)
                 elif image_type == "ir":
                     windows = get_ir_windows(pair[0], mask, large_image, unlabelled=True, num=num_images, get_max=False,
                                              rand=True)
                 elif image_type == "hsv":
-                    windows = get_hsv_windows(pair[0], mask, large_image, unlabelled=True, num=num_images, get_max=False)
+                    windows = get_hsv_windows(pair[0], mask, large_image, unlabelled=True, num=num_images,
+                                              get_max=False)
                 elif image_type == "hsv_with_ir":
                     windows = get_hsv_with_ir_windows(pair[0], mask, large_image, unlabelled=True, num=num_images,
                                                       get_max=False, rand=True)
