@@ -105,7 +105,7 @@ class LitUNet(pl.LightningModule):
             x = x.unsqueeze(1)
         y = train_batch['mask'].unsqueeze(1)
         # x, y = train_batch
-        logits = self.forward(x)
+        logits = self.forward(x)[0]
         loss = self.criterion(logits, y)
         end = time.time()
         time_spent = end - start
@@ -127,7 +127,7 @@ class LitUNet(pl.LightningModule):
             x = x.unsqueeze(1)
         y = batch['mask'].unsqueeze(1)
         # x, y = batch
-        logits = self.forward(x)
+        logits = self.forward(x)[0]
         loss = self.criterion(logits, y)
         return {'test_loss': loss}
 
@@ -148,7 +148,7 @@ class LitUNet(pl.LightningModule):
             x = x.unsqueeze(1)
         y = val_batch['mask'].unsqueeze(1)
         # x, y = val_batch
-        logits = self.forward(x)
+        logits = self.forward(x)[0]
         loss = self.criterion(logits, y)
         return {'val_loss': loss}
 
