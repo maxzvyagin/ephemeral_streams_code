@@ -7,7 +7,7 @@ from pytorch_lightning.loggers.neptune import NeptuneLogger
 import time
 import statistics
 import segmentation_models_pytorch as smp
-from sklearn.metrics import f1_score
+import math
 
 # Defining Environment Variables - defaults defined here and edited using command line args
 MAX_EPOCHS = 25
@@ -42,10 +42,11 @@ class LitUNet(pl.LightningModule):
 
     def __init__(self, file_pairs, input_num=4, output_num=1, initial_feat=32, trained=False):
         super().__init__()
+        aux = dict(dropout=0.5)
         if not ENCODER:
-            self.model = smp.Unet(classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS)
+            self.model = smp.Unet(classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, aux_params=aux)
         else:
-            self.model = smp.Unet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS)
+            self.model = smp.Unet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, aux_params=aux)
         self.file_pairs = file_pairs
         # self.criterion = torch.nn.MSELoss(reduction="mean")
         self.criterion = torch.nn.BCEWithLogitsLoss()
@@ -56,6 +57,7 @@ class LitUNet(pl.LightningModule):
         self.all_data = None
         self.first_run_flag = True
         self.original_train_set = None
+        self.test_loss = math.inf
 
     def forward(self, x):
         # # return self.model(x)
@@ -137,6 +139,7 @@ class LitUNet(pl.LightningModule):
         # not sure why below is failing because it's getting a CUDA tensor instead of Cpu
         # avg_loss = torch.stack([torch.Tensor(x['test_loss']).cpu() for x in outputs]).mean()
         tensorboard_logs = {'test_loss': avg_loss}
+        self.test_loss = avg_loss
         return {'avg_test_loss': avg_loss, 'log': tensorboard_logs}
 
     def validation_step(self, val_batch, batch_idx):

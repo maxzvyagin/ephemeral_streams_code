@@ -74,10 +74,9 @@ def split(array):
 def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_max=True, rand=False):
     samples = []
     with rasterio.open(img_f) as src:
+        image = src.block_windows()
         if rand:
-            image = random.shuffle(list(src.block_windows()))
-        else:
-            image = src.block_windows()
+            random.shuffle(list(image))
         for ji, window in image:
             if len(samples) >= num and not get_max:
                 return samples
