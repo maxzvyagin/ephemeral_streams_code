@@ -371,6 +371,7 @@ class GISDataset(Dataset):
         if data_list:
             self.samples = data_list
             self.image_type = image_type
+            return
         else:
             self.samples = []
             self.image_type = image_type
