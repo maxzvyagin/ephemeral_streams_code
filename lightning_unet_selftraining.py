@@ -121,7 +121,7 @@ if __name__ == "__main__":
     while model.test_loss > 0.05:
         # get a new random set of unlabelled data each time
         print("Getting a new set of unlabelled data...")
-        unlabelled = preprocess.UnlabelledGISDataset(f, IMAGE_TYPE, LARGE_IMAGE, num_images=1000)
+        unlabelled = preprocess.UnlabelledGISDataset(f, IMAGE_TYPE, LARGE_IMAGE, num_images=500)
         print("Iteration {}...".format(i))
         all_data = model.original_train_set
         new_data = []
