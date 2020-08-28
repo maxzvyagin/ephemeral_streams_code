@@ -117,6 +117,7 @@ if __name__ == "__main__":
     model.first_run_flag = False
     print("\n\nBeginning self training...\n\n")
     #unlabelled = preprocess.UnlabelledGISDataset(f, IMAGE_TYPE, LARGE_IMAGE, num_images=1000)
+    i = 1
     while model.test_loss > 0.05:
         # get a new random set of unlabelled data each time
         print("Getting a new set of unlabelled data...")
@@ -139,6 +140,7 @@ if __name__ == "__main__":
         model.train_set = all_data
         # train the model again using the augemented data set
         trainer.fit(model)
-    trainer.test(model)
+        trainer.test(model)
+        i += 1
     torch.save(model.state_dict(), "/tmp/latest_model.pkl")
     nep.log_artifact("/tmp/latest_model.pkl")
