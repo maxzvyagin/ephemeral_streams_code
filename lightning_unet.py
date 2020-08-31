@@ -44,7 +44,7 @@ class LitUNet(pl.LightningModule):
         super().__init__()
         aux = dict(dropout=0.5, classes=1)
         decode_ch = []
-        for x in range(53, 3, -1)
+        for x in range(53, 3, -1):
             decode_ch.append(2**x)
         if not ENCODER:
             self.model = smp.Unet(classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, aux_params=aux, encoder_depth=50,
