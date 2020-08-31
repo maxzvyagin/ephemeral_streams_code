@@ -61,6 +61,7 @@ class LitUNet(pl.LightningModule):
         self.first_run_flag = True
         self.original_train_set = None
         self.test_loss = math.inf
+        self.learning_rate = learning_rate
         self.save_hyperparameters('learning_rate')
 
     def forward(self, x):
@@ -100,7 +101,7 @@ class LitUNet(pl.LightningModule):
 
     def configure_optimizers(self):
         #optimizer = torch.optim.Adam(self.parameters(), lr=LR)
-        optimizer = torch.optim.Adam(self.parameters())
+        optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate)
         return optimizer
 
     def training_step(self, train_batch, batch_idx):
