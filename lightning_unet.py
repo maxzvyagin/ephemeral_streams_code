@@ -44,9 +44,10 @@ class LitUNet(pl.LightningModule):
         super().__init__()
         aux = dict(dropout=0.5, classes=1)
         if not ENCODER:
-            self.model = smp.Unet(classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, aux_params=aux)
+            self.model = smp.Unet(classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, aux_params=aux, encoder_depth=50)
         else:
-            self.model = smp.Unet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, aux_params=aux)
+            self.model = smp.Unet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, aux_params=aux,
+                                  encoder_depth=50)
         self.file_pairs = file_pairs
         # self.criterion = torch.nn.MSELoss(reduction="mean")
         self.criterion = torch.nn.BCEWithLogitsLoss()
@@ -95,7 +96,8 @@ class LitUNet(pl.LightningModule):
         return DataLoader(self.test_set, batch_size=BATCHSIZE, num_workers=10)
 
     def configure_optimizers(self):
-        optimizer = torch.optim.Adam(self.parameters(), lr=LR)
+        #optimizer = torch.optim.Adam(self.parameters(), lr=LR)
+        optimizer = torch.optim.Adam(self.parameters())
         return optimizer
 
     def training_step(self, train_batch, batch_idx):
@@ -243,9 +245,9 @@ if __name__ == "__main__":
                                 "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP}, tags=tags)
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
     if REP == 16:
-        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=16)
+        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=16, auto_lr_find=True)
     else:
-        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, profiler=True, logger=nep)
+        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, profiler=True, logger=nep, auto_lr_find=True)
     start = time.time()
     trainer.fit(model)
     end = time.time()
