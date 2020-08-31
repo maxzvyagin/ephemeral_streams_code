@@ -44,10 +44,11 @@ class LitUNet(pl.LightningModule):
         super().__init__()
         aux = dict(dropout=0.5, classes=1)
         if not ENCODER:
-            self.model = smp.Unet(classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, aux_params=aux, encoder_depth=50)
+            self.model = smp.Unet(classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, aux_params=aux, encoder_depth=50,
+                                  decoder_channels=50)
         else:
             self.model = smp.Unet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, aux_params=aux,
-                                  encoder_depth=50)
+                                  encoder_depth=50, decoder_channels=50)
         self.file_pairs = file_pairs
         # self.criterion = torch.nn.MSELoss(reduction="mean")
         self.criterion = torch.nn.BCEWithLogitsLoss()
