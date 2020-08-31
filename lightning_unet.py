@@ -40,7 +40,7 @@ class diceloss(torch.nn.Module):
 
 class LitUNet(pl.LightningModule):
 
-    def __init__(self, file_pairs, input_num=4, output_num=1, initial_feat=32, trained=False):
+    def __init__(self, file_pairs, input_num=4, output_num=1, initial_feat=32, trained=False, learning_rate=0):
         super().__init__()
         aux = dict(dropout=0.5, classes=1)
         decode_ch = []
