@@ -61,7 +61,7 @@ class LitUNet(pl.LightningModule):
         self.first_run_flag = True
         self.original_train_set = None
         self.test_loss = math.inf
-        self.hparams = {'lr': 0}
+        self.save_hyperparameters('learning_rate')
 
     def forward(self, x):
         # # return self.model(x)
