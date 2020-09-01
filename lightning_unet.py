@@ -42,7 +42,7 @@ class LitUNet(pl.LightningModule):
 
     def __init__(self, file_pairs, input_num=4, output_num=1, initial_feat=32, trained=False, learning_rate=LR):
         super().__init__()
-        aux = dict(dropout=0.2, classes=1)
+        aux = dict(dropout=0.5, classes=1)
         decode_ch = []
         for x in range(10, 3, -1):
             decode_ch.append(2**x)
