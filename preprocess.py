@@ -27,6 +27,8 @@ def mask_from_shp(img_f, shp_f):
     # now that the shapes are lined up, get the mask from the .shp geometry
     geometry = shp_reproject['geometry']
     mask = rasterio.features.geometry_mask(geometry, img.shape, img.transform, all_touched=False, invert=True)
+    mask[mask == True] = 255
+    mask[mask == False] = 0
     return mask
 
 
@@ -81,7 +83,7 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
             # get the window from the mask
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
-            if True in mask_check:
+            if 255 in mask_check:
                 if not unlabelled:
                     r = src.read(window=window)
                     if large_image:
@@ -125,7 +127,7 @@ def get_rgb_windows(img_f, mask, large_image=False, unlabelled=False, num=500, g
             # get the window from the mask
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
-            if True in mask_check:
+            if 255 in mask_check:
                 if not unlabelled:
                     r = src.read(window=window)
                     if large_image:
@@ -169,7 +171,7 @@ def get_ir_windows(img_f, mask, large_image=False, unlabelled=False, num=500, ge
             # get the window from the mask
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
-            if True in mask_check:
+            if 255 in mask_check:
                 if not unlabelled:
                     r = src.read(window=window)
                     if large_image:
@@ -213,7 +215,7 @@ def get_hsv_windows(img_f, mask, large_image=False, unlabelled=False, num=500, g
             # get the window from the mask
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
-            if True in mask_check:
+            if 255 in mask_check:
                 if not unlabelled:
                     r = src.read(window=window)
                     if large_image:
@@ -264,7 +266,7 @@ def get_hsv_with_ir_windows(img_f, mask, large_image=False, unlabelled=False, nu
             # get the window from the mask
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
-            if True in mask_check:
+            if 255 in mask_check:
                 if not unlabelled:
                     r = src.read(window=window)
                     if large_image:
@@ -319,7 +321,7 @@ def get_vegetation_index_windows(img_f, mask, large_image=False, unlabelled=Fals
             # get the window from the mask
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
-            if True in mask_check:
+            if 255 in mask_check:
                 if not unlabelled:
                     r = src.read(2, window=window)
                     i = src.read(3, window=window)
