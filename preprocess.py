@@ -29,7 +29,7 @@ def mask_from_shp(img_f, shp_f):
     mask = rasterio.features.geometry_mask(geometry, img.shape, img.transform, all_touched=False, invert=True)
     mask_shape = mask.shape
     num_mask = []
-    for cell in list(mask):
+    for cell in np.nditer(mask):
         if cell:
             num_mask.append(255)
         else:
