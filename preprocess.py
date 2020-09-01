@@ -27,7 +27,7 @@ def mask_from_shp(img_f, shp_f):
     # now that the shapes are lined up, get the mask from the .shp geometry
     geometry = shp_reproject['geometry']
     mask = rasterio.features.geometry_mask(geometry, img.shape, img.transform, all_touched=False, invert=True)
-    mask_shape = mask.shape()
+    mask_shape = mask.shape
     num_mask = []
     for cell in mask:
         if cell:
