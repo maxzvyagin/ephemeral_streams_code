@@ -84,7 +84,6 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
             if 255 in mask_check:
-                print("in true")
                 if not unlabelled:
                     r = src.read(window=window)
                     if large_image:
