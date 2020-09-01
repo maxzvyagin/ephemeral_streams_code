@@ -29,7 +29,7 @@ def mask_from_shp(img_f, shp_f):
     geometry = shp_reproject['geometry']
     mask = rasterio.features.geometry_mask(geometry, img.shape, img.transform, all_touched=False, invert=True)
     mask = mask.astype(float)
-    mask[mask == 1] = 255
+    # mask[mask == 1] = 255
     return mask
 
 
@@ -69,6 +69,14 @@ def split(array):
     chunks = [first, second, third, fourth]
     return chunks
 
+def check_if_good_sample(mask_sample):
+    num_pos = np.count_nonzero(mask_sample)
+    # only collect as a sample if it makes up at least 10 percent of the image
+    if num_pos/mask_sample.size >= .10:
+        return True
+    else:
+        return False
+
 
 # given the name of an image file and the corresponding .shp array mask, outputs an array of image windows and mask windows
 def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_max=True, rand=False):
@@ -83,7 +91,7 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
             # get the window from the mask
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
-            if 255 in mask_check:
+            if check_if_good_sample(mask_check):
                 if not unlabelled:
                     r = src.read(window=window)
                     if large_image:
@@ -127,7 +135,7 @@ def get_rgb_windows(img_f, mask, large_image=False, unlabelled=False, num=500, g
             # get the window from the mask
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
-            if 255 in mask_check:
+            if check_if_good_sample(mask_check):
                 if not unlabelled:
                     r = src.read(window=window)
                     if large_image:
@@ -171,7 +179,7 @@ def get_ir_windows(img_f, mask, large_image=False, unlabelled=False, num=500, ge
             # get the window from the mask
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
-            if 255 in mask_check:
+            if check_if_good_sample(mask_check):
                 if not unlabelled:
                     r = src.read(window=window)
                     if large_image:
@@ -215,7 +223,7 @@ def get_hsv_windows(img_f, mask, large_image=False, unlabelled=False, num=500, g
             # get the window from the mask
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
-            if 255 in mask_check:
+            if check_if_good_sample(mask_check):
                 if not unlabelled:
                     r = src.read(window=window)
                     if large_image:
@@ -266,7 +274,7 @@ def get_hsv_with_ir_windows(img_f, mask, large_image=False, unlabelled=False, nu
             # get the window from the mask
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
-            if 255 in mask_check:
+            if check_if_good_sample(mask_check):
                 if not unlabelled:
                     r = src.read(window=window)
                     if large_image:
@@ -321,7 +329,7 @@ def get_vegetation_index_windows(img_f, mask, large_image=False, unlabelled=Fals
             # get the window from the mask
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
-            if 255 in mask_check:
+            if check_if_good_sample(mask_check):
                 if not unlabelled:
                     r = src.read(2, window=window)
                     i = src.read(3, window=window)
