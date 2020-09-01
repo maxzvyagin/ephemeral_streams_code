@@ -70,7 +70,6 @@ def split(array):
 
 
 # given the name of an image file and the corresponding .shp array mask, outputs an array of image windows and mask windows
-# @lru_cache(maxsize=2)
 def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_max=True, rand=False):
     samples = []
     with rasterio.open(img_f) as src:
@@ -84,6 +83,7 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
             mask_check = mask[window.row_off:window.row_off + window.height,
                          window.col_off:window.col_off + window.width]
             if 255 in mask_check:
+                print("in true")
                 if not unlabelled:
                     r = src.read(window=window)
                     if large_image:
