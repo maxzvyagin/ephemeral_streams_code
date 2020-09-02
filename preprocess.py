@@ -14,6 +14,9 @@ from os import path
 import sys
 import random
 import tqdm
+import imgaug as ia
+import imgaug.augmenters as iaa
+from imgaug.augmentables.segmaps import SegmentationMapsOnImage
 
 
 def mask_from_shp(img_f, shp_f):
