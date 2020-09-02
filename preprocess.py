@@ -370,6 +370,10 @@ def msavi(red, infrared):
 
 numpy_msavi = np.vectorize(msavi)
 
+def augment_dataset(GISDataset):
+    # given a GIS Dataset, perform augmentation on the images and return the augmented set
+    pass
+
 
 class GISDataset(Dataset):
     """Generates a dataset for Pytorch of image and labelled mask."""
