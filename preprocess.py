@@ -29,7 +29,7 @@ def mask_from_shp(img_f, shp_f):
     geometry = shp_reproject['geometry']
     mask = rasterio.features.geometry_mask(geometry, img.shape, img.transform, all_touched=False, invert=True)
     mask = mask.astype(float)
-    mask[mask == 1] = 255
+    # mask[mask == 1] = 255
     return mask
 
 
@@ -71,7 +71,8 @@ def split(array):
 
 
 def check_if_good_sample(mask_sample):
-    num_pos = np.count_nonzero(mask_sample == 255)
+    #num_pos = np.count_nonzero(mask_sample == 255)
+    num_pos = np.count_nonzero(mask_sample)
     # only collect as a sample if it makes up at least 10 percent of the image
     if num_pos / mask_sample.size >= .05:
         return True
