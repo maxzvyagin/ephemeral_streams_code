@@ -76,6 +76,8 @@ class LitUNet(pl.LightningModule):
     def prepare_data(self):
         if self.first_run_flag:
             all_data = preprocess.GISDataset(self.file_pairs, IMAGE_TYPE, LARGE_IMAGE, iota=IOTA)
+            aug = preprocess.augment_dataset(all_data)
+            all_data.samples.extend(aug)
             # calculate the splits
             total = len(all_data)
             train = int(total * .7)
