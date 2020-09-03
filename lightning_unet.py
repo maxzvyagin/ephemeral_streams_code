@@ -42,7 +42,7 @@ class LitUNet(pl.LightningModule):
 
     def __init__(self, file_pairs, input_num=4, output_num=1, initial_feat=32, trained=False, learning_rate=LR):
         super().__init__()
-        aux = dict(dropout=0.75, classes=1)
+        aux = dict(dropout=0.5, classes=1)
         if not ENCODER:
             self.model = smp.Unet(classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, aux_params=aux)
         else:
@@ -99,7 +99,6 @@ class LitUNet(pl.LightningModule):
         return DataLoader(self.test_set, batch_size=BATCHSIZE, num_workers=10)
 
     def configure_optimizers(self):
-        #optimizer = torch.optim.Adam(self.parameters(), lr=LR)
         optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate)
         return optimizer
 
