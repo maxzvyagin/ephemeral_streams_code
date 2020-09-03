@@ -415,8 +415,8 @@ def augment_dataset(dataset):
         img = np.moveaxis(img, 0, -1)
         seg = SegmentationMapsOnImage(sample['mask'].numpy().astype(bool), shape=img.shape)
         i, s = seq(image=img, segmentation_maps=seg)
-        s = s.get_arr()
-        i = np.moveaxis(i, -1, 0)
+        s = torch.FloatTensor(s.get_arr())
+        i = torch.FloatTensor(np.moveaxis(i, -1, 0))
         augmented_samples.append((i, s))
     return augmented_samples
 
