@@ -25,6 +25,7 @@ if __name__ == "__main__":
             data = GISDataset(files, i)
         else:
             data = GISDataset(files, 'full_channel', large_image=True)
+        print(len(data))
         samples = [deepcopy(data[1000]), deepcopy(data[2000]), deepcopy(data[3000])]
         # garbage collector helper due to massive size of datasets
         del data

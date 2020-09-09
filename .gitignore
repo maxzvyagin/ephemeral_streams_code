@@ -6,3 +6,4 @@ output/latest_model.pkl
 *.pkl
 *.ipynb
 *.zip
+.ipynb_checkpoints/model_visualization-checkpoint.ipynb
