@@ -21,6 +21,8 @@ REP = 32
 LARGE_IMAGE = False
 ENCODER = None
 IOTA = False
+AUGMENTATION = True
+AUTO_LR = True
 
 
 ### copy paste from https://discuss.pytorch.org/t/implementation-of-dice-loss/53552
@@ -73,8 +75,9 @@ class LitUNet(pl.LightningModule):
     def prepare_data(self):
         if self.first_run_flag:
             all_data = preprocess.GISDataset(self.file_pairs, IMAGE_TYPE, LARGE_IMAGE, iota=IOTA)
-            aug = preprocess.augment_dataset(all_data)
-            all_data.samples.extend(aug)
+            if AUGMENTATION:
+                aug = preprocess.augment_dataset(all_data)
+                all_data.samples.extend(aug)
             # calculate the splits
             total = len(all_data)
             train = int(total * .7)
@@ -246,10 +249,16 @@ if __name__ == "__main__":
                         params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
                                 "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP}, tags=tags)
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
-    if REP == 16:
+    if REP == 16 and AUTO_LR:
+        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=16,
+                             auto_lr_find=True)
+    elif REP == 16 and not AUTO_LR:
         trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=16)
+    elif AUTO_LR:
+        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, profiler=True, logger=nep, auto_lr_find=True)
     else:
         trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, profiler=True, logger=nep)
+
     start = time.time()
     trainer.fit(model)
     end = time.time()
