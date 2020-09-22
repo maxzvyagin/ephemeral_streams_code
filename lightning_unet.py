@@ -182,7 +182,8 @@ if __name__ == "__main__":
     parser.add_argument("-s", "--big_image", help="Enter True if 512 image is desired, instead of 256.")
     parser.add_argument("-a", "--encoder", help="Specify an encoder for unet if desired, default is blank."
                                                 "See Github for SMP for options.")
-    parser.add_argument("-z", "--auto_learning_rate", help="Use this flag to turn off the auto learning rate finder.")
+    parser.add_argument("-z", "--auto_learning_rate", help="Use this flag to turn off the auto learning rate finder.",
+                        action='store_true')
     args = parser.parse_args()
     if args.image_type:
         IMAGE_TYPE = args.image_type
