@@ -256,15 +256,13 @@ if __name__ == "__main__":
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
     if REP == 16 and AUTO_LR:
         trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=16,
-                             auto_lr_find=True, close_after_fit=False)
+                             auto_lr_find=True)
     elif REP == 16 and not AUTO_LR:
-        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=16,
-                             close_after_fit=False)
+        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=16)
     elif AUTO_LR:
-        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, profiler=True, logger=nep, auto_lr_find=True,
-                             close_after_fit=False)
+        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, profiler=True, logger=nep, auto_lr_find=True)
     else:
-        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, profiler=True, logger=nep, close_after_fit=False)
+        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, profiler=True, logger=nep)
 
     start = time.time()
     trainer.fit(model)
