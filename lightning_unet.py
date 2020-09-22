@@ -106,7 +106,6 @@ class LitUNet(pl.LightningModule):
         return optimizer
 
     def training_step(self, train_batch, batch_idx):
-        print(self.learning_rate)
         start = time.time()
         x = train_batch['image']
         if IMAGE_TYPE == "veg_index":
@@ -183,6 +182,7 @@ if __name__ == "__main__":
     parser.add_argument("-s", "--big_image", help="Enter True if 512 image is desired, instead of 256.")
     parser.add_argument("-a", "--encoder", help="Specify an encoder for unet if desired, default is blank."
                                                 "See Github for SMP for options.")
+    parser.add_argument("-z", "--auto_learning_rate", help="Use this flag to turn off the auto learning rate finder.")
     args = parser.parse_args()
     if args.image_type:
         IMAGE_TYPE = args.image_type
@@ -209,6 +209,8 @@ if __name__ == "__main__":
         ENCODER = args.encoder
     if args.big_image:
         LARGE_IMAGE = True
+    if args.auto_learning_rate:
+        AUTO_LR = False
     # need to figure out how many input channels we have
     if IMAGE_TYPE == "full_channel":
         INPUT_CHANNELS = 4
@@ -248,22 +250,27 @@ if __name__ == "__main__":
                                 "lcHR1bmUuYWkiLCJhcGlfa2V5IjoiOGE5NDI0YTktNmE2ZC00ZWZjLTlkMjAtNjNmMTIwM2Q2ZTQzIn0=",
                         project_name="maxzvyagin/GIS", experiment_name=args.experiment_name, close_after_fit=False,
                         params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
-                                "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP}, tags=tags)
+                                "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP, "auto_lr":AUTO_LR}
+                        , tags=tags)
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
     if REP == 16 and AUTO_LR:
         trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=16,
-                             auto_lr_find=True)
+                             auto_lr_find=True, close_after_fit=False)
     elif REP == 16 and not AUTO_LR:
-        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=16)
+        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=16,
+                             close_after_fit=False)
     elif AUTO_LR:
-        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, profiler=True, logger=nep, auto_lr_find=True)
+        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, profiler=True, logger=nep, auto_lr_find=True,
+                             close_after_fit=False)
     else:
-        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, profiler=True, logger=nep)
+        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, profiler=True, logger=nep, close_after_fit=False)
 
     start = time.time()
     trainer.fit(model)
     end = time.time()
     nep.log_metric("clock_time(s)", end - start)
+    if AUTO_LR:
+        nep.log_metric('calculated_lr', model.learning_rate)
     # run the test set
     trainer.test(model)
     torch.save(model.state_dict(), "/tmp/latest_model.pkl")
