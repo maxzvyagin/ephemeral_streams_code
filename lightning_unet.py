@@ -106,6 +106,7 @@ class LitUNet(pl.LightningModule):
         return optimizer
 
     def training_step(self, train_batch, batch_idx):
+        print(self.learning_rate)
         start = time.time()
         x = train_batch['image']
         if IMAGE_TYPE == "veg_index":
