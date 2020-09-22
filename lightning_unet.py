@@ -23,6 +23,7 @@ ENCODER = None
 IOTA = False
 AUGMENTATION = True
 AUTO_LR = True
+DROPOUT = 0.5
 
 
 ### copy paste from https://discuss.pytorch.org/t/implementation-of-dice-loss/53552
@@ -44,7 +45,7 @@ class LitUNet(pl.LightningModule):
 
     def __init__(self, file_pairs, input_num=4, output_num=1, initial_feat=32, trained=False, learning_rate=LR):
         super().__init__()
-        aux = dict(dropout=0.5, classes=1)
+        aux = dict(dropout=DROPOUT, classes=1)
         if not ENCODER:
             self.model = smp.Unet(classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, aux_params=aux)
         else:
@@ -184,6 +185,7 @@ if __name__ == "__main__":
                                                 "See Github for SMP for options.")
     parser.add_argument("-z", "--auto_learning_rate", help="Use this flag to turn off the auto learning rate finder.",
                         action='store_true')
+    parser.add_argument('-d', "--dropout", help="Specify dropout rate. Default is 0.5.")
     args = parser.parse_args()
     if args.image_type:
         IMAGE_TYPE = args.image_type
@@ -206,6 +208,8 @@ if __name__ == "__main__":
         else:
             REP = 16
             print("NOTE: Using 16 bit integer representation.")
+    if args.dropout:
+        DROPOUT = float(args.dropout)
     if args.encoder:
         ENCODER = args.encoder
     if args.big_image:
@@ -251,8 +255,8 @@ if __name__ == "__main__":
                                 "lcHR1bmUuYWkiLCJhcGlfa2V5IjoiOGE5NDI0YTktNmE2ZC00ZWZjLTlkMjAtNjNmMTIwM2Q2ZTQzIn0=",
                         project_name="maxzvyagin/GIS", experiment_name=args.experiment_name, close_after_fit=False,
                         params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
-                                "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP, "auto_lr":AUTO_LR}
-                        , tags=tags)
+                                "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP, "auto_lr":AUTO_LR,
+                                "dropout": DROPOUT}, tags=tags)
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
     if REP == 16 and AUTO_LR:
         trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=16,
