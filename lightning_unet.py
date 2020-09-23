@@ -22,7 +22,7 @@ LARGE_IMAGE = False
 ENCODER = None
 IOTA = False
 AUGMENTATION = True
-AUTO_LR = True
+AUTO_LR = False
 DROPOUT = 0.5
 EARLY_STOP = False
 
