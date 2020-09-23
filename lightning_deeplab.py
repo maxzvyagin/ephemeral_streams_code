@@ -3,10 +3,11 @@ import pytorch_lightning as pl
 import torch
 from torch.utils.data import DataLoader
 import argparse
-from pytorch_lightning.logging.neptune import NeptuneLogger
+from pytorch_lightning.loggers.neptune import NeptuneLogger
 import time
 import statistics
 import segmentation_models_pytorch as smp
+import math
 
 # Defining Environment Variables - defaults defined here and edited using command line args
 MAX_EPOCHS = 25
@@ -18,34 +19,80 @@ NUM_GPUS = 1
 IMAGE_TYPE = "full_channel"
 REP = 32
 LARGE_IMAGE = False
+ENCODER = None
+IOTA = False
+AUGMENTATION = True
+AUTO_LR = False
+DROPOUT = 0.5
+EARLY_STOP = False
+
+
+### copy paste from https://discuss.pytorch.org/t/implementation-of-dice-loss/53552
+class diceloss(torch.nn.Module):
+    def init(self):
+        super(diceLoss, self).init()
+
+    def forward(self, pred, target):
+        smooth = 1.
+        iflat = pred.contiguous().view(-1)
+        tflat = target.contiguous().view(-1)
+        intersection = (iflat * tflat).sum()
+        A_sum = torch.sum(iflat * iflat)
+        B_sum = torch.sum(tflat * tflat)
+        return 1 - ((2. * intersection + smooth) / (A_sum + B_sum + smooth))
 
 
 class LitUNet(pl.LightningModule):
 
-    def __init__(self, file_pairs, input_num=4, output_num=1, initial_feat=32, trained=False):
+    def __init__(self, file_pairs, input_num=4, output_num=1, initial_feat=32, trained=False, learning_rate=LR):
         super().__init__()
-        self.model = smp.deeplabv3.model.DeepLabV3(classes=1, in_channels=INPUT_CHANNELS)
+        aux = dict(dropout=DROPOUT, classes=OUTPUT_CHANNELS)
+        if not ENCODER:
+            self.model = smp.DeepLabV3(classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, aux_params=aux)
+        else:
+            self.model = smp.DeepLabV3(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, aux_params=aux)
         self.file_pairs = file_pairs
-        self.criterion = torch.nn.MSELoss(reduction="mean")
+        # self.criterion = torch.nn.MSELoss(reduction="mean")
+        self.criterion = torch.nn.BCEWithLogitsLoss()
         # initialize dataset variables
         self.train_set = None
         self.validate_set = None
         self.test_set = None
+        self.all_data = None
+        self.first_run_flag = True
+        self.original_train_set = None
+        self.test_loss = math.inf
+        self.learning_rate = learning_rate
+        self.save_hyperparameters('learning_rate')
 
     def forward(self, x):
+        # # return self.model(x)
+        # values, indices = torch.max(self.model(x), 1)
+        # # indices = torch.cuda.FloatTensor(indices)
+        # res = indices.float()
+        # res.requires_grad = True
+        # return res
         return self.model(x)
 
     def prepare_data(self):
-        all_data = preprocess.GISDataset(self.file_pairs, IMAGE_TYPE, LARGE_IMAGE)
-        # calculate the splits
-        total = len(all_data)
-        train = int(total * .7)
-        val = int(total * .15)
-        if train + (val * 2) != total:
-            diff = total - train - (val * 2)
-            train += diff
-        # get splits and store in object
-        self.train_set, self.validate_set, self.test_set = torch.utils.data.random_split(all_data, [train, val, val])
+        if self.first_run_flag:
+            all_data = preprocess.GISDataset(self.file_pairs, IMAGE_TYPE, LARGE_IMAGE, iota=IOTA)
+            if AUGMENTATION:
+                aug = preprocess.augment_dataset(all_data)
+                all_data.samples.extend(aug)
+            # calculate the splits
+            total = len(all_data)
+            train = int(total * .7)
+            val = int(total * .15)
+            if train + (val * 2) != total:
+                diff = total - train - (val * 2)
+                train += diff
+            # get splits and store in object
+            self.train_set, self.validate_set, self.test_set = torch.utils.data.random_split(all_data,
+                                                                                             [train, val, val])
+            self.original_train_set = self.train_set
+        else:
+            pass
 
     def train_dataloader(self):
         return DataLoader(self.train_set, batch_size=BATCHSIZE, num_workers=10)
@@ -54,20 +101,20 @@ class LitUNet(pl.LightningModule):
         return DataLoader(self.validate_set, batch_size=BATCHSIZE, num_workers=10)
 
     def test_dataloader(self):
-        return DataLoader(self.test_set, batch_size=BATCHSIZE)
+        return DataLoader(self.test_set, batch_size=BATCHSIZE, num_workers=10)
 
     def configure_optimizers(self):
-        optimizer = torch.optim.Adam(self.parameters(), lr=LR)
+        optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate, weight_decay=.1)
         return optimizer
 
     def training_step(self, train_batch, batch_idx):
         start = time.time()
         x = train_batch['image']
-        # if IMAGE_TYPE == "veg_index":
-        #     x = x.unsqueeze(1)
+        if IMAGE_TYPE == "veg_index":
+            x = x.unsqueeze(1)
         y = train_batch['mask'].unsqueeze(1)
         # x, y = train_batch
-        logits = self.forward(x)
+        logits = self.forward(x)[0]
         loss = self.criterion(logits, y)
         end = time.time()
         time_spent = end - start
@@ -79,17 +126,17 @@ class LitUNet(pl.LightningModule):
         for x in outputs:
             times.append(x['batch_time'])
         avg_time_per_batch = statistics.mean(times)
-        #avg_time_per_batch = torch.stack([x['batch_time'] for x in outputs]).mean()
+        # avg_time_per_batch = torch.stack([x['batch_time'] for x in outputs]).mean()
         tensorboard_logs = {'avg_time_per_batch': avg_time_per_batch}
         return {'avg_time_per_batch': avg_time_per_batch, 'log': tensorboard_logs}
 
     def test_step(self, batch, batch_idx):
         x = batch['image']
-        # if IMAGE_TYPE == "veg_index":
-        #     x = x.unsqueeze(1)
+        if IMAGE_TYPE == "veg_index":
+            x = x.unsqueeze(1)
         y = batch['mask'].unsqueeze(1)
         # x, y = batch
-        logits = self.forward(x)
+        logits = self.forward(x)[0]
         loss = self.criterion(logits, y)
         return {'test_loss': loss}
 
@@ -99,17 +146,18 @@ class LitUNet(pl.LightningModule):
             loss.append(float(x['test_loss']))
         avg_loss = statistics.mean(loss)
         # not sure why below is failing because it's getting a CUDA tensor instead of Cpu
-        #avg_loss = torch.stack([torch.Tensor(x['test_loss']).cpu() for x in outputs]).mean()
+        # avg_loss = torch.stack([torch.Tensor(x['test_loss']).cpu() for x in outputs]).mean()
         tensorboard_logs = {'test_loss': avg_loss}
+        self.test_loss = avg_loss
         return {'avg_test_loss': avg_loss, 'log': tensorboard_logs}
 
     def validation_step(self, val_batch, batch_idx):
         x = val_batch['image']
-        # if IMAGE_TYPE == "veg_index":
-        #     x = x.unsqueeze(1)
+        if IMAGE_TYPE == "veg_index":
+            x = x.unsqueeze(1)
         y = val_batch['mask'].unsqueeze(1)
         # x, y = val_batch
-        logits = self.forward(x)
+        logits = self.forward(x)[0]
         loss = self.criterion(logits, y)
         return {'val_loss': loss}
 
@@ -134,6 +182,12 @@ if __name__ == "__main__":
     parser.add_argument("-t", "--tags", help="Comma separated list of tags for Neptune, string format.")
     parser.add_argument("-r", "--representation", help="Enter 16 if 16 bit representation is desired. Else leave off.")
     parser.add_argument("-s", "--big_image", help="Enter True if 512 image is desired, instead of 256.")
+    parser.add_argument("-a", "--encoder", help="Specify an encoder for unet if desired, default is blank."
+                                                "See Github for SMP for options.")
+    parser.add_argument("-z", "--auto_learning_rate", help="Use this flag to turn off the auto learning rate finder.",
+                        action='store_true')
+    parser.add_argument('-d', "--dropout", help="Specify dropout rate. Default is 0.5.")
+    parser.add_argument('-c', "--early_stopping", help="Use this flag to turn on early stopping",action='store_true')
     args = parser.parse_args()
     if args.image_type:
         IMAGE_TYPE = args.image_type
@@ -156,8 +210,16 @@ if __name__ == "__main__":
         else:
             REP = 16
             print("NOTE: Using 16 bit integer representation.")
+    if args.dropout:
+        DROPOUT = float(args.dropout)
+    if args.encoder:
+        ENCODER = args.encoder
     if args.big_image:
-        LARGE_IMAGE=True
+        LARGE_IMAGE = True
+    if args.auto_learning_rate:
+        AUTO_LR = False
+    if args.early_stopping:
+        EARLY_STOP = True
     # need to figure out how many input channels we have
     if IMAGE_TYPE == "full_channel":
         INPUT_CHANNELS = 4
@@ -172,7 +234,7 @@ if __name__ == "__main__":
     elif IMAGE_TYPE == "veg_index":
         INPUT_CHANNELS = 1
     else:
-        print("WARNING: no image type match, defaulting to RGB+IR")
+        print("WARNING: no image type match, defaulting to RGB+IR (full channel)")
         INPUT_CHANNELS = 4
         IMAGE_TYPE = "full_channel"
     # initialize a model
@@ -187,25 +249,29 @@ if __name__ == "__main__":
              ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
               "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
     else:
-        f = [("/home/Imagery/vhr_2012_refl.img",
-              "/home/Reference/reference_2012_merge.shp"),
-             ("/home/Imagery/vhr_2014_refl.img",
-              "/home/Reference/reference_2014_merge.shp")]
+        f = [("/lus/iota-fs0/projects/CVD_Research/mzvyagin/Ephemeral_Channels/Imagery/vhr_2012_refl.img",
+              "/lus/iota-fs0/projects/CVD_Research/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
+             ("/lus/iota-fs0/projects/CVD_Research/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
+              "/lus/iota-fs0/projects/CVD_Research/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
+        IOTA = True
 
     nep = NeptuneLogger(api_key="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vdWkubmVwdHVuZS5haSIsImFwaV91cmwiOiJodHRwczovL3VpLm5"
                                 "lcHR1bmUuYWkiLCJhcGlfa2V5IjoiOGE5NDI0YTktNmE2ZC00ZWZjLTlkMjAtNjNmMTIwM2Q2ZTQzIn0=",
                         project_name="maxzvyagin/GIS", experiment_name=args.experiment_name, close_after_fit=False,
                         params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
-                                "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP}, tags=tags)
+                                "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP, "auto_lr":AUTO_LR,
+                                "dropout": DROPOUT}, tags=tags)
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
-    if REP == 16:
-        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=16)
-    else:
-        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, profiler=True, logger=nep)
+    # set up trainer
+    trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=REP,
+                         auto_lr_find=AUTO_LR, early_stop_callback=EARLY_STOP)
+    # begin training
     start = time.time()
     trainer.fit(model)
     end = time.time()
     nep.log_metric("clock_time(s)", end - start)
+    if AUTO_LR:
+        nep.log_metric('calculated_lr', model.learning_rate)
     # run the test set
     trainer.test(model)
     torch.save(model.state_dict(), "/tmp/latest_model.pkl")
