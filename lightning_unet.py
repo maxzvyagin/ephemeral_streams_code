@@ -24,6 +24,7 @@ IOTA = False
 AUGMENTATION = True
 AUTO_LR = True
 DROPOUT = 0.5
+EARLY_STOP = False
 
 
 ### copy paste from https://discuss.pytorch.org/t/implementation-of-dice-loss/53552
@@ -186,6 +187,7 @@ if __name__ == "__main__":
     parser.add_argument("-z", "--auto_learning_rate", help="Use this flag to turn off the auto learning rate finder.",
                         action='store_true')
     parser.add_argument('-d', "--dropout", help="Specify dropout rate. Default is 0.5.")
+    parser.add_argument('-c', "--early_stopping", help="Use this flag to turn on early stopping",action='store_true')
     args = parser.parse_args()
     if args.image_type:
         IMAGE_TYPE = args.image_type
@@ -216,6 +218,8 @@ if __name__ == "__main__":
         LARGE_IMAGE = True
     if args.auto_learning_rate:
         AUTO_LR = False
+    if args.early_stopping:
+        EARLY_STOP = True
     # need to figure out how many input channels we have
     if IMAGE_TYPE == "full_channel":
         INPUT_CHANNELS = 4
@@ -230,7 +234,7 @@ if __name__ == "__main__":
     elif IMAGE_TYPE == "veg_index":
         INPUT_CHANNELS = 1
     else:
-        print("WARNING: no image type match, defaulting to RGB+IR")
+        print("WARNING: no image type match, defaulting to RGB+IR (full channel)")
         INPUT_CHANNELS = 4
         IMAGE_TYPE = "full_channel"
     # initialize a model
@@ -258,17 +262,10 @@ if __name__ == "__main__":
                                 "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP, "auto_lr":AUTO_LR,
                                 "dropout": DROPOUT}, tags=tags)
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
-    if REP == 16 and AUTO_LR:
-        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep,  profiler=True, precision=16,
-                             auto_lr_find=True, distributed_backend='dpp')
-    elif REP == 16 and not AUTO_LR:
-        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=16)
-    elif AUTO_LR:
-        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, profiler=True, logger=nep, auto_lr_find=True,
-                             distributed_backend='dpp')
-    else:
-        trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, profiler=True, logger=nep, distributed_backend='dpp')
-
+    # set up trainer
+    trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=REP,
+                         auto_lr_find=AUTO_LR, early_stop_callback=EARLY_STOP)
+    # begin training
     start = time.time()
     trainer.fit(model)
     end = time.time()
