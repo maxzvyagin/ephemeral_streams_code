@@ -25,6 +25,7 @@ AUGMENTATION = False
 AUTO_LR = False
 DROPOUT = 0.5
 EARLY_STOP = False
+WEIGHT_DECAY = 0
 
 
 ### copy paste from https://discuss.pytorch.org/t/implementation-of-dice-loss/53552
@@ -98,7 +99,7 @@ class LitUNet(pl.LightningModule):
         return DataLoader(self.test_set, batch_size=BATCHSIZE, num_workers=10)
 
     def configure_optimizers(self):
-        optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate, weight_decay=.1)
+        optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate, weight_decay=WEIGHT_DECAY)
         return optimizer
 
     def training_step(self, train_batch, batch_idx):
@@ -183,6 +184,7 @@ if __name__ == "__main__":
     parser.add_argument('-d', "--dropout", help="Specify dropout rate. Default is 0.5.")
     parser.add_argument('-c', "--early_stopping", help="Use this flag to turn on early stopping", action='store_true')
     parser.add_argument('-u', '--augmentation', help='Turn on data augmentation with this flag', action='store_true')
+    parser.add_argument('-w', '--weight_decay', help="Specify weight decacy for optimizer, default is 0.")
     args = parser.parse_args()
     if args.image_type:
         IMAGE_TYPE = args.image_type
@@ -219,6 +221,8 @@ if __name__ == "__main__":
         AUTO_LR = True
     if args.early_stopping:
         EARLY_STOP = True
+    if args.weight_decay:
+        WEIGHT_DECAY=float(args.weight_decay)
     # need to figure out how many input channels we have
     if IMAGE_TYPE == "full_channel":
         INPUT_CHANNELS = 4
