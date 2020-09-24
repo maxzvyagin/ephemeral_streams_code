@@ -21,7 +21,7 @@ REP = 32
 LARGE_IMAGE = False
 ENCODER = None
 IOTA = False
-AUGMENTATION = True
+AUGMENTATION = False
 AUTO_LR = False
 DROPOUT = 0.5
 EARLY_STOP = False
@@ -178,10 +178,11 @@ if __name__ == "__main__":
     parser.add_argument("-s", "--big_image", help="Enter True if 512 image is desired, instead of 256.")
     parser.add_argument("-a", "--encoder", help="Specify an encoder for unet if desired, default is blank."
                                                 "See Github for SMP for options.")
-    parser.add_argument("-z", "--auto_learning_rate", help="Use this flag to turn off the auto learning rate finder.",
+    parser.add_argument("-z", "--auto_learning_rate", help="Use this flag to turn on the auto learning rate finder.",
                         action='store_true')
     parser.add_argument('-d', "--dropout", help="Specify dropout rate. Default is 0.5.")
-    parser.add_argument('-c', "--early_stopping", help="Use this flag to turn on early stopping",action='store_true')
+    parser.add_argument('-c', "--early_stopping", help="Use this flag to turn on early stopping", action='store_true')
+    parser.add_argument('-u', '--augmentation', help='Turn on data augmentation with this flag', action='store_true')
     args = parser.parse_args()
     if args.image_type:
         IMAGE_TYPE = args.image_type
@@ -206,6 +207,8 @@ if __name__ == "__main__":
         else:
             REP = 16
             print("NOTE: Using 16 bit integer representation.")
+    if args.augmentation:
+        AUGMENTATION = True
     if args.dropout:
         DROPOUT = float(args.dropout)
     if args.encoder:
@@ -213,7 +216,7 @@ if __name__ == "__main__":
     if args.big_image:
         LARGE_IMAGE = True
     if args.auto_learning_rate:
-        AUTO_LR = False
+        AUTO_LR = True
     if args.early_stopping:
         EARLY_STOP = True
     # need to figure out how many input channels we have
