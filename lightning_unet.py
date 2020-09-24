@@ -197,6 +197,8 @@ if __name__ == "__main__":
         LR = float(args.lr)
     if args.tags:
         tags = args.tags.split(",")
+    else:
+        tags = []
     if args.representation:
         r = int(args.representation)
         if r == 32:

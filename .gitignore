@@ -7,3 +7,8 @@ output/latest_model.pkl
 *.ipynb
 *.zip
 .ipynb_checkpoints/model_visualization-checkpoint.ipynb
+latest_unet_exp475.onnx
+latest_unet_exp475.png
+latest_unet_exp475_horizontal.png
+*.png
+*.onnx
