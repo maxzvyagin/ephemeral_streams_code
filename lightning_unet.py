@@ -51,8 +51,13 @@ class LitUNet(pl.LightningModule):
         super().__init__()
         # None activation to return logits
         aux = dict(dropout=DROPOUT, classes=OUTPUT_CHANNELS, activation=None)
+        if LARGE_IMAGE:
+            all_decoder_channels = [512, 256, 128, 64, 32, 16, 8, 4, 2, 1, .5, .25, .125]
+        else:
+            all_decoder_channels = [256, 128, 64, 32, 16, 8, 4, 2, 1, .5, .25, .125]
         self.model = smp.Unet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, aux_params=aux,
-                              encoder_weights=None, encoder_depth=ENCODER_DEPTH, decoder_channels=[256, 128, 64])
+                              encoder_weights=None, encoder_depth=ENCODER_DEPTH,
+                              decoder_channels=all_decoder_channels[:ENCODER_DEPTH])
         self.file_pairs = file_pairs
         # self.criterion = torch.nn.MSELoss(reduction="mean")
         self.criterion = torch.nn.BCEWithLogitsLoss()
