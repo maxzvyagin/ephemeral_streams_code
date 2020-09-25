@@ -1,641 +1,641 @@
 #!/bin/bash
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 1e-08 -w 1e-08 -e lambda_weight_lr_dropout_exp1
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 1e-08 -w 1e-08 -e lambda_weight_lr_dropout_exp2
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 1e-08 -w 1e-08 -e lambda_weight_lr_dropout_exp3
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 1e-08 -w 1e-08 -e lambda_weight_lr_dropout_exp4
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 1e-08 -w 1e-08 -e lambda_weight_lr_dropout_exp5
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 1e-08 -w 1e-08 -e lambda_weight_lr_dropout_exp6
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 1e-08 -w 1e-08 -e lambda_weight_lr_dropout_exp7
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 1e-08 -w 1e-08 -e lambda_weight_lr_dropout_exp8
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 1e-08 -w 1e-08 -e lambda_weight_lr_dropout_exp9
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 1e-08 -w 1e-08 -e lambda_weight_lr_dropout_exp10
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 1e-08 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp11
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 1e-08 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp12
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 1e-08 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp13
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 1e-08 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp14
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 1e-08 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp15
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 1e-08 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp16
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 1e-08 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp17
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 1e-08 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp18
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 1e-08 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp19
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 1e-08 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp20
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 1e-08 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp21
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 1e-08 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp22
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 1e-08 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp23
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 1e-08 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp24
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 1e-08 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp25
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 1e-08 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp26
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 1e-08 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp27
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 1e-08 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp28
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 1e-08 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp29
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 1e-08 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp30
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 1e-08 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp31
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 1e-08 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp32
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 1e-08 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp33
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 1e-08 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp34
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 1e-08 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp35
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 1e-08 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp36
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 1e-08 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp37
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 1e-08 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp38
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 1e-08 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp39
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 1e-08 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp40
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 1e-08 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp41
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 1e-08 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp42
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 1e-08 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp43
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 1e-08 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp44
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 1e-08 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp45
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 1e-08 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp46
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 1e-08 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp47
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 1e-08 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp48
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 1e-08 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp49
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 1e-08 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp50
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 1e-08 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp51
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 1e-08 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp52
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 1e-08 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp53
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 1e-08 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp54
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 1e-08 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp55
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 1e-08 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp56
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 1e-08 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp57
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 1e-08 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp58
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 1e-08 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp59
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 1e-08 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp60
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 1e-08 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp61
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 1e-08 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp62
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 1e-08 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp63
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 1e-08 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp64
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 1e-08 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp65
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 1e-08 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp66
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 1e-08 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp67
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 1e-08 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp68
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 1e-08 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp69
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 1e-08 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp70
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 1e-08 -w 0.1 -e lambda_weight_lr_dropout_exp71
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 1e-08 -w 0.1 -e lambda_weight_lr_dropout_exp72
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 1e-08 -w 0.1 -e lambda_weight_lr_dropout_exp73
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 1e-08 -w 0.1 -e lambda_weight_lr_dropout_exp74
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 1e-08 -w 0.1 -e lambda_weight_lr_dropout_exp75
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 1e-08 -w 0.1 -e lambda_weight_lr_dropout_exp76
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 1e-08 -w 0.1 -e lambda_weight_lr_dropout_exp77
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 1e-08 -w 0.1 -e lambda_weight_lr_dropout_exp78
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 1e-08 -w 0.1 -e lambda_weight_lr_dropout_exp79
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 1e-08 -w 0.1 -e lambda_weight_lr_dropout_exp80
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.014285722857142859 -w 1e-08 -e lambda_weight_lr_dropout_exp81
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.014285722857142859 -w 1e-08 -e lambda_weight_lr_dropout_exp82
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.014285722857142859 -w 1e-08 -e lambda_weight_lr_dropout_exp83
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.014285722857142859 -w 1e-08 -e lambda_weight_lr_dropout_exp84
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.014285722857142859 -w 1e-08 -e lambda_weight_lr_dropout_exp85
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.014285722857142859 -w 1e-08 -e lambda_weight_lr_dropout_exp86
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.014285722857142859 -w 1e-08 -e lambda_weight_lr_dropout_exp87
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.014285722857142859 -w 1e-08 -e lambda_weight_lr_dropout_exp88
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.014285722857142859 -w 1e-08 -e lambda_weight_lr_dropout_exp89
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.014285722857142859 -w 1e-08 -e lambda_weight_lr_dropout_exp90
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.014285722857142859 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp91
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.014285722857142859 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp92
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.014285722857142859 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp93
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.014285722857142859 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp94
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.014285722857142859 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp95
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.014285722857142859 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp96
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.014285722857142859 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp97
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.014285722857142859 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp98
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.014285722857142859 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp99
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.014285722857142859 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp100
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.014285722857142859 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp101
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.014285722857142859 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp102
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.014285722857142859 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp103
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.014285722857142859 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp104
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.014285722857142859 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp105
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.014285722857142859 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp106
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.014285722857142859 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp107
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.014285722857142859 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp108
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.014285722857142859 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp109
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.014285722857142859 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp110
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.014285722857142859 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp111
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.014285722857142859 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp112
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.014285722857142859 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp113
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.014285722857142859 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp114
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.014285722857142859 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp115
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.014285722857142859 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp116
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.014285722857142859 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp117
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.014285722857142859 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp118
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.014285722857142859 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp119
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.014285722857142859 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp120
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.014285722857142859 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp121
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.014285722857142859 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp122
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.014285722857142859 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp123
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.014285722857142859 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp124
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.014285722857142859 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp125
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.014285722857142859 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp126
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.014285722857142859 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp127
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.014285722857142859 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp128
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.014285722857142859 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp129
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.014285722857142859 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp130
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.014285722857142859 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp131
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.014285722857142859 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp132
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.014285722857142859 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp133
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.014285722857142859 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp134
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.014285722857142859 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp135
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.014285722857142859 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp136
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.014285722857142859 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp137
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.014285722857142859 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp138
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.014285722857142859 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp139
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.014285722857142859 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp140
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.014285722857142859 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp141
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.014285722857142859 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp142
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.014285722857142859 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp143
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.014285722857142859 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp144
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.014285722857142859 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp145
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.014285722857142859 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp146
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.014285722857142859 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp147
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.014285722857142859 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp148
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.014285722857142859 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp149
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.014285722857142859 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp150
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.014285722857142859 -w 0.1 -e lambda_weight_lr_dropout_exp151
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.014285722857142859 -w 0.1 -e lambda_weight_lr_dropout_exp152
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.014285722857142859 -w 0.1 -e lambda_weight_lr_dropout_exp153
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.014285722857142859 -w 0.1 -e lambda_weight_lr_dropout_exp154
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.014285722857142859 -w 0.1 -e lambda_weight_lr_dropout_exp155
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.014285722857142859 -w 0.1 -e lambda_weight_lr_dropout_exp156
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.014285722857142859 -w 0.1 -e lambda_weight_lr_dropout_exp157
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.014285722857142859 -w 0.1 -e lambda_weight_lr_dropout_exp158
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.014285722857142859 -w 0.1 -e lambda_weight_lr_dropout_exp159
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.014285722857142859 -w 0.1 -e lambda_weight_lr_dropout_exp160
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.02857143571428572 -w 1e-08 -e lambda_weight_lr_dropout_exp161
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.02857143571428572 -w 1e-08 -e lambda_weight_lr_dropout_exp162
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.02857143571428572 -w 1e-08 -e lambda_weight_lr_dropout_exp163
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.02857143571428572 -w 1e-08 -e lambda_weight_lr_dropout_exp164
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.02857143571428572 -w 1e-08 -e lambda_weight_lr_dropout_exp165
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.02857143571428572 -w 1e-08 -e lambda_weight_lr_dropout_exp166
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.02857143571428572 -w 1e-08 -e lambda_weight_lr_dropout_exp167
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.02857143571428572 -w 1e-08 -e lambda_weight_lr_dropout_exp168
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.02857143571428572 -w 1e-08 -e lambda_weight_lr_dropout_exp169
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.02857143571428572 -w 1e-08 -e lambda_weight_lr_dropout_exp170
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.02857143571428572 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp171
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.02857143571428572 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp172
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.02857143571428572 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp173
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.02857143571428572 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp174
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.02857143571428572 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp175
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.02857143571428572 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp176
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.02857143571428572 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp177
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.02857143571428572 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp178
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.02857143571428572 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp179
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.02857143571428572 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp180
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.02857143571428572 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp181
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.02857143571428572 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp182
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.02857143571428572 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp183
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.02857143571428572 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp184
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.02857143571428572 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp185
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.02857143571428572 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp186
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.02857143571428572 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp187
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.02857143571428572 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp188
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.02857143571428572 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp189
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.02857143571428572 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp190
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.02857143571428572 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp191
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.02857143571428572 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp192
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.02857143571428572 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp193
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.02857143571428572 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp194
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.02857143571428572 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp195
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.02857143571428572 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp196
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.02857143571428572 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp197
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.02857143571428572 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp198
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.02857143571428572 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp199
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.02857143571428572 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp200
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.02857143571428572 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp201
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.02857143571428572 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp202
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.02857143571428572 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp203
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.02857143571428572 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp204
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.02857143571428572 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp205
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.02857143571428572 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp206
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.02857143571428572 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp207
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.02857143571428572 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp208
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.02857143571428572 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp209
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.02857143571428572 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp210
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.02857143571428572 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp211
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.02857143571428572 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp212
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.02857143571428572 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp213
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.02857143571428572 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp214
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.02857143571428572 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp215
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.02857143571428572 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp216
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.02857143571428572 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp217
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.02857143571428572 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp218
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.02857143571428572 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp219
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.02857143571428572 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp220
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.02857143571428572 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp221
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.02857143571428572 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp222
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.02857143571428572 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp223
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.02857143571428572 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp224
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.02857143571428572 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp225
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.02857143571428572 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp226
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.02857143571428572 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp227
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.02857143571428572 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp228
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.02857143571428572 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp229
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.02857143571428572 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp230
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.02857143571428572 -w 0.1 -e lambda_weight_lr_dropout_exp231
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.02857143571428572 -w 0.1 -e lambda_weight_lr_dropout_exp232
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.02857143571428572 -w 0.1 -e lambda_weight_lr_dropout_exp233
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.02857143571428572 -w 0.1 -e lambda_weight_lr_dropout_exp234
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.02857143571428572 -w 0.1 -e lambda_weight_lr_dropout_exp235
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.02857143571428572 -w 0.1 -e lambda_weight_lr_dropout_exp236
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.02857143571428572 -w 0.1 -e lambda_weight_lr_dropout_exp237
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.02857143571428572 -w 0.1 -e lambda_weight_lr_dropout_exp238
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.02857143571428572 -w 0.1 -e lambda_weight_lr_dropout_exp239
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.02857143571428572 -w 0.1 -e lambda_weight_lr_dropout_exp240
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.042857148571428576 -w 1e-08 -e lambda_weight_lr_dropout_exp241
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.042857148571428576 -w 1e-08 -e lambda_weight_lr_dropout_exp242
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.042857148571428576 -w 1e-08 -e lambda_weight_lr_dropout_exp243
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.042857148571428576 -w 1e-08 -e lambda_weight_lr_dropout_exp244
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.042857148571428576 -w 1e-08 -e lambda_weight_lr_dropout_exp245
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.042857148571428576 -w 1e-08 -e lambda_weight_lr_dropout_exp246
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.042857148571428576 -w 1e-08 -e lambda_weight_lr_dropout_exp247
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.042857148571428576 -w 1e-08 -e lambda_weight_lr_dropout_exp248
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.042857148571428576 -w 1e-08 -e lambda_weight_lr_dropout_exp249
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.042857148571428576 -w 1e-08 -e lambda_weight_lr_dropout_exp250
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.042857148571428576 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp251
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.042857148571428576 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp252
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.042857148571428576 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp253
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.042857148571428576 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp254
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.042857148571428576 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp255
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.042857148571428576 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp256
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.042857148571428576 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp257
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.042857148571428576 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp258
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.042857148571428576 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp259
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.042857148571428576 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp260
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.042857148571428576 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp261
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.042857148571428576 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp262
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.042857148571428576 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp263
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.042857148571428576 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp264
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.042857148571428576 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp265
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.042857148571428576 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp266
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.042857148571428576 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp267
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.042857148571428576 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp268
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.042857148571428576 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp269
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.042857148571428576 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp270
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.042857148571428576 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp271
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.042857148571428576 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp272
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.042857148571428576 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp273
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.042857148571428576 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp274
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.042857148571428576 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp275
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.042857148571428576 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp276
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.042857148571428576 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp277
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.042857148571428576 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp278
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.042857148571428576 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp279
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.042857148571428576 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp280
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.042857148571428576 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp281
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.042857148571428576 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp282
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.042857148571428576 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp283
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.042857148571428576 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp284
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.042857148571428576 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp285
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.042857148571428576 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp286
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.042857148571428576 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp287
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.042857148571428576 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp288
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.042857148571428576 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp289
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.042857148571428576 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp290
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.042857148571428576 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp291
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.042857148571428576 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp292
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.042857148571428576 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp293
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.042857148571428576 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp294
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.042857148571428576 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp295
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.042857148571428576 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp296
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.042857148571428576 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp297
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.042857148571428576 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp298
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.042857148571428576 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp299
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.042857148571428576 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp300
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.042857148571428576 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp301
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.042857148571428576 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp302
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.042857148571428576 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp303
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.042857148571428576 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp304
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.042857148571428576 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp305
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.042857148571428576 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp306
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.042857148571428576 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp307
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.042857148571428576 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp308
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.042857148571428576 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp309
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.042857148571428576 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp310
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.042857148571428576 -w 0.1 -e lambda_weight_lr_dropout_exp311
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.042857148571428576 -w 0.1 -e lambda_weight_lr_dropout_exp312
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.042857148571428576 -w 0.1 -e lambda_weight_lr_dropout_exp313
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.042857148571428576 -w 0.1 -e lambda_weight_lr_dropout_exp314
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.042857148571428576 -w 0.1 -e lambda_weight_lr_dropout_exp315
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.042857148571428576 -w 0.1 -e lambda_weight_lr_dropout_exp316
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.042857148571428576 -w 0.1 -e lambda_weight_lr_dropout_exp317
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.042857148571428576 -w 0.1 -e lambda_weight_lr_dropout_exp318
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.042857148571428576 -w 0.1 -e lambda_weight_lr_dropout_exp319
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.042857148571428576 -w 0.1 -e lambda_weight_lr_dropout_exp320
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.05714286142857144 -w 1e-08 -e lambda_weight_lr_dropout_exp321
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.05714286142857144 -w 1e-08 -e lambda_weight_lr_dropout_exp322
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.05714286142857144 -w 1e-08 -e lambda_weight_lr_dropout_exp323
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.05714286142857144 -w 1e-08 -e lambda_weight_lr_dropout_exp324
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.05714286142857144 -w 1e-08 -e lambda_weight_lr_dropout_exp325
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.05714286142857144 -w 1e-08 -e lambda_weight_lr_dropout_exp326
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.05714286142857144 -w 1e-08 -e lambda_weight_lr_dropout_exp327
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.05714286142857144 -w 1e-08 -e lambda_weight_lr_dropout_exp328
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.05714286142857144 -w 1e-08 -e lambda_weight_lr_dropout_exp329
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.05714286142857144 -w 1e-08 -e lambda_weight_lr_dropout_exp330
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.05714286142857144 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp331
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.05714286142857144 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp332
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.05714286142857144 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp333
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.05714286142857144 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp334
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.05714286142857144 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp335
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.05714286142857144 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp336
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.05714286142857144 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp337
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.05714286142857144 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp338
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.05714286142857144 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp339
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.05714286142857144 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp340
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.05714286142857144 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp341
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.05714286142857144 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp342
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.05714286142857144 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp343
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.05714286142857144 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp344
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.05714286142857144 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp345
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.05714286142857144 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp346
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.05714286142857144 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp347
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.05714286142857144 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp348
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.05714286142857144 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp349
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.05714286142857144 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp350
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.05714286142857144 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp351
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.05714286142857144 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp352
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.05714286142857144 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp353
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.05714286142857144 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp354
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.05714286142857144 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp355
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.05714286142857144 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp356
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.05714286142857144 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp357
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.05714286142857144 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp358
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.05714286142857144 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp359
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.05714286142857144 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp360
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.05714286142857144 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp361
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.05714286142857144 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp362
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.05714286142857144 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp363
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.05714286142857144 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp364
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.05714286142857144 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp365
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.05714286142857144 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp366
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.05714286142857144 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp367
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.05714286142857144 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp368
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.05714286142857144 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp369
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.05714286142857144 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp370
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.05714286142857144 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp371
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.05714286142857144 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp372
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.05714286142857144 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp373
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.05714286142857144 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp374
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.05714286142857144 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp375
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.05714286142857144 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp376
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.05714286142857144 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp377
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.05714286142857144 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp378
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.05714286142857144 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp379
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.05714286142857144 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp380
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.05714286142857144 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp381
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.05714286142857144 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp382
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.05714286142857144 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp383
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.05714286142857144 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp384
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.05714286142857144 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp385
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.05714286142857144 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp386
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.05714286142857144 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp387
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.05714286142857144 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp388
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.05714286142857144 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp389
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.05714286142857144 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp390
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.05714286142857144 -w 0.1 -e lambda_weight_lr_dropout_exp391
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.05714286142857144 -w 0.1 -e lambda_weight_lr_dropout_exp392
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.05714286142857144 -w 0.1 -e lambda_weight_lr_dropout_exp393
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.05714286142857144 -w 0.1 -e lambda_weight_lr_dropout_exp394
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.05714286142857144 -w 0.1 -e lambda_weight_lr_dropout_exp395
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.05714286142857144 -w 0.1 -e lambda_weight_lr_dropout_exp396
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.05714286142857144 -w 0.1 -e lambda_weight_lr_dropout_exp397
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.05714286142857144 -w 0.1 -e lambda_weight_lr_dropout_exp398
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.05714286142857144 -w 0.1 -e lambda_weight_lr_dropout_exp399
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.05714286142857144 -w 0.1 -e lambda_weight_lr_dropout_exp400
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.0714285742857143 -w 1e-08 -e lambda_weight_lr_dropout_exp401
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.0714285742857143 -w 1e-08 -e lambda_weight_lr_dropout_exp402
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.0714285742857143 -w 1e-08 -e lambda_weight_lr_dropout_exp403
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.0714285742857143 -w 1e-08 -e lambda_weight_lr_dropout_exp404
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.0714285742857143 -w 1e-08 -e lambda_weight_lr_dropout_exp405
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.0714285742857143 -w 1e-08 -e lambda_weight_lr_dropout_exp406
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.0714285742857143 -w 1e-08 -e lambda_weight_lr_dropout_exp407
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.0714285742857143 -w 1e-08 -e lambda_weight_lr_dropout_exp408
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.0714285742857143 -w 1e-08 -e lambda_weight_lr_dropout_exp409
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.0714285742857143 -w 1e-08 -e lambda_weight_lr_dropout_exp410
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.0714285742857143 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp411
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.0714285742857143 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp412
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.0714285742857143 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp413
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.0714285742857143 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp414
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.0714285742857143 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp415
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.0714285742857143 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp416
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.0714285742857143 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp417
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.0714285742857143 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp418
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.0714285742857143 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp419
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.0714285742857143 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp420
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.0714285742857143 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp421
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.0714285742857143 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp422
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.0714285742857143 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp423
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.0714285742857143 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp424
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.0714285742857143 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp425
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.0714285742857143 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp426
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.0714285742857143 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp427
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.0714285742857143 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp428
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.0714285742857143 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp429
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.0714285742857143 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp430
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.0714285742857143 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp431
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.0714285742857143 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp432
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.0714285742857143 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp433
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.0714285742857143 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp434
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.0714285742857143 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp435
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.0714285742857143 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp436
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.0714285742857143 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp437
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.0714285742857143 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp438
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.0714285742857143 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp439
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.0714285742857143 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp440
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.0714285742857143 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp441
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.0714285742857143 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp442
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.0714285742857143 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp443
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.0714285742857143 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp444
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.0714285742857143 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp445
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.0714285742857143 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp446
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.0714285742857143 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp447
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.0714285742857143 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp448
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.0714285742857143 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp449
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.0714285742857143 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp450
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.0714285742857143 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp451
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.0714285742857143 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp452
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.0714285742857143 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp453
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.0714285742857143 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp454
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.0714285742857143 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp455
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.0714285742857143 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp456
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.0714285742857143 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp457
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.0714285742857143 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp458
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.0714285742857143 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp459
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.0714285742857143 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp460
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.0714285742857143 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp461
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.0714285742857143 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp462
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.0714285742857143 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp463
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.0714285742857143 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp464
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.0714285742857143 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp465
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.0714285742857143 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp466
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.0714285742857143 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp467
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.0714285742857143 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp468
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.0714285742857143 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp469
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.0714285742857143 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp470
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.0714285742857143 -w 0.1 -e lambda_weight_lr_dropout_exp471
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.0714285742857143 -w 0.1 -e lambda_weight_lr_dropout_exp472
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.0714285742857143 -w 0.1 -e lambda_weight_lr_dropout_exp473
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.0714285742857143 -w 0.1 -e lambda_weight_lr_dropout_exp474
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.0714285742857143 -w 0.1 -e lambda_weight_lr_dropout_exp475
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.0714285742857143 -w 0.1 -e lambda_weight_lr_dropout_exp476
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.0714285742857143 -w 0.1 -e lambda_weight_lr_dropout_exp477
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.0714285742857143 -w 0.1 -e lambda_weight_lr_dropout_exp478
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.0714285742857143 -w 0.1 -e lambda_weight_lr_dropout_exp479
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.0714285742857143 -w 0.1 -e lambda_weight_lr_dropout_exp480
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.08571428714285714 -w 1e-08 -e lambda_weight_lr_dropout_exp481
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.08571428714285714 -w 1e-08 -e lambda_weight_lr_dropout_exp482
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.08571428714285714 -w 1e-08 -e lambda_weight_lr_dropout_exp483
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.08571428714285714 -w 1e-08 -e lambda_weight_lr_dropout_exp484
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.08571428714285714 -w 1e-08 -e lambda_weight_lr_dropout_exp485
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.08571428714285714 -w 1e-08 -e lambda_weight_lr_dropout_exp486
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.08571428714285714 -w 1e-08 -e lambda_weight_lr_dropout_exp487
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.08571428714285714 -w 1e-08 -e lambda_weight_lr_dropout_exp488
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.08571428714285714 -w 1e-08 -e lambda_weight_lr_dropout_exp489
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.08571428714285714 -w 1e-08 -e lambda_weight_lr_dropout_exp490
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.08571428714285714 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp491
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.08571428714285714 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp492
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.08571428714285714 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp493
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.08571428714285714 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp494
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.08571428714285714 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp495
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.08571428714285714 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp496
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.08571428714285714 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp497
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.08571428714285714 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp498
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.08571428714285714 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp499
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.08571428714285714 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp500
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.08571428714285714 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp501
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.08571428714285714 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp502
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.08571428714285714 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp503
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.08571428714285714 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp504
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.08571428714285714 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp505
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.08571428714285714 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp506
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.08571428714285714 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp507
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.08571428714285714 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp508
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.08571428714285714 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp509
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.08571428714285714 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp510
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.08571428714285714 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp511
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.08571428714285714 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp512
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.08571428714285714 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp513
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.08571428714285714 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp514
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.08571428714285714 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp515
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.08571428714285714 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp516
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.08571428714285714 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp517
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.08571428714285714 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp518
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.08571428714285714 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp519
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.08571428714285714 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp520
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.08571428714285714 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp521
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.08571428714285714 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp522
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.08571428714285714 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp523
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.08571428714285714 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp524
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.08571428714285714 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp525
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.08571428714285714 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp526
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.08571428714285714 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp527
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.08571428714285714 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp528
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.08571428714285714 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp529
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.08571428714285714 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp530
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.08571428714285714 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp531
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.08571428714285714 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp532
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.08571428714285714 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp533
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.08571428714285714 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp534
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.08571428714285714 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp535
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.08571428714285714 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp536
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.08571428714285714 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp537
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.08571428714285714 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp538
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.08571428714285714 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp539
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.08571428714285714 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp540
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.08571428714285714 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp541
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.08571428714285714 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp542
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.08571428714285714 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp543
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.08571428714285714 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp544
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.08571428714285714 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp545
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.08571428714285714 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp546
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.08571428714285714 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp547
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.08571428714285714 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp548
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.08571428714285714 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp549
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.08571428714285714 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp550
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.08571428714285714 -w 0.1 -e lambda_weight_lr_dropout_exp551
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.08571428714285714 -w 0.1 -e lambda_weight_lr_dropout_exp552
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.08571428714285714 -w 0.1 -e lambda_weight_lr_dropout_exp553
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.08571428714285714 -w 0.1 -e lambda_weight_lr_dropout_exp554
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.08571428714285714 -w 0.1 -e lambda_weight_lr_dropout_exp555
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.08571428714285714 -w 0.1 -e lambda_weight_lr_dropout_exp556
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.08571428714285714 -w 0.1 -e lambda_weight_lr_dropout_exp557
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.08571428714285714 -w 0.1 -e lambda_weight_lr_dropout_exp558
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.08571428714285714 -w 0.1 -e lambda_weight_lr_dropout_exp559
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.08571428714285714 -w 0.1 -e lambda_weight_lr_dropout_exp560
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.1 -w 1e-08 -e lambda_weight_lr_dropout_exp561
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.1 -w 1e-08 -e lambda_weight_lr_dropout_exp562
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.1 -w 1e-08 -e lambda_weight_lr_dropout_exp563
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.1 -w 1e-08 -e lambda_weight_lr_dropout_exp564
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.1 -w 1e-08 -e lambda_weight_lr_dropout_exp565
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.1 -w 1e-08 -e lambda_weight_lr_dropout_exp566
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.1 -w 1e-08 -e lambda_weight_lr_dropout_exp567
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.1 -w 1e-08 -e lambda_weight_lr_dropout_exp568
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.1 -w 1e-08 -e lambda_weight_lr_dropout_exp569
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.1 -w 1e-08 -e lambda_weight_lr_dropout_exp570
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.1 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp571
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.1 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp572
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.1 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp573
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.1 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp574
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.1 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp575
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.1 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp576
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.1 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp577
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.1 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp578
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.1 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp579
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.1 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp580
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.1 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp581
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.1 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp582
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.1 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp583
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.1 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp584
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.1 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp585
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.1 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp586
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.1 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp587
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.1 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp588
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.1 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp589
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.1 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp590
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.1 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp591
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.1 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp592
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.1 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp593
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.1 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp594
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.1 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp595
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.1 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp596
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.1 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp597
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.1 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp598
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.1 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp599
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.1 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp600
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.1 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp601
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.1 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp602
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.1 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp603
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.1 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp604
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.1 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp605
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.1 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp606
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.1 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp607
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.1 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp608
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.1 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp609
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.1 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp610
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.1 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp611
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.1 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp612
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.1 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp613
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.1 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp614
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.1 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp615
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.1 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp616
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.1 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp617
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.1 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp618
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.1 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp619
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.1 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp620
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.1 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp621
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.1 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp622
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.1 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp623
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.1 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp624
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.1 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp625
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.1 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp626
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.1 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp627
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.1 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp628
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.1 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp629
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.1 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp630
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.1 -w 0.1 -e lambda_weight_lr_dropout_exp631
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.1 -w 0.1 -e lambda_weight_lr_dropout_exp632
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.1 -w 0.1 -e lambda_weight_lr_dropout_exp633
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.1 -w 0.1 -e lambda_weight_lr_dropout_exp634
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.1 -w 0.1 -e lambda_weight_lr_dropout_exp635
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.1 -w 0.1 -e lambda_weight_lr_dropout_exp636
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.1 -w 0.1 -e lambda_weight_lr_dropout_exp637
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.1 -w 0.1 -e lambda_weight_lr_dropout_exp638
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.1 -w 0.1 -e lambda_weight_lr_dropout_exp639
-python lightning_unet.py -c -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.1 -w 0.1 -e lambda_weight_lr_dropout_exp640
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 1e-08 -w 1e-08 -e lambda_weight_lr_dropout_exp1
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 1e-08 -w 1e-08 -e lambda_weight_lr_dropout_exp2
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 1e-08 -w 1e-08 -e lambda_weight_lr_dropout_exp3
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 1e-08 -w 1e-08 -e lambda_weight_lr_dropout_exp4
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 1e-08 -w 1e-08 -e lambda_weight_lr_dropout_exp5
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 1e-08 -w 1e-08 -e lambda_weight_lr_dropout_exp6
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 1e-08 -w 1e-08 -e lambda_weight_lr_dropout_exp7
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 1e-08 -w 1e-08 -e lambda_weight_lr_dropout_exp8
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 1e-08 -w 1e-08 -e lambda_weight_lr_dropout_exp9
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 1e-08 -w 1e-08 -e lambda_weight_lr_dropout_exp10
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 1e-08 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp11
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 1e-08 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp12
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 1e-08 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp13
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 1e-08 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp14
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 1e-08 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp15
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 1e-08 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp16
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 1e-08 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp17
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 1e-08 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp18
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 1e-08 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp19
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 1e-08 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp20
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 1e-08 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp21
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 1e-08 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp22
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 1e-08 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp23
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 1e-08 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp24
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 1e-08 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp25
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 1e-08 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp26
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 1e-08 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp27
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 1e-08 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp28
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 1e-08 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp29
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 1e-08 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp30
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 1e-08 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp31
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 1e-08 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp32
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 1e-08 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp33
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 1e-08 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp34
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 1e-08 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp35
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 1e-08 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp36
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 1e-08 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp37
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 1e-08 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp38
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 1e-08 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp39
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 1e-08 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp40
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 1e-08 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp41
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 1e-08 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp42
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 1e-08 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp43
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 1e-08 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp44
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 1e-08 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp45
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 1e-08 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp46
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 1e-08 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp47
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 1e-08 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp48
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 1e-08 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp49
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 1e-08 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp50
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 1e-08 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp51
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 1e-08 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp52
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 1e-08 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp53
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 1e-08 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp54
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 1e-08 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp55
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 1e-08 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp56
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 1e-08 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp57
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 1e-08 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp58
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 1e-08 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp59
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 1e-08 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp60
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 1e-08 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp61
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 1e-08 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp62
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 1e-08 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp63
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 1e-08 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp64
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 1e-08 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp65
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 1e-08 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp66
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 1e-08 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp67
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 1e-08 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp68
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 1e-08 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp69
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 1e-08 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp70
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 1e-08 -w 0.1 -e lambda_weight_lr_dropout_exp71
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 1e-08 -w 0.1 -e lambda_weight_lr_dropout_exp72
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 1e-08 -w 0.1 -e lambda_weight_lr_dropout_exp73
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 1e-08 -w 0.1 -e lambda_weight_lr_dropout_exp74
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 1e-08 -w 0.1 -e lambda_weight_lr_dropout_exp75
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 1e-08 -w 0.1 -e lambda_weight_lr_dropout_exp76
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 1e-08 -w 0.1 -e lambda_weight_lr_dropout_exp77
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 1e-08 -w 0.1 -e lambda_weight_lr_dropout_exp78
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 1e-08 -w 0.1 -e lambda_weight_lr_dropout_exp79
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 1e-08 -w 0.1 -e lambda_weight_lr_dropout_exp80
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.014285722857142859 -w 1e-08 -e lambda_weight_lr_dropout_exp81
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.014285722857142859 -w 1e-08 -e lambda_weight_lr_dropout_exp82
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.014285722857142859 -w 1e-08 -e lambda_weight_lr_dropout_exp83
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.014285722857142859 -w 1e-08 -e lambda_weight_lr_dropout_exp84
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.014285722857142859 -w 1e-08 -e lambda_weight_lr_dropout_exp85
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.014285722857142859 -w 1e-08 -e lambda_weight_lr_dropout_exp86
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.014285722857142859 -w 1e-08 -e lambda_weight_lr_dropout_exp87
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.014285722857142859 -w 1e-08 -e lambda_weight_lr_dropout_exp88
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.014285722857142859 -w 1e-08 -e lambda_weight_lr_dropout_exp89
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.014285722857142859 -w 1e-08 -e lambda_weight_lr_dropout_exp90
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.014285722857142859 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp91
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.014285722857142859 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp92
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.014285722857142859 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp93
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.014285722857142859 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp94
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.014285722857142859 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp95
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.014285722857142859 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp96
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.014285722857142859 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp97
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.014285722857142859 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp98
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.014285722857142859 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp99
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.014285722857142859 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp100
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.014285722857142859 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp101
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.014285722857142859 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp102
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.014285722857142859 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp103
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.014285722857142859 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp104
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.014285722857142859 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp105
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.014285722857142859 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp106
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.014285722857142859 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp107
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.014285722857142859 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp108
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.014285722857142859 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp109
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.014285722857142859 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp110
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.014285722857142859 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp111
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.014285722857142859 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp112
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.014285722857142859 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp113
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.014285722857142859 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp114
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.014285722857142859 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp115
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.014285722857142859 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp116
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.014285722857142859 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp117
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.014285722857142859 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp118
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.014285722857142859 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp119
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.014285722857142859 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp120
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.014285722857142859 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp121
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.014285722857142859 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp122
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.014285722857142859 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp123
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.014285722857142859 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp124
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.014285722857142859 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp125
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.014285722857142859 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp126
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.014285722857142859 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp127
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.014285722857142859 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp128
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.014285722857142859 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp129
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.014285722857142859 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp130
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.014285722857142859 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp131
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.014285722857142859 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp132
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.014285722857142859 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp133
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.014285722857142859 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp134
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.014285722857142859 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp135
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.014285722857142859 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp136
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.014285722857142859 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp137
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.014285722857142859 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp138
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.014285722857142859 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp139
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.014285722857142859 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp140
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.014285722857142859 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp141
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.014285722857142859 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp142
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.014285722857142859 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp143
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.014285722857142859 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp144
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.014285722857142859 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp145
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.014285722857142859 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp146
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.014285722857142859 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp147
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.014285722857142859 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp148
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.014285722857142859 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp149
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.014285722857142859 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp150
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.014285722857142859 -w 0.1 -e lambda_weight_lr_dropout_exp151
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.014285722857142859 -w 0.1 -e lambda_weight_lr_dropout_exp152
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.014285722857142859 -w 0.1 -e lambda_weight_lr_dropout_exp153
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.014285722857142859 -w 0.1 -e lambda_weight_lr_dropout_exp154
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.014285722857142859 -w 0.1 -e lambda_weight_lr_dropout_exp155
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.014285722857142859 -w 0.1 -e lambda_weight_lr_dropout_exp156
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.014285722857142859 -w 0.1 -e lambda_weight_lr_dropout_exp157
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.014285722857142859 -w 0.1 -e lambda_weight_lr_dropout_exp158
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.014285722857142859 -w 0.1 -e lambda_weight_lr_dropout_exp159
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.014285722857142859 -w 0.1 -e lambda_weight_lr_dropout_exp160
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.02857143571428572 -w 1e-08 -e lambda_weight_lr_dropout_exp161
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.02857143571428572 -w 1e-08 -e lambda_weight_lr_dropout_exp162
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.02857143571428572 -w 1e-08 -e lambda_weight_lr_dropout_exp163
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.02857143571428572 -w 1e-08 -e lambda_weight_lr_dropout_exp164
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.02857143571428572 -w 1e-08 -e lambda_weight_lr_dropout_exp165
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.02857143571428572 -w 1e-08 -e lambda_weight_lr_dropout_exp166
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.02857143571428572 -w 1e-08 -e lambda_weight_lr_dropout_exp167
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.02857143571428572 -w 1e-08 -e lambda_weight_lr_dropout_exp168
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.02857143571428572 -w 1e-08 -e lambda_weight_lr_dropout_exp169
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.02857143571428572 -w 1e-08 -e lambda_weight_lr_dropout_exp170
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.02857143571428572 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp171
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.02857143571428572 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp172
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.02857143571428572 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp173
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.02857143571428572 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp174
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.02857143571428572 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp175
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.02857143571428572 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp176
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.02857143571428572 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp177
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.02857143571428572 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp178
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.02857143571428572 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp179
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.02857143571428572 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp180
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.02857143571428572 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp181
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.02857143571428572 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp182
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.02857143571428572 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp183
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.02857143571428572 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp184
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.02857143571428572 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp185
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.02857143571428572 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp186
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.02857143571428572 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp187
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.02857143571428572 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp188
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.02857143571428572 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp189
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.02857143571428572 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp190
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.02857143571428572 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp191
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.02857143571428572 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp192
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.02857143571428572 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp193
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.02857143571428572 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp194
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.02857143571428572 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp195
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.02857143571428572 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp196
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.02857143571428572 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp197
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.02857143571428572 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp198
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.02857143571428572 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp199
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.02857143571428572 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp200
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.02857143571428572 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp201
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.02857143571428572 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp202
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.02857143571428572 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp203
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.02857143571428572 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp204
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.02857143571428572 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp205
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.02857143571428572 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp206
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.02857143571428572 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp207
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.02857143571428572 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp208
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.02857143571428572 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp209
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.02857143571428572 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp210
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.02857143571428572 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp211
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.02857143571428572 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp212
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.02857143571428572 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp213
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.02857143571428572 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp214
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.02857143571428572 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp215
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.02857143571428572 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp216
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.02857143571428572 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp217
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.02857143571428572 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp218
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.02857143571428572 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp219
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.02857143571428572 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp220
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.02857143571428572 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp221
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.02857143571428572 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp222
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.02857143571428572 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp223
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.02857143571428572 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp224
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.02857143571428572 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp225
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.02857143571428572 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp226
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.02857143571428572 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp227
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.02857143571428572 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp228
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.02857143571428572 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp229
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.02857143571428572 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp230
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.02857143571428572 -w 0.1 -e lambda_weight_lr_dropout_exp231
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.02857143571428572 -w 0.1 -e lambda_weight_lr_dropout_exp232
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.02857143571428572 -w 0.1 -e lambda_weight_lr_dropout_exp233
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.02857143571428572 -w 0.1 -e lambda_weight_lr_dropout_exp234
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.02857143571428572 -w 0.1 -e lambda_weight_lr_dropout_exp235
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.02857143571428572 -w 0.1 -e lambda_weight_lr_dropout_exp236
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.02857143571428572 -w 0.1 -e lambda_weight_lr_dropout_exp237
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.02857143571428572 -w 0.1 -e lambda_weight_lr_dropout_exp238
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.02857143571428572 -w 0.1 -e lambda_weight_lr_dropout_exp239
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.02857143571428572 -w 0.1 -e lambda_weight_lr_dropout_exp240
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.042857148571428576 -w 1e-08 -e lambda_weight_lr_dropout_exp241
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.042857148571428576 -w 1e-08 -e lambda_weight_lr_dropout_exp242
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.042857148571428576 -w 1e-08 -e lambda_weight_lr_dropout_exp243
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.042857148571428576 -w 1e-08 -e lambda_weight_lr_dropout_exp244
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.042857148571428576 -w 1e-08 -e lambda_weight_lr_dropout_exp245
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.042857148571428576 -w 1e-08 -e lambda_weight_lr_dropout_exp246
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.042857148571428576 -w 1e-08 -e lambda_weight_lr_dropout_exp247
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.042857148571428576 -w 1e-08 -e lambda_weight_lr_dropout_exp248
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.042857148571428576 -w 1e-08 -e lambda_weight_lr_dropout_exp249
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.042857148571428576 -w 1e-08 -e lambda_weight_lr_dropout_exp250
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.042857148571428576 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp251
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.042857148571428576 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp252
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.042857148571428576 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp253
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.042857148571428576 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp254
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.042857148571428576 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp255
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.042857148571428576 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp256
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.042857148571428576 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp257
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.042857148571428576 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp258
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.042857148571428576 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp259
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.042857148571428576 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp260
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.042857148571428576 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp261
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.042857148571428576 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp262
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.042857148571428576 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp263
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.042857148571428576 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp264
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.042857148571428576 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp265
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.042857148571428576 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp266
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.042857148571428576 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp267
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.042857148571428576 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp268
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.042857148571428576 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp269
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.042857148571428576 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp270
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.042857148571428576 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp271
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.042857148571428576 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp272
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.042857148571428576 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp273
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.042857148571428576 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp274
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.042857148571428576 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp275
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.042857148571428576 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp276
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.042857148571428576 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp277
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.042857148571428576 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp278
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.042857148571428576 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp279
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.042857148571428576 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp280
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.042857148571428576 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp281
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.042857148571428576 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp282
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.042857148571428576 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp283
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.042857148571428576 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp284
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.042857148571428576 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp285
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.042857148571428576 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp286
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.042857148571428576 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp287
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.042857148571428576 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp288
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.042857148571428576 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp289
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.042857148571428576 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp290
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.042857148571428576 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp291
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.042857148571428576 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp292
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.042857148571428576 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp293
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.042857148571428576 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp294
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.042857148571428576 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp295
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.042857148571428576 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp296
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.042857148571428576 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp297
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.042857148571428576 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp298
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.042857148571428576 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp299
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.042857148571428576 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp300
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.042857148571428576 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp301
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.042857148571428576 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp302
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.042857148571428576 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp303
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.042857148571428576 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp304
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.042857148571428576 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp305
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.042857148571428576 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp306
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.042857148571428576 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp307
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.042857148571428576 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp308
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.042857148571428576 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp309
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.042857148571428576 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp310
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.042857148571428576 -w 0.1 -e lambda_weight_lr_dropout_exp311
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.042857148571428576 -w 0.1 -e lambda_weight_lr_dropout_exp312
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.042857148571428576 -w 0.1 -e lambda_weight_lr_dropout_exp313
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.042857148571428576 -w 0.1 -e lambda_weight_lr_dropout_exp314
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.042857148571428576 -w 0.1 -e lambda_weight_lr_dropout_exp315
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.042857148571428576 -w 0.1 -e lambda_weight_lr_dropout_exp316
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.042857148571428576 -w 0.1 -e lambda_weight_lr_dropout_exp317
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.042857148571428576 -w 0.1 -e lambda_weight_lr_dropout_exp318
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.042857148571428576 -w 0.1 -e lambda_weight_lr_dropout_exp319
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.042857148571428576 -w 0.1 -e lambda_weight_lr_dropout_exp320
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.05714286142857144 -w 1e-08 -e lambda_weight_lr_dropout_exp321
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.05714286142857144 -w 1e-08 -e lambda_weight_lr_dropout_exp322
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.05714286142857144 -w 1e-08 -e lambda_weight_lr_dropout_exp323
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.05714286142857144 -w 1e-08 -e lambda_weight_lr_dropout_exp324
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.05714286142857144 -w 1e-08 -e lambda_weight_lr_dropout_exp325
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.05714286142857144 -w 1e-08 -e lambda_weight_lr_dropout_exp326
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.05714286142857144 -w 1e-08 -e lambda_weight_lr_dropout_exp327
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.05714286142857144 -w 1e-08 -e lambda_weight_lr_dropout_exp328
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.05714286142857144 -w 1e-08 -e lambda_weight_lr_dropout_exp329
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.05714286142857144 -w 1e-08 -e lambda_weight_lr_dropout_exp330
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.05714286142857144 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp331
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.05714286142857144 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp332
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.05714286142857144 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp333
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.05714286142857144 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp334
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.05714286142857144 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp335
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.05714286142857144 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp336
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.05714286142857144 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp337
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.05714286142857144 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp338
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.05714286142857144 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp339
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.05714286142857144 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp340
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.05714286142857144 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp341
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.05714286142857144 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp342
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.05714286142857144 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp343
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.05714286142857144 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp344
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.05714286142857144 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp345
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.05714286142857144 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp346
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.05714286142857144 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp347
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.05714286142857144 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp348
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.05714286142857144 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp349
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.05714286142857144 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp350
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.05714286142857144 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp351
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.05714286142857144 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp352
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.05714286142857144 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp353
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.05714286142857144 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp354
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.05714286142857144 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp355
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.05714286142857144 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp356
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.05714286142857144 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp357
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.05714286142857144 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp358
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.05714286142857144 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp359
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.05714286142857144 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp360
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.05714286142857144 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp361
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.05714286142857144 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp362
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.05714286142857144 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp363
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.05714286142857144 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp364
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.05714286142857144 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp365
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.05714286142857144 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp366
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.05714286142857144 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp367
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.05714286142857144 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp368
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.05714286142857144 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp369
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.05714286142857144 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp370
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.05714286142857144 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp371
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.05714286142857144 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp372
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.05714286142857144 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp373
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.05714286142857144 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp374
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.05714286142857144 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp375
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.05714286142857144 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp376
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.05714286142857144 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp377
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.05714286142857144 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp378
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.05714286142857144 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp379
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.05714286142857144 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp380
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.05714286142857144 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp381
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.05714286142857144 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp382
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.05714286142857144 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp383
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.05714286142857144 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp384
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.05714286142857144 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp385
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.05714286142857144 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp386
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.05714286142857144 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp387
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.05714286142857144 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp388
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.05714286142857144 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp389
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.05714286142857144 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp390
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.05714286142857144 -w 0.1 -e lambda_weight_lr_dropout_exp391
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.05714286142857144 -w 0.1 -e lambda_weight_lr_dropout_exp392
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.05714286142857144 -w 0.1 -e lambda_weight_lr_dropout_exp393
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.05714286142857144 -w 0.1 -e lambda_weight_lr_dropout_exp394
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.05714286142857144 -w 0.1 -e lambda_weight_lr_dropout_exp395
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.05714286142857144 -w 0.1 -e lambda_weight_lr_dropout_exp396
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.05714286142857144 -w 0.1 -e lambda_weight_lr_dropout_exp397
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.05714286142857144 -w 0.1 -e lambda_weight_lr_dropout_exp398
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.05714286142857144 -w 0.1 -e lambda_weight_lr_dropout_exp399
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.05714286142857144 -w 0.1 -e lambda_weight_lr_dropout_exp400
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.0714285742857143 -w 1e-08 -e lambda_weight_lr_dropout_exp401
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.0714285742857143 -w 1e-08 -e lambda_weight_lr_dropout_exp402
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.0714285742857143 -w 1e-08 -e lambda_weight_lr_dropout_exp403
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.0714285742857143 -w 1e-08 -e lambda_weight_lr_dropout_exp404
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.0714285742857143 -w 1e-08 -e lambda_weight_lr_dropout_exp405
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.0714285742857143 -w 1e-08 -e lambda_weight_lr_dropout_exp406
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.0714285742857143 -w 1e-08 -e lambda_weight_lr_dropout_exp407
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.0714285742857143 -w 1e-08 -e lambda_weight_lr_dropout_exp408
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.0714285742857143 -w 1e-08 -e lambda_weight_lr_dropout_exp409
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.0714285742857143 -w 1e-08 -e lambda_weight_lr_dropout_exp410
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.0714285742857143 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp411
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.0714285742857143 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp412
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.0714285742857143 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp413
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.0714285742857143 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp414
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.0714285742857143 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp415
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.0714285742857143 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp416
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.0714285742857143 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp417
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.0714285742857143 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp418
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.0714285742857143 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp419
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.0714285742857143 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp420
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.0714285742857143 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp421
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.0714285742857143 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp422
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.0714285742857143 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp423
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.0714285742857143 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp424
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.0714285742857143 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp425
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.0714285742857143 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp426
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.0714285742857143 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp427
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.0714285742857143 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp428
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.0714285742857143 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp429
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.0714285742857143 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp430
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.0714285742857143 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp431
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.0714285742857143 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp432
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.0714285742857143 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp433
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.0714285742857143 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp434
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.0714285742857143 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp435
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.0714285742857143 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp436
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.0714285742857143 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp437
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.0714285742857143 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp438
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.0714285742857143 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp439
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.0714285742857143 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp440
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.0714285742857143 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp441
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.0714285742857143 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp442
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.0714285742857143 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp443
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.0714285742857143 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp444
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.0714285742857143 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp445
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.0714285742857143 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp446
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.0714285742857143 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp447
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.0714285742857143 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp448
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.0714285742857143 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp449
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.0714285742857143 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp450
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.0714285742857143 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp451
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.0714285742857143 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp452
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.0714285742857143 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp453
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.0714285742857143 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp454
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.0714285742857143 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp455
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.0714285742857143 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp456
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.0714285742857143 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp457
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.0714285742857143 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp458
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.0714285742857143 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp459
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.0714285742857143 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp460
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.0714285742857143 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp461
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.0714285742857143 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp462
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.0714285742857143 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp463
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.0714285742857143 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp464
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.0714285742857143 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp465
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.0714285742857143 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp466
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.0714285742857143 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp467
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.0714285742857143 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp468
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.0714285742857143 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp469
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.0714285742857143 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp470
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.0714285742857143 -w 0.1 -e lambda_weight_lr_dropout_exp471
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.0714285742857143 -w 0.1 -e lambda_weight_lr_dropout_exp472
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.0714285742857143 -w 0.1 -e lambda_weight_lr_dropout_exp473
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.0714285742857143 -w 0.1 -e lambda_weight_lr_dropout_exp474
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.0714285742857143 -w 0.1 -e lambda_weight_lr_dropout_exp475
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.0714285742857143 -w 0.1 -e lambda_weight_lr_dropout_exp476
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.0714285742857143 -w 0.1 -e lambda_weight_lr_dropout_exp477
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.0714285742857143 -w 0.1 -e lambda_weight_lr_dropout_exp478
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.0714285742857143 -w 0.1 -e lambda_weight_lr_dropout_exp479
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.0714285742857143 -w 0.1 -e lambda_weight_lr_dropout_exp480
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.08571428714285714 -w 1e-08 -e lambda_weight_lr_dropout_exp481
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.08571428714285714 -w 1e-08 -e lambda_weight_lr_dropout_exp482
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.08571428714285714 -w 1e-08 -e lambda_weight_lr_dropout_exp483
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.08571428714285714 -w 1e-08 -e lambda_weight_lr_dropout_exp484
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.08571428714285714 -w 1e-08 -e lambda_weight_lr_dropout_exp485
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.08571428714285714 -w 1e-08 -e lambda_weight_lr_dropout_exp486
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.08571428714285714 -w 1e-08 -e lambda_weight_lr_dropout_exp487
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.08571428714285714 -w 1e-08 -e lambda_weight_lr_dropout_exp488
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.08571428714285714 -w 1e-08 -e lambda_weight_lr_dropout_exp489
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.08571428714285714 -w 1e-08 -e lambda_weight_lr_dropout_exp490
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.08571428714285714 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp491
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.08571428714285714 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp492
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.08571428714285714 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp493
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.08571428714285714 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp494
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.08571428714285714 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp495
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.08571428714285714 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp496
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.08571428714285714 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp497
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.08571428714285714 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp498
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.08571428714285714 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp499
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.08571428714285714 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp500
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.08571428714285714 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp501
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.08571428714285714 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp502
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.08571428714285714 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp503
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.08571428714285714 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp504
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.08571428714285714 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp505
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.08571428714285714 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp506
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.08571428714285714 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp507
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.08571428714285714 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp508
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.08571428714285714 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp509
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.08571428714285714 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp510
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.08571428714285714 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp511
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.08571428714285714 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp512
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.08571428714285714 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp513
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.08571428714285714 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp514
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.08571428714285714 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp515
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.08571428714285714 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp516
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.08571428714285714 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp517
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.08571428714285714 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp518
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.08571428714285714 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp519
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.08571428714285714 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp520
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.08571428714285714 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp521
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.08571428714285714 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp522
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.08571428714285714 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp523
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.08571428714285714 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp524
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.08571428714285714 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp525
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.08571428714285714 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp526
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.08571428714285714 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp527
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.08571428714285714 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp528
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.08571428714285714 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp529
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.08571428714285714 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp530
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.08571428714285714 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp531
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.08571428714285714 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp532
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.08571428714285714 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp533
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.08571428714285714 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp534
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.08571428714285714 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp535
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.08571428714285714 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp536
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.08571428714285714 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp537
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.08571428714285714 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp538
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.08571428714285714 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp539
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.08571428714285714 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp540
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.08571428714285714 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp541
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.08571428714285714 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp542
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.08571428714285714 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp543
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.08571428714285714 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp544
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.08571428714285714 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp545
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.08571428714285714 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp546
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.08571428714285714 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp547
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.08571428714285714 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp548
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.08571428714285714 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp549
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.08571428714285714 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp550
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.08571428714285714 -w 0.1 -e lambda_weight_lr_dropout_exp551
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.08571428714285714 -w 0.1 -e lambda_weight_lr_dropout_exp552
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.08571428714285714 -w 0.1 -e lambda_weight_lr_dropout_exp553
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.08571428714285714 -w 0.1 -e lambda_weight_lr_dropout_exp554
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.08571428714285714 -w 0.1 -e lambda_weight_lr_dropout_exp555
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.08571428714285714 -w 0.1 -e lambda_weight_lr_dropout_exp556
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.08571428714285714 -w 0.1 -e lambda_weight_lr_dropout_exp557
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.08571428714285714 -w 0.1 -e lambda_weight_lr_dropout_exp558
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.08571428714285714 -w 0.1 -e lambda_weight_lr_dropout_exp559
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.08571428714285714 -w 0.1 -e lambda_weight_lr_dropout_exp560
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.1 -w 1e-08 -e lambda_weight_lr_dropout_exp561
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.1 -w 1e-08 -e lambda_weight_lr_dropout_exp562
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.1 -w 1e-08 -e lambda_weight_lr_dropout_exp563
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.1 -w 1e-08 -e lambda_weight_lr_dropout_exp564
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.1 -w 1e-08 -e lambda_weight_lr_dropout_exp565
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.1 -w 1e-08 -e lambda_weight_lr_dropout_exp566
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.1 -w 1e-08 -e lambda_weight_lr_dropout_exp567
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.1 -w 1e-08 -e lambda_weight_lr_dropout_exp568
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.1 -w 1e-08 -e lambda_weight_lr_dropout_exp569
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.1 -w 1e-08 -e lambda_weight_lr_dropout_exp570
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.1 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp571
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.1 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp572
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.1 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp573
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.1 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp574
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.1 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp575
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.1 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp576
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.1 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp577
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.1 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp578
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.1 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp579
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.1 -w 0.014285722857142859 -e lambda_weight_lr_dropout_exp580
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.1 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp581
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.1 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp582
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.1 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp583
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.1 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp584
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.1 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp585
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.1 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp586
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.1 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp587
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.1 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp588
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.1 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp589
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.1 -w 0.02857143571428572 -e lambda_weight_lr_dropout_exp590
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.1 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp591
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.1 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp592
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.1 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp593
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.1 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp594
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.1 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp595
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.1 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp596
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.1 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp597
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.1 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp598
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.1 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp599
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.1 -w 0.042857148571428576 -e lambda_weight_lr_dropout_exp600
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.1 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp601
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.1 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp602
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.1 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp603
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.1 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp604
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.1 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp605
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.1 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp606
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.1 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp607
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.1 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp608
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.1 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp609
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.1 -w 0.05714286142857144 -e lambda_weight_lr_dropout_exp610
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.1 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp611
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.1 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp612
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.1 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp613
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.1 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp614
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.1 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp615
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.1 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp616
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.1 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp617
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.1 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp618
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.1 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp619
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.1 -w 0.0714285742857143 -e lambda_weight_lr_dropout_exp620
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.1 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp621
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.1 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp622
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.1 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp623
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.1 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp624
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.1 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp625
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.1 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp626
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.1 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp627
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.1 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp628
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.1 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp629
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.1 -w 0.08571428714285714 -e lambda_weight_lr_dropout_exp630
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.0 -l 0.1 -w 0.1 -e lambda_weight_lr_dropout_exp631
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.1 -l 0.1 -w 0.1 -e lambda_weight_lr_dropout_exp632
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.2 -l 0.1 -w 0.1 -e lambda_weight_lr_dropout_exp633
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.30000000000000004 -l 0.1 -w 0.1 -e lambda_weight_lr_dropout_exp634
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.4 -l 0.1 -w 0.1 -e lambda_weight_lr_dropout_exp635
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.5 -l 0.1 -w 0.1 -e lambda_weight_lr_dropout_exp636
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.6000000000000001 -l 0.1 -w 0.1 -e lambda_weight_lr_dropout_exp637
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.7000000000000001 -l 0.1 -w 0.1 -e lambda_weight_lr_dropout_exp638
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.8 -l 0.1 -w 0.1 -e lambda_weight_lr_dropout_exp639
+python lightning_unet.py -c -t gridsearch -g 7 -f lambda -i full_channel -m 50 -d 0.9 -l 0.1 -w 0.1 -e lambda_weight_lr_dropout_exp640
