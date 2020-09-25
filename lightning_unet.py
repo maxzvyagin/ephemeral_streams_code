@@ -8,6 +8,8 @@ import time
 import statistics
 import segmentation_models_pytorch as smp
 import math
+import optuna
+
 
 # Defining Environment Variables - defaults defined here and edited using command line args
 MAX_EPOCHS = 25
@@ -263,7 +265,7 @@ if __name__ == "__main__":
                         project_name="maxzvyagin/GIS", experiment_name=args.experiment_name, close_after_fit=False,
                         params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
                                 "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP, "auto_lr":AUTO_LR,
-                                "dropout": DROPOUT}, tags=tags)
+                                "dropout": DROPOUT, "weight_decay": WEIGHT_DECAY}, tags=tags)
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
     # set up trainer
     trainer = pl.Trainer(gpus=gpus, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=REP,
