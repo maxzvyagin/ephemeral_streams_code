@@ -8,7 +8,6 @@ import time
 import statistics
 import segmentation_models_pytorch as smp
 import math
-import optuna
 
 
 # Defining Environment Variables - defaults defined here and edited using command line args
