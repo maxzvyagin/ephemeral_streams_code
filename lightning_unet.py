@@ -9,7 +9,6 @@ import statistics
 import segmentation_models_pytorch as smp
 import math
 
-
 # Defining Environment Variables - defaults defined here and edited using command line args
 MAX_EPOCHS = 25
 LR = 1e-3
@@ -53,7 +52,7 @@ class LitUNet(pl.LightningModule):
         # None activation to return logits
         aux = dict(dropout=DROPOUT, classes=OUTPUT_CHANNELS, activation=None)
         self.model = smp.Unet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, aux_params=aux,
-                              encoder_weights=None, encoder_depth=ENCODER_DEPTH)
+                              encoder_weights=None, encoder_depth=ENCODER_DEPTH, decoder_channels=[256, 128, 64])
         self.file_pairs = file_pairs
         # self.criterion = torch.nn.MSELoss(reduction="mean")
         self.criterion = torch.nn.BCEWithLogitsLoss()
@@ -227,7 +226,7 @@ if __name__ == "__main__":
     if args.early_stopping:
         EARLY_STOP = True
     if args.weight_decay:
-        WEIGHT_DECAY=float(args.weight_decay)
+        WEIGHT_DECAY = float(args.weight_decay)
     # need to figure out how many input channels we have
     if IMAGE_TYPE == "full_channel":
         INPUT_CHANNELS = 4
@@ -267,7 +266,8 @@ if __name__ == "__main__":
                                 "lcHR1bmUuYWkiLCJhcGlfa2V5IjoiOGE5NDI0YTktNmE2ZC00ZWZjLTlkMjAtNjNmMTIwM2Q2ZTQzIn0=",
                         project_name="maxzvyagin/GIS", experiment_name=args.experiment_name, close_after_fit=False,
                         params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
-                                "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP, "auto_lr":AUTO_LR,
+                                "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP,
+                                "auto_lr": AUTO_LR,
                                 "dropout": DROPOUT, "weight_decay": WEIGHT_DECAY}, tags=tags)
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
     # set up trainer
