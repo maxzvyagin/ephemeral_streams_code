@@ -20,13 +20,15 @@ NUM_GPUS = 1
 IMAGE_TYPE = "full_channel"
 REP = 32
 LARGE_IMAGE = False
-ENCODER = None
+# default encoder defined by smp UNet class
+ENCODER = "resnet34"
 IOTA = False
 AUGMENTATION = False
 AUTO_LR = False
 DROPOUT = 0.5
 EARLY_STOP = False
 WEIGHT_DECAY = 0
+ENCODER_DEPTH = 5
 
 
 ### copy paste from https://discuss.pytorch.org/t/implementation-of-dice-loss/53552
@@ -48,11 +50,10 @@ class LitUNet(pl.LightningModule):
 
     def __init__(self, file_pairs, input_num=4, output_num=1, initial_feat=32, trained=False, learning_rate=LR):
         super().__init__()
-        aux = dict(dropout=DROPOUT, classes=OUTPUT_CHANNELS)
-        if not ENCODER:
-            self.model = smp.Unet(classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, aux_params=aux)
-        else:
-            self.model = smp.Unet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, aux_params=aux)
+        # None activation to return logits
+        aux = dict(dropout=DROPOUT, classes=OUTPUT_CHANNELS, activation=None)
+        self.model = smp.Unet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, aux_params=aux,
+                              encoder_weights=None, encoder_depth=ENCODER_DEPTH)
         self.file_pairs = file_pairs
         # self.criterion = torch.nn.MSELoss(reduction="mean")
         self.criterion = torch.nn.BCEWithLogitsLoss()
@@ -186,6 +187,7 @@ if __name__ == "__main__":
     parser.add_argument('-c', "--early_stopping", help="Use this flag to turn on early stopping", action='store_true')
     parser.add_argument('-u', '--augmentation', help='Turn on data augmentation with this flag', action='store_true')
     parser.add_argument('-w', '--weight_decay', help="Specify weight decacy for optimizer, default is 0.")
+    parser.add_argument('-n', '--encoder_depth', help="Specify int for encoder depth.")
     args = parser.parse_args()
     if args.image_type:
         IMAGE_TYPE = args.image_type
@@ -203,6 +205,8 @@ if __name__ == "__main__":
         tags = args.tags.split(",")
     else:
         tags = []
+    if args.encoder_depth:
+        ENCODER_DEPTH = int(args.encoder_depth)
     if args.representation:
         r = int(args.representation)
         if r == 32:
