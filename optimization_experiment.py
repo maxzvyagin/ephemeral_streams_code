@@ -75,9 +75,9 @@ def train_then_test(params):
 
 
 if __name__ == "__main__":
-    hparams = [(0.0, 1.0),  # learning_rate
-               (0.0, 1.0),  # dropout
-               (0.0, 1.0),  # weight decay
+    hparams = [(0, 2),  # learning_rate
+               (0, 2),  # dropout
+               (0, 4),  # weight decay
                (1, 12)]  # encoder depth
 
     hyperdrive(objective=train_then_test,
