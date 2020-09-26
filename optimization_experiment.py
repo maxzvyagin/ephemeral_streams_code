@@ -82,8 +82,8 @@ if __name__ == "__main__":
 
     hyperdrive(objective=train_then_test,
                hyperparameters=hparams,
-               results_path='/home/mzvyagin/hyperspace',
-               checkpoints_path='/home/mzvyagin/hyperspace',
+               results_path='/home/mzvyagin/hyperspace_res',
+               checkpoints_path='/home/mzvyagin/hyperspace_res',
                model="GP",
                n_iterations=50,
                verbose=True,
