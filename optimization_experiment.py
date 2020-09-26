@@ -5,11 +5,11 @@ import pytorch_lightning as pl
 from pytorch_lightning.loggers.neptune import NeptuneLogger
 import time
 
-from pytorch_lightning.callbacks.base import Callback
-from ray.tune.integration.pytorch_lightning import TuneReportCallback
-from ray.tune.suggest import Searcher
-from ray import tune
-from ray.tune.suggest.hyperopt import HyperOptSearch
+# from pytorch_lightning.callbacks.base import Callback
+# from ray.tune.integration.pytorch_lightning import TuneReportCallback
+# from ray.tune.suggest import Searcher
+# from ray import tune
+# from ray.tune.suggest.hyperopt import HyperOptSearch
 
 ### using predefined options, perform hyperparameter optimization
 #
