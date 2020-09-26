@@ -1,6 +1,6 @@
 from lightning_unet import LitUNet
 import torch
-import segementation_models_pytorch as smp
+import segmentation_models_pytorch as smp
 import pytorch_lightning as pl
 from pytorch_lightning.loggers.neptune import NeptuneLogger
 import time
