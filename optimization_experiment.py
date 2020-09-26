@@ -60,7 +60,7 @@ def train_then_test(params):
                            encoder_weights=None, encoder_depth=ENCODER_DEPTH,
                            decoder_channels=all_decoder_channels[:ENCODER_DEPTH])
 
-    trainer = pl.Trainer(gpus=[6], max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=REP)
+    trainer = pl.Trainer(gpus=1, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=REP, auto_select_gpus=True)
     # begin training
     start = time.time()
     trainer.fit(model)
