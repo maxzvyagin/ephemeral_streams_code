@@ -158,6 +158,7 @@ class LitUNet(pl.LightningModule):
             x = x.unsqueeze(1)
         y = val_batch['mask'].unsqueeze(1)
         # x, y = val_batch
+        print(type(self.forward(x)))
         logits = self.forward(x)[0]
         loss = self.criterion(logits, y)
         return {'val_loss': loss}
