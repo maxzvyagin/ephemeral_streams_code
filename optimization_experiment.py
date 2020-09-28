@@ -56,7 +56,7 @@ def train_then_test(params):
                         project_name="maxzvyagin/GIS", experiment_name='hyperspace', close_after_fit=False,
                         params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
                                 "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP,
-                                "dropout": DROPOUT, "weight_decay": WEIGHT_DECAY}, tags='hyperspace')
+                                "dropout": DROPOUT, "weight_decay": WEIGHT_DECAY}, tags=['hyperspace'])
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
     aux = dict(dropout=DROPOUT, classes=OUTPUT_CHANNELS, activation=None)
     all_decoder_channels = [256, 128, 64, 32, 16, 8, 4, 2, 1]
