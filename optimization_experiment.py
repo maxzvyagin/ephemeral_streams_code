@@ -47,12 +47,12 @@ def train_then_test(params):
           "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
          ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
           "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
-    nep = NeptuneLogger(api_key="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vdWkubmVwdHVuZS5haSIsImFwaV91cmwiOiJodHRwczovL3VpLm5"
-                                "lcHR1bmUuYWkiLCJhcGlfa2V5IjoiOGE5NDI0YTktNmE2ZC00ZWZjLTlkMjAtNjNmMTIwM2Q2ZTQzIn0=",
-                        project_name="maxzvyagin/GIS", experiment_name='hyperspace', close_after_fit=False,
-                        params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
-                                "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP,
-                                "dropout": DROPOUT, "weight_decay": WEIGHT_DECAY}, tags='hyperspace')
+    # nep = NeptuneLogger(api_key="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vdWkubmVwdHVuZS5haSIsImFwaV91cmwiOiJodHRwczovL3VpLm5"
+    #                             "lcHR1bmUuYWkiLCJhcGlfa2V5IjoiOGE5NDI0YTktNmE2ZC00ZWZjLTlkMjAtNjNmMTIwM2Q2ZTQzIn0=",
+    #                     project_name="maxzvyagin/GIS", experiment_name='hyperspace', close_after_fit=False,
+    #                     params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
+    #                             "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP,
+    #                             "dropout": DROPOUT, "weight_decay": WEIGHT_DECAY}, tags='hyperspace')
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
     aux = dict(dropout=DROPOUT, classes=OUTPUT_CHANNELS, activation=None)
     all_decoder_channels = [256, 128, 64, 32, 16, 8, 4, 2, 1, .5, .25, .125]
@@ -60,16 +60,12 @@ def train_then_test(params):
                            encoder_weights=None, encoder_depth=ENCODER_DEPTH,
                            decoder_channels=all_decoder_channels[:ENCODER_DEPTH])
 
-    trainer = pl.Trainer(gpus=1, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=REP, auto_select_gpus=True)
+    trainer = pl.Trainer(gpus=1, max_epochs=MAX_EPOCHS, profiler=True, precision=REP, auto_select_gpus=True)
     # begin training
-    start = time.time()
     trainer.fit(model)
-    end = time.time()
-    nep.log_metric("clock_time(s)", end - start)
     # run the test set
     trainer.test(model)
     torch.save(model.state_dict(), "/tmp/latest_model.pkl")
-    nep.log_artifact("/tmp/latest_model.pkl")
 
     return model.test_loss
 
