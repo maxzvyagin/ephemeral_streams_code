@@ -43,10 +43,14 @@ def train_then_test(params):
     DROPOUT = params[1]
     WEIGHT_DECAY = params[2]
     ENCODER_DEPTH = params[3]
-    f = [("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2012_refl.img",
-          "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
-         ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
-          "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
+    f = [("/vol/ml/EphemeralStreamData/Ephemeral_Channels/Imagery/vhr_2012_refl.img"
+          , "/vol/ml/EphemeralStreamData/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
+         ("/vol/ml/EphemeralStreamData/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
+          "/vol/ml/EphemeralStreamData/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
+    # f = [("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2012_refl.img",
+    #       "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
+    #      ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
+    #       "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
     # nep = NeptuneLogger(api_key="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vdWkubmVwdHVuZS5haSIsImFwaV91cmwiOiJodHRwczovL3VpLm5"
     #                             "lcHR1bmUuYWkiLCJhcGlfa2V5IjoiOGE5NDI0YTktNmE2ZC00ZWZjLTlkMjAtNjNmMTIwM2Q2ZTQzIn0=",
     #                     project_name="maxzvyagin/GIS", experiment_name='hyperspace', close_after_fit=False,
@@ -55,7 +59,7 @@ def train_then_test(params):
     #                             "dropout": DROPOUT, "weight_decay": WEIGHT_DECAY}, tags='hyperspace')
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
     aux = dict(dropout=DROPOUT, classes=OUTPUT_CHANNELS, activation=None)
-    all_decoder_channels = [256, 128, 64, 32, 16, 8, 4, 2, 1, .5, .25, .125]
+    all_decoder_channels = [256, 128, 64, 32, 16, 8, 4, 2, 1]
     model.model = smp.Unet(ENCODER, classes=OUTPUT_CHANNELS, in_channels=INPUT_CHANNELS, aux_params=aux,
                            encoder_weights=None, encoder_depth=ENCODER_DEPTH,
                            decoder_channels=all_decoder_channels[:ENCODER_DEPTH])
@@ -74,7 +78,7 @@ if __name__ == "__main__":
     hparams = [(0, 2),  # learning_rate
                (0, 2),  # dropout
                (0, 4),  # weight decay
-               (1, 12)]  # encoder depth
+               (1, 6)]  # encoder depth
 
     hyperdrive(objective=train_then_test,
                hyperparameters=hparams,
