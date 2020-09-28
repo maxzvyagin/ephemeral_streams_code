@@ -42,7 +42,8 @@ def train_then_test(params):
     ENCODER = "resnet34"
     DROPOUT = params[1]
     WEIGHT_DECAY = params[2]
-    ENCODER_DEPTH = params[3]
+    #ENCODER_DEPTH = params[3]
+    ENCODER_DEPTH=5
     f = [("/lus/iota-fs0/projects/CVD_Research/mzvyagin/Ephemeral_Channels/Imagery/vhr_2012_refl.img",
           "/lus/iota-fs0/projects/CVD_Research/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
          ("/lus/iota-fs0/projects/CVD_Research/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
