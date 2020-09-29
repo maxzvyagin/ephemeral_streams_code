@@ -8,7 +8,6 @@ import pytorch_lightning as pl
 from pytorch_lightning.loggers.neptune import NeptuneLogger
 from ray import tune
 from ray.tune.suggest.skopt import SkOptSearch
-from ray.tune.integration.pytorch_lightning import TuneReportCallback
 
 
 # from ray.tune.suggest import Searcher
@@ -63,8 +62,7 @@ def train_then_test(params):
                            encoder_weights=None, encoder_depth=ENCODER_DEPTH,
                            decoder_channels=all_decoder_channels[:ENCODER_DEPTH])
 
-    trainer = pl.Trainer(gpus=1, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=REP, auto_select_gpus=True,
-                         callbacks = [TuneReportCallback({'avg_test_loss': 'avg_test_loss'}, on='test_end')])
+    trainer = pl.Trainer(gpus=1, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=REP, auto_select_gpus=True)
     # begin training
     trainer.fit(model)
     # run the test set
