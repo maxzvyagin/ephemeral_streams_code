@@ -13,4 +13,5 @@ hyperparameters = [(0.00000001, 0.1),  # learning_rate
                    (1, 6)]  # encoder depth
 space = create_hyperspace(hyperparameters)
 
-print(type(space))
+print(len(space))
+print(space[0])
