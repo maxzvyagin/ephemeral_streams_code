@@ -30,4 +30,5 @@ space = create_hyperspace(hyperparameters)
 first = space[0]
 
 print(type(first.bounds))
+print(first.bounds)
 
