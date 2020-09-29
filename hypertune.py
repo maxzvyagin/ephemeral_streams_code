@@ -84,6 +84,6 @@ space = create_hyperspace(hyperparameters)
 for section in space:
     # create a skopt gp minimize object
     optimizer = Optimizer(section)
-    search_algo = SkOptSearch(optimizer, ['learning_rate', 'dropout', 'encoder_depth', 'weight_decay'],
+    search_algo = SkOptSearch(optimizer, ['learning_rate', 'dropout', 'weight_decay', 'encoder_depth'],
                               metric='avg_test_loss', mode='min')
     tune.run(train_then_test, search_alg=search_algo, num_samples=20)
