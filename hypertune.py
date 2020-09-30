@@ -54,7 +54,8 @@ def train_then_test(params):
                         project_name="maxzvyagin/GIS", experiment_name='hyperspace', close_after_fit=False,
                         params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
                                 "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP,
-                                "dropout": DROPOUT, "weight_decay": WEIGHT_DECAY}, tags=['hyperspace'])
+                                "dropout": DROPOUT, "weight_decay": WEIGHT_DECAY}, tags=['hyperspace'+str(i)],
+                        verbose=False)
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
     aux = dict(dropout=DROPOUT, classes=OUTPUT_CHANNELS, activation=None)
     all_decoder_channels = [256, 128, 64, 32, 16, 8, 4, 2, 1]
@@ -68,7 +69,6 @@ def train_then_test(params):
     # run the test set
     trainer.test(model)
     torch.save(model.state_dict(), "/tmp/latest_model.pkl")
-    tune.report(avg_test_loss=model.test_loss)
     return model.test_loss
 
 
@@ -81,9 +81,11 @@ hyperparameters = [(0.00000001, 0.1),  # learning_rate
 space = create_hyperspace(hyperparameters)
 
 ### for each space in hyperspace, we want to search the space using ray tune
+i = 0
 for section in space:
     # create a skopt gp minimize object
     optimizer = Optimizer(section)
     search_algo = SkOptSearch(optimizer, ['learning_rate', 'dropout', 'weight_decay', 'encoder_depth'],
                               metric='avg_test_loss', mode='min')
     tune.run(train_then_test, search_alg=search_algo, num_samples=20, resources_per_trial={'gpu': 1})
+    i += 1
