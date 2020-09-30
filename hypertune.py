@@ -27,7 +27,7 @@ from ray.tune.suggest.skopt import SkOptSearch
 #         pass
 
 def train_then_test(params):
-    MAX_EPOCHS = 25
+    MAX_EPOCHS = 1
     LR = params['learning_rate']
     BATCHSIZE = 64
     INPUT_CHANNELS = 4
