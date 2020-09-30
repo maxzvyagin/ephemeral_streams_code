@@ -68,6 +68,7 @@ def train_then_test(params):
     # run the test set
     trainer.test(model)
     torch.save(model.state_dict(), "/tmp/latest_model.pkl")
+    tune.report("avg_test_loss": model.test_loss)
     return model.test_loss
 
 
