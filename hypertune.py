@@ -49,13 +49,12 @@ def train_then_test(params):
     #       "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
     #      ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
     #       "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
-    nep = NeptuneLogger(api_key="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vdWkubmVwdHVuZS5haSIsImFwaV91cmwiOiJodHRwczovL3VpLm5"
-                                "lcHR1bmUuYWkiLCJhcGlfa2V5IjoiOGE5NDI0YTktNmE2ZC00ZWZjLTlkMjAtNjNmMTIwM2Q2ZTQzIn0=",
-                        project_name="maxzvyagin/GIS", experiment_name='hyperspace', close_after_fit=False,
-                        params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
-                                "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP,
-                                "dropout": DROPOUT, "weight_decay": WEIGHT_DECAY}, tags=['hyperspace'+str(i)],
-                        verbose=False)
+    # nep = NeptuneLogger(api_key="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vdWkubmVwdHVuZS5haSIsImFwaV91cmwiOiJodHRwczovL3VpLm5"
+    #                             "lcHR1bmUuYWkiLCJhcGlfa2V5IjoiOGE5NDI0YTktNmE2ZC00ZWZjLTlkMjAtNjNmMTIwM2Q2ZTQzIn0=",
+    #                     project_name="maxzvyagin/GIS", experiment_name='hyperspace', close_after_fit=False,
+    #                     params={"batch_size": BATCHSIZE, "num_gpus": NUM_GPUS, "learning_rate": LR,
+    #                             "image_type": IMAGE_TYPE, "max_epochs": MAX_EPOCHS, "precision": REP,
+    #                             "dropout": DROPOUT, "weight_decay": WEIGHT_DECAY}, tags=['hyperspace'+str(i)])
     model = LitUNet(f, INPUT_CHANNELS, OUTPUT_CHANNELS)
     aux = dict(dropout=DROPOUT, classes=OUTPUT_CHANNELS, activation=None)
     all_decoder_channels = [256, 128, 64, 32, 16, 8, 4, 2, 1]
@@ -63,7 +62,7 @@ def train_then_test(params):
                            encoder_weights=None, encoder_depth=ENCODER_DEPTH,
                            decoder_channels=all_decoder_channels[:ENCODER_DEPTH])
 
-    trainer = pl.Trainer(gpus=1, max_epochs=MAX_EPOCHS, logger=nep, profiler=True, precision=REP, auto_select_gpus=True)
+    trainer = pl.Trainer(gpus=1, max_epochs=MAX_EPOCHS, precision=REP, auto_select_gpus=True)
     # begin training
     trainer.fit(model)
     # run the test set
@@ -82,10 +81,17 @@ space = create_hyperspace(hyperparameters)
 
 ### for each space in hyperspace, we want to search the space using ray tune
 i = 0
+results = []
 for section in space:
     # create a skopt gp minimize object
     optimizer = Optimizer(section)
     search_algo = SkOptSearch(optimizer, ['learning_rate', 'dropout', 'weight_decay', 'encoder_depth'],
                               metric='avg_test_loss', mode='min')
-    tune.run(train_then_test, search_alg=search_algo, num_samples=20, resources_per_trial={'gpu': 1})
+    analysis = tune.run(train_then_test, search_alg=search_algo, num_samples=20, resources_per_trial={'gpu': 1})
+    results.append(analysis)
     i += 1
+
+# print out the best result
+i = 0
+for a in results:
+    print("Best config for space 0: "+a.get_best_config(metric="avg_test_loss"))
