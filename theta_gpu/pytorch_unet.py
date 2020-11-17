@@ -22,7 +22,6 @@ class PyTorch_UNet(pl.LightningModule):
     def __init__(self, config, classes, in_channels=3):
         super(PyTorch_UNet, self).__init__()
         self.config = config
-        self.dataset = dataset
         # sigmoid is part of BCE with logits loss
         self.model = torch.hub.load('mateuszbuda/brain-segmentation-pytorch', 'unet',
                                     in_channels=in_channels, out_channels=classes, init_features=32, pretrained=True)
