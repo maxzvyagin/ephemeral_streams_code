@@ -26,7 +26,7 @@ if __name__ == "__main__":
     # set up hyperparameter spaces
     hyperparameters = [(0.00001, 0.1),  # learning_rate
                        (10, 100),  # epochs
-                       (100, 1000)]  # batch size
+                       (1, 64)]  # batch size
     space = create_hyperspace(hyperparameters)
 
     # Run and aggregate the results
