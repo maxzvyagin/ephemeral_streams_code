@@ -89,7 +89,7 @@ def segmentation_pt_objective(config):
     # os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3'
     torch.manual_seed(0)
     model = PyTorch_UNet(config, classes=1, in_channels=4)
-    trainer = pl.Trainer(max_epochs=config['epochs'], gpus=1, auto_select_gpu=True, distributed_backend='dp')
+    trainer = pl.Trainer(max_epochs=config['epochs'], gpus=1, auto_select_gpus=True, distributed_backend='dp')
     trainer.fit(model)
     trainer.test(model)
     return model.test_accuracy, model.model
