@@ -10,8 +10,11 @@ from skopt import Optimizer
 from tqdm import tqdm
 import time
 
-def tune_unet(config, num_trials):
-    pass
+def tune_unet(config):
+    pt_test_acc, pt_model = segmentation_pt_objective(config)
+    search_results = {'test_acc': pt_test_acc}
+    tune.report(**search_results)
+    return search_results
 
 
 if __name__ == "__main__":
