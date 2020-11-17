@@ -24,7 +24,7 @@ class PyTorch_UNet(pl.LightningModule):
         self.config = config
         # sigmoid is part of BCE with logits loss
         self.model = torch.hub.load('mateuszbuda/brain-segmentation-pytorch', 'unet',
-                                    in_channels=in_channels, out_channels=classes, init_features=32, pretrained=False)
+                                    in_channels=in_channels, out_channels=classes, init_features=32, pretrained=True)
         self.criterion = nn.BCEWithLogitsLoss()
         self.test_loss = None
         self.test_accuracy = None
@@ -88,7 +88,7 @@ class PyTorch_UNet(pl.LightningModule):
 def segmentation_pt_objective(config):
     # os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3'
     torch.manual_seed(0)
-    model = PyTorch_UNet(config, classes=1, in_channels=4)
+    model = PyTorch_UNet(config, classes=1, in_channels=3)
     trainer = pl.Trainer(max_epochs=config['epochs'], gpus=1, auto_select_gpus=True, distributed_backend='dp')
     trainer.fit(model)
     trainer.test(model)
