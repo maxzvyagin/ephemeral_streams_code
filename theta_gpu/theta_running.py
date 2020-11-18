@@ -34,7 +34,7 @@ def run_space(args):
     optimizer = Optimizer(current_space)
     search_algo = SkOptSearch(optimizer, ['learning_rate', 'epochs', 'batch_size'],
                               metric='average_res', mode='max')
-    analysis = tune.run(tune_unet, search_alg=search_algo, num_samples=args.trials,
+    analysis = tune.run(tune_unet, search_alg=search_algo, num_samples=int(args.trials),
                         resources_per_trial={'cpu': 25, 'gpu': 1},
                         local_dir="/lus/theta-fs0/projects/CVD-Mol-AI/mzvyagin/ray_results")
     df = analysis.results_df
