@@ -61,8 +61,7 @@ if __name__ == "__main__":
     parser.add_argument("-m", "--mode", required=True)
     parser.add_argument("-o", "--out")
     parser.add_argument("-t", "--trials")
-    parser.add_argument("-s", "--start")
-    parser.add_argument("-e", "--end")
+    parser.add_argument("-s", "--space")
     args = parser.parse_args()
 
     if args.mode == "create":
