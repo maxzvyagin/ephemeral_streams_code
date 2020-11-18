@@ -31,7 +31,7 @@ def run_space(args):
     f = open("/lus/theta-fs0/projects/CVD-Mol-AI/mzvyagin/tmp/" + space_name, "rb")
     spaces = pickle.load(f)
     current_space = spaces[s]
-    optimizer = Optimizer(current_space
+    optimizer = Optimizer(current_space)
     search_algo = SkOptSearch(optimizer, ['learning_rate', 'epochs', 'batch_size'],
                               metric='average_res', mode='max')
     analysis = tune.run(tune_unet, search_alg=search_algo, num_samples=args.trials,
