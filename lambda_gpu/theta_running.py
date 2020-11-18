@@ -28,7 +28,7 @@ def run_space(args):
     s = int(args.space)
     space_name = args.out.split(".csv")[0]
     space_name += "spaces.pkl"
-    f = open("/tmp/mzvyagin" + space_name, "rb")
+    f = open("/tmp/mzvyagin/" + space_name, "rb")
     spaces = pickle.load(f)
     current_space = spaces[s]
     optimizer = Optimizer(current_space)
