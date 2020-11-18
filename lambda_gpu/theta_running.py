@@ -19,7 +19,7 @@ def construct_spaces(args):
     space = create_hyperspace(hyperparameters)
     space_name = args.out.split(".csv")[0]
     space_name += "spaces.pkl"
-    f = open("/lus/theta-fs0/projects/CVD-Mol-AI/mzvyagin/tmp/"+space_name, "wb")
+    f = open("/tmp/mzvyagin/"+space_name, "wb")
     pickle.dump(space, f)
     print("Created pickled hyperspaces.")
 
@@ -28,7 +28,7 @@ def run_space(args):
     s = int(args.space)
     space_name = args.out.split(".csv")[0]
     space_name += "spaces.pkl"
-    f = open("/lus/theta-fs0/projects/CVD-Mol-AI/mzvyagin/tmp/" + space_name, "rb")
+    f = open("/tmp/mzvyagin" + space_name, "rb")
     spaces = pickle.load(f)
     current_space = spaces[s]
     optimizer = Optimizer(current_space)
@@ -36,7 +36,7 @@ def run_space(args):
                               metric='average_res', mode='max')
     analysis = tune.run(tune_unet, search_alg=search_algo, num_samples=int(args.trials),
                         resources_per_trial={'cpu': 25, 'gpu': 1},
-                        local_dir="/lus/theta-fs0/projects/CVD-Mol-AI/mzvyagin/ray_results")
+                        local_dir="/tmp/ray_results/")
     df = analysis.results_df
     df_name = args.out.split('.csv')[0]
     df_name += (s+".csv")
