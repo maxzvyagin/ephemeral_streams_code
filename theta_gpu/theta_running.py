@@ -39,9 +39,11 @@ def run_space(args):
                         local_dir="/lus/theta-fs0/projects/CVD-Mol-AI/mzvyagin/ray_results")
     df = analysis.results_df
     df_name = args.out.split('.csv')[0]
-    df_name += (s+".csv")
+    df_name += "_space"
+    df_name += args.space
+    df_name += ".csv"
     df.to_csv(df_name)
-    print("Finished space "+s)
+    print("Finished space "+args.space)
 
 
 def tune_unet(config):
