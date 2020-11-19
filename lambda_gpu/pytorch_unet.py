@@ -105,5 +105,5 @@ if __name__ == "__main__":
         batch_size = args.batch
     else:
         batch_size = 4
-    test_config = {'batch_size': 16, 'learning_rate': .001, 'epochs': 1}
+    test_config = {'batch_size': 64, 'learning_rate': .00001, 'epochs': 100}
     res = segmentation_pt_objective(test_config)
