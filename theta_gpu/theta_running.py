@@ -38,7 +38,9 @@ def run_space(args):
                         resources_per_trial={'cpu': 25, 'gpu': 1},
                         local_dir="/lus/theta-fs0/projects/CVD-Mol-AI/mzvyagin/ray_results")
     df = analysis.results_df
-    df_name = args.out.split('.csv')[0]
+    df_name = "/home/mzvyagin/ephemeral_streams_code/theta_gpu/"
+    split_name = args.out.split('.csv')[0]
+    df_name += split_name
     df_name += "_space"
     df_name += args.space
     df_name += ".csv"
