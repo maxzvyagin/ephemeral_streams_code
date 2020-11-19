@@ -416,7 +416,7 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
 
     samples = []
     for pair in img_and_shps:
-        name = "/tmp/mzvyagin/"
+        name = "/lus/theta-fs0/projects/CVD-Mol-AI/mzvyagin/tmp/"
         name += "gis_data"
         name += image_type
         if large_image:
@@ -492,7 +492,7 @@ def tf_gis_test_train_split(img_and_shps=None, image_type="full_channel", large_
 
     x_samples, y_samples = [], []
     for pair in img_and_shps:
-        name = "/tmp/mzvyagin/"
+        name = "/lus/theta-fs0/projects/CVD-Mol-AI/mzvyagin/tmp/"
         name += "gis_data"
         name += image_type
         if large_image:
