@@ -107,4 +107,4 @@ if __name__ == "__main__":
         batch_size = 4
     test_config = {'batch_size': 64, 'learning_rate': .00001, 'epochs': 500}
     acc, model = segmentation_pt_objective(test_config)
-    torch.save(model, "/home/mzvyagin/ephemeral_streams_code/initial_model.pkl")
+    torch.save(model, "/home/mzvyagin/ephemeral_streams_code/initial_model_config3.pkl")
