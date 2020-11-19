@@ -39,7 +39,7 @@ if __name__ == "__main__":
         # create a skopt gp minimize object
         optimizer = Optimizer(section)
         search_algo = SkOptSearch(optimizer, ['learning_rate', 'epochs', 'batch_size'],
-                                  metric='average_res', mode='max')
+                                  metric='test_acc', mode='max')
         try:
             analysis = tune.run(tune_unet, search_alg=search_algo, num_samples=int(args.trials),
                                 resources_per_trial={'cpu': 25, 'gpu': 1},

@@ -33,7 +33,7 @@ def run_space(args):
     current_space = spaces[s]
     optimizer = Optimizer(current_space)
     search_algo = SkOptSearch(optimizer, ['learning_rate', 'epochs', 'batch_size'],
-                              metric='average_res', mode='max')
+                              metric='test_acc', mode='max')
     analysis = tune.run(tune_unet, search_alg=search_algo, num_samples=int(args.trials),
                         resources_per_trial={'cpu': 25, 'gpu': 1},
                         local_dir="/tmp/ray_results/")
