@@ -9,6 +9,7 @@ from skopt import Optimizer
 import pickle
 import sys
 from pytorch_unet import segmentation_pt_objective
+import pandas as pd
 
 # 1) Construct the scikit optimize spaces and save as pickled objects
 def construct_spaces(args):
@@ -56,7 +57,30 @@ def tune_unet(config):
 
 # 3) For each space, concatenate results
 def concat_results(args):
-    pass
+    df_name = "/home/mzvyagin/ephemeral_streams_code/theta_gpu/"
+    split_name = args.out.split('.csv')[0]
+    df_name += split_name
+    df_name += "_space"
+    df_name += str(0)
+    df_name += ".csv"
+    results = pd.read_csv(df_name)
+    for i in list(range(1, 8)):
+        df_name = "/home/mzvyagin/ephemeral_streams_code/theta_gpu/"
+        split_name = args.out.split('.csv')[0]
+        df_name += split_name
+        df_name += "_space"
+        df_name += str(i)
+        df_name += ".csv"
+        df = pd.read_csv(df_name)
+        results = pd.concat([results, df], ignore_index=True)
+    df_name = "/home/mzvyagin/ephemeral_streams_code/theta_gpu/"
+    split_name = args.out.split('.csv')[0]
+    df_name += split_name
+    df_name += "_space"
+    df_name += "_allresults"
+    df_name += ".csv"
+    results.to_csv(df_name)
+    print("Saved results to "+df_name)
 
 
 if __name__ == "__main__":
