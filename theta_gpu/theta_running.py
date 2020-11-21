@@ -16,7 +16,8 @@ def construct_spaces(args):
     # set up hyperparameter spaces
     hyperparameters = [(0.00001, 0.1),  # learning_rate
                        (10, 100),  # epochs
-                       (1, 64)]  # batch size
+                       (1, 250),  # batch size
+                       (1, .00000001)] # epsilon for Adam optimizer
     space = create_hyperspace(hyperparameters)
     space_name = args.out.split(".csv")[0]
     space_name += "spaces.pkl"
@@ -33,7 +34,7 @@ def run_space(args):
     spaces = pickle.load(f)
     current_space = spaces[s]
     optimizer = Optimizer(current_space)
-    search_algo = SkOptSearch(optimizer, ['learning_rate', 'epochs', 'batch_size'],
+    search_algo = SkOptSearch(optimizer, ['learning_rate', 'epochs', 'batch_size', 'adam_epsilon'],
                               metric='test_acc', mode='max')
     analysis = tune.run(tune_unet, search_alg=search_algo, num_samples=int(args.trials),
                         resources_per_trial={'cpu': 25, 'gpu': 1},
@@ -64,7 +65,7 @@ def concat_results(args):
     df_name += str(0)
     df_name += ".csv"
     results = pd.read_csv(df_name)
-    for i in list(range(1, 8)):
+    for i in list(range(1, 16)):
         df_name = "/home/mzvyagin/ephemeral_streams_code/theta_gpu/"
         split_name = args.out.split('.csv')[0]
         df_name += split_name
