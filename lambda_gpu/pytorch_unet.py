@@ -15,8 +15,9 @@ from torch.utils.data import DataLoader
 
 from pytorch_lightning.callbacks.early_stopping import EarlyStopping
 
+import wandb
 
-import pdb
+from pytorch_lightning.loggers import WandbLogger
 
 
 # def custom_transform(img):
@@ -25,7 +26,7 @@ import pdb
 
 ### definition of PyTorch Lightning module in order to run everything
 class PyTorch_UNet(pl.LightningModule):
-    def __init__(self, config, classes, in_channels=3):
+    def __init__(self, config, classes, in_channels=3, model_type="deeplabv3", image_type="hsv_with_ir"):
         super(PyTorch_UNet, self).__init__()
         self.config = config
         # sigmoid is part of BCE with logits loss
@@ -63,6 +64,7 @@ class PyTorch_UNet(pl.LightningModule):
         # only use when  on dp
         loss = self.criterion(outputs['forward'].squeeze(1), outputs['expected'])
         logs = {'train_loss': loss}
+        self.log(logs)
         return {'loss': loss, 'logs': logs}
 
     def val_step(self, val_batch, batch_idx):
@@ -73,6 +75,7 @@ class PyTorch_UNet(pl.LightningModule):
         # only use when  on dp
         loss = self.criterion(outputs['forward'].squeeze(1), outputs['expected'])
         logs = {'val_loss': loss}
+        self.log(logs)
         return {'loss': loss, 'logs': logs}
 
     def test_step(self, test_batch, batch_idx):
@@ -83,6 +86,7 @@ class PyTorch_UNet(pl.LightningModule):
         loss = self.criterion(outputs['forward'].squeeze(1), outputs['expected'])
         accuracy = self.accuracy(outputs['forward'].squeeze(1), outputs['expected'])
         logs = {'test_loss': loss, 'test_accuracy': accuracy}
+        self.log(logs)
         return {'test_loss': loss, 'logs': logs, 'test_accuracy': accuracy}
 
     def test_epoch_end(self, outputs):
@@ -109,7 +113,7 @@ def segmentation_pt_objective(config):
     torch.manual_seed(0)
     model = PyTorch_UNet(config, classes=1, in_channels=3)
     trainer = pl.Trainer(max_epochs=config['epochs'], gpus=1, auto_select_gpus=True,
-                         callbacks=[EarlyStopping(monitor="val_loss")])
+                         callbacks=[EarlyStopping(monitor="val_loss")], wandb_logger=WandbLogger())
     trainer.fit(model)
     trainer.test(model)
     return model.test_accuracy, model.model
@@ -118,6 +122,7 @@ def segmentation_pt_objective(config):
 ### two different objective functions, one for cityscapes and one for GIS
 
 if __name__ == "__main__":
+    wandb.init(project='ephemeral_streams', entity='mzvyagin')
     parser = argparse.ArgumentParser()
     parser.add_argument('-b', '--batch_size', default=64)
     args = parser.parse_args()
@@ -125,4 +130,3 @@ if __name__ == "__main__":
     acc, model = segmentation_pt_objective(test_config)
     torch.save(model, "/tmp/mzvyagin/ephemeral_streams_model.pkl")
     # torch.save(model, "initial_model.pkl")
-
