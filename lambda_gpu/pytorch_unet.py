@@ -27,7 +27,7 @@ class PyTorch_UNet(pl.LightningModule):
                                     in_channels=in_channels, out_channels=classes, init_features=32, pretrained=True)
         # self.model = torch.hub.load('pytorch/vision:v0.10.0', 'deeplabv3_resnet50', pretrained=False,
         #                             in_channels=in_channels, out_channels=classes)
-        self.criterion = nn.BCEWithLogitsLoss()
+        self.criterion = nn.BCELoss()
         self.test_loss = None
         self.test_accuracy = None
         self.test_iou = None
