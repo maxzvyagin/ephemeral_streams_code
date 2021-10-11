@@ -424,8 +424,8 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
         if path.exists(name):
             try:
                 cache_object = open(name, "rb")
-                train, test = pickle.load(cache_object)
-                return PT_GISDataset(train), PT_GISDataset(test)
+                train, val, test = pickle.load(cache_object)
+                return PT_GISDataset(train), PT_GISDataset(val), PT_GISDataset(test)
             except:
                 print("ERROR: could not load from cache file. Please try removing " + name + " and try again.")
                 sys.exit()
@@ -453,7 +453,7 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
         train, test = train_test_split(samples, train_size=0.8, shuffle=True, random_state=0)
         val, test = train_test_split(train, train_size=0.5, shuffle=True, random_state=0)
         cache_object = open(name, "wb")
-        pickle.dump((train, test), cache_object)
+        pickle.dump((train, val, test), cache_object)
         return PT_GISDataset(train), PT_GISDataset(val), PT_GISDataset(test)
 
 
