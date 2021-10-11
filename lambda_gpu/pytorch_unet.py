@@ -38,7 +38,7 @@ class PyTorch_UNet(pl.LightningModule):
         self.test_accuracy = None
         self.test_iou = None
         self.accuracy = pl.metrics.Accuracy()
-        self.train_set, self.valid_set, self.test_set = pt_gis_train_test_split(image_type="hsv_with_ir")
+        self.train_set, self.valid_set, self.test_set = pt_gis_train_test_split(image_type=image_type)
 
     def train_dataloader(self):
         return DataLoader(self.train_set, batch_size=int(self.config['batch_size']), num_workers=5)
