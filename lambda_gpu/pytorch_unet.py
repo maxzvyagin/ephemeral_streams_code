@@ -13,6 +13,8 @@ import segmentation_models_pytorch as smp
 from gis_preprocess import pt_gis_train_test_split
 from torch.utils.data import DataLoader
 
+import pdb
+
 
 # def custom_transform(img):
 #     return torchvision.transforms.ToTensor(np.array(img))
@@ -33,6 +35,8 @@ class PyTorch_UNet(pl.LightningModule):
         self.test_iou = None
         self.accuracy = pl.metrics.Accuracy()
         self.train_set, self.test_set = pt_gis_train_test_split()
+
+        pdb.set_trace()
 
     def train_dataloader(self):
         return DataLoader(self.train_set, batch_size=int(self.config['batch_size']), num_workers=10)
