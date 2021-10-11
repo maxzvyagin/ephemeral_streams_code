@@ -450,10 +450,11 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
             # cache the windows
         samples.extend(windows)
         # now create test train split of samples
-        train, test = train_test_split(samples, train_size=0.8, shuffle=False, random_state=0)
+        train, test = train_test_split(samples, train_size=0.8, shuffle=True, random_state=0)
+        val, test = train_test_split(train, train_size=0.5, shuffle=True, random_state=0)
         cache_object = open(name, "wb")
         pickle.dump((train, test), cache_object)
-        return PT_GISDataset(train), PT_GISDataset(test)
+        return PT_GISDataset(train), PT_GISDataset(val), PT_GISDataset(test)
 
 
 class PT_GISDataset(Dataset):

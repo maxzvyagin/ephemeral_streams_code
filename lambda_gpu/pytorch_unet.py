@@ -13,6 +13,9 @@ import segmentation_models_pytorch as smp
 from gis_preprocess import pt_gis_train_test_split
 from torch.utils.data import DataLoader
 
+from pytorch_lightning.callbacks.early_stopping import EarlyStopping
+
+
 import pdb
 
 
@@ -34,10 +37,13 @@ class PyTorch_UNet(pl.LightningModule):
         self.test_accuracy = None
         self.test_iou = None
         self.accuracy = pl.metrics.Accuracy()
-        self.train_set, self.test_set = pt_gis_train_test_split()
+        self.train_set, self.valid_set, self.test_set = pt_gis_train_test_split(image_type="hsv_with_ir")
 
     def train_dataloader(self):
-        return DataLoader(self.train_set, batch_size=int(self.config['batch_size']), num_workers=10)
+        return DataLoader(self.train_set, batch_size=int(self.config['batch_size']), num_workers=5)
+
+    def val_dataloader(self):
+        return DataLoader(self.valid_set, batch_size=int(self.config['batch_size']), num_workers=5)
 
     def test_dataloader(self):
         return DataLoader(self.test_set, batch_size=int(self.config['batch_size']), num_workers=5)
@@ -57,6 +63,16 @@ class PyTorch_UNet(pl.LightningModule):
         # only use when  on dp
         loss = self.criterion(outputs['forward'].squeeze(1), outputs['expected'])
         logs = {'train_loss': loss}
+        return {'loss': loss, 'logs': logs}
+
+    def val_step(self, val_batch, batch_idx):
+        x, y = val_batch
+        return {'forward': self.forward(x), 'expected': y}
+
+    def val_step_end(self, outputs):
+        # only use when  on dp
+        loss = self.criterion(outputs['forward'].squeeze(1), outputs['expected'])
+        logs = {'val_loss': loss}
         return {'loss': loss, 'logs': logs}
 
     def test_step(self, test_batch, batch_idx):
@@ -90,10 +106,10 @@ class PyTorch_UNet(pl.LightningModule):
 
 
 def segmentation_pt_objective(config):
-    # os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3'
     torch.manual_seed(0)
     model = PyTorch_UNet(config, classes=1, in_channels=3)
-    trainer = pl.Trainer(max_epochs=config['epochs'], gpus=1, auto_select_gpus=True)
+    trainer = pl.Trainer(max_epochs=config['epochs'], gpus=1, auto_select_gpus=True,
+                         callbacks=[EarlyStopping(monitor="val_loss")])
     trainer.fit(model)
     trainer.test(model)
     return model.test_accuracy, model.model
