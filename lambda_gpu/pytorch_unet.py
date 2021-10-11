@@ -8,6 +8,7 @@ import numpy as np
 import os
 import sys
 import argparse
+import segmentation_models_pytorch as smp
 
 from gis_preprocess import pt_gis_train_test_split
 from torch.utils.data import DataLoader
@@ -25,7 +26,7 @@ class PyTorch_UNet(pl.LightningModule):
         # sigmoid is part of BCE with logits loss
         # self.model = torch.hub.load('mateuszbuda/brain-segmentation-pytorch', 'unet',
         #                             in_channels=in_channels, out_channels=classes, init_features=32, pretrained=True)
-        self.model = torchvision.models.segmentation.deeplabv3_resnet50(num_classes=classes, pretrained=False)
+        self.model = smp.DeepLabV3(encoder_weights=None, in_channels=in_channels, classes=classes)
         self.criterion = nn.BCEWithLogitsLoss()
         self.test_loss = None
         self.test_accuracy = None
