@@ -11,7 +11,7 @@ import argparse
 
 from gis_preprocess import pt_gis_train_test_split
 from torch.utils.data import DataLoader
-
+import wandb
 
 # def custom_transform(img):
 #     return torchvision.transforms.ToTensor(np.array(img))
@@ -23,8 +23,10 @@ class PyTorch_UNet(pl.LightningModule):
         super(PyTorch_UNet, self).__init__()
         self.config = config
         # sigmoid is part of BCE with logits loss
-        self.model = torch.hub.load('mateuszbuda/brain-segmentation-pytorch', 'unet',
-                                    in_channels=in_channels, out_channels=classes, init_features=32, pretrained=True)
+        # self.model = torch.hub.load('mateuszbuda/brain-segmentation-pytorch', 'unet',
+        #                             in_channels=in_channels, out_channels=classes, init_features=32, pretrained=True)
+        self.model = torch.hub.load('pytorch/vision:v0.10.0', 'deeplabv3_resnet50', pretrained_false,
+                                    in_channels=in_channels, out_channels=classes)
         self.criterion = nn.BCEWithLogitsLoss()
         self.test_loss = None
         self.test_accuracy = None
@@ -33,13 +35,13 @@ class PyTorch_UNet(pl.LightningModule):
         self.train_set, self.test_set = pt_gis_train_test_split()
 
     def train_dataloader(self):
-        return DataLoader(self.train_set, batch_size=int(self.config['batch_size']), num_workers=10)
+        return DataLoader(self.train_set, batch_size=int(self.config['batch_size']), num_workers=5)
 
     def test_dataloader(self):
         return DataLoader(self.test_set, batch_size=int(self.config['batch_size']), num_workers=5)
 
     def configure_optimizers(self):
-        optimizer = torch.optim.Adam(self.parameters(), lr=self.config['learning_rate'])
+        optimizer = torch.optim.Adam(self.parameters(), lr=self.config['learning_rate'], eps=self.config['adam_epsilon'])
         return optimizer
 
     def forward(self, x):
@@ -86,7 +88,6 @@ class PyTorch_UNet(pl.LightningModule):
 
 
 def segmentation_pt_objective(config):
-    # os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3'
     torch.manual_seed(0)
     model = PyTorch_UNet(config, classes=1, in_channels=3)
     trainer = pl.Trainer(max_epochs=config['epochs'], gpus=1, auto_select_gpus=True)
@@ -98,13 +99,11 @@ def segmentation_pt_objective(config):
 ### two different objective functions, one for cityscapes and one for GIS
 
 if __name__ == "__main__":
+    # wandb.init(project='ephemeral_streams', entity='mzvyagin')
     parser = argparse.ArgumentParser()
-    parser.add_argument('-b', '--batch')
+    parser.add_argument('-b', '--batch', default=16)
     args = parser.parse_args()
-    if args.batch:
-        batch_size = args.batch
-    else:
-        batch_size = 4
-    test_config = {'batch_size': 1000, 'learning_rate': .001, 'epochs': 1}
+    test_config = {'batch_size': args.batch_size, 'learning_rate': .001, 'epochs': 1}
     acc, model = segmentation_pt_objective(test_config)
-    #torch.save(model, "/home/mzvyagin/ephemeral_streams_code/initial_model_config3.pkl")
+    torch.save(model, "/tmp/mzvyagin/ephemeral_streams_model.pkl")
+    # torch.save(model, "/home/mzvyagin/ephemeral_streams_code/initial_model_config3.pkl")

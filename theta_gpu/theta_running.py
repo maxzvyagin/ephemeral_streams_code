@@ -25,7 +25,7 @@ def construct_spaces(args):
     pickle.dump(space, f)
     print("Created pickled hyperspaces.")
 
-# 2) For each space, run the
+# 2) For each space, run the space
 def run_space(args):
     s = int(args.space)
     space_name = args.out.split(".csv")[0]
