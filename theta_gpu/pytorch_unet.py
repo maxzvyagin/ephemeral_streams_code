@@ -101,7 +101,7 @@ def segmentation_pt_objective(config):
 if __name__ == "__main__":
     # wandb.init(project='ephemeral_streams', entity='mzvyagin')
     parser = argparse.ArgumentParser()
-    parser.add_argument('-b', '--batch', default=16)
+    parser.add_argument('-b', '--batch', default=4)
     args = parser.parse_args()
     test_config = {'batch_size': args.batch_size, 'learning_rate': .001, 'epochs': 1}
     acc, model = segmentation_pt_objective(test_config)
