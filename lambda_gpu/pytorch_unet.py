@@ -109,6 +109,27 @@ class PyTorch_UNet(pl.LightningModule):
         return {'avg_test_loss': avg_loss, 'log': tensorboard_logs, 'avg_test_accuracy': avg_accuracy}
 
 
+def generate_test_segmentations(model):
+    model.model.eval()
+    fig, ax = plt.subplots(ncols=2, nrows=3, figsize=(10, 4))
+    with torch.no_grad():
+        for n, i in enumerate([0, 100, 200]):
+            # run through the model
+            x, y = model.test_set[i]
+            out = model.model(x.unsqueeze(0))
+            out = torch.nn.Sigmoid()(out)
+            out = np.rint(out.cpu().numpy().reshape(256, 256))
+            # generate the images
+            ax[n][0].imshow(out, cmap="cividis")
+            ax[n][1].imshow(y.cpu().numpy(), cmap="cividis")
+            fig.suptitle("Test Sample {}".format(i))
+            ax[n][0].set_title("Prediction")
+            ax[n][1].set_title("Real")
+    filename = '/tmp/mzvyagin/segmentation.png'.format(i + 1)
+    plt.savefig(filename, dpi=300)
+    wandb.log({"segmentation_maps": wandb.Image(filename)})
+
+
 def segmentation_pt_objective(config):
     torch.manual_seed(0)
     model = PyTorch_UNet(config, classes=1, in_channels=3)
@@ -116,6 +137,7 @@ def segmentation_pt_objective(config):
                          callbacks=[EarlyStopping(monitor="val_loss")], wandb_logger=WandbLogger())
     trainer.fit(model)
     trainer.test(model)
+    generate_test_segmentations(model)
     return model.test_accuracy, model.model
 
 
