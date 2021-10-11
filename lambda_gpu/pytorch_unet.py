@@ -50,21 +50,21 @@ class PyTorch_UNet(pl.LightningModule):
         x, y = train_batch
         return {'forward': self.forward(x), 'expected': y}
 
-    def training_step_end(self, outputs):
-        # only use when  on dp
-        loss = self.criterion(outputs['forward'].squeeze(1), outputs['expected'])
-        logs = {'train_loss': loss}
-        return {'loss': loss, 'logs': logs}
+    # def training_step_end(self, outputs):
+    #     # only use when  on dp
+    #     loss = self.criterion(outputs['forward'].squeeze(1), outputs['expected'])
+    #     logs = {'train_loss': loss}
+    #     return {'loss': loss, 'logs': logs}
 
     def test_step(self, test_batch, batch_idx):
         x, y = test_batch
         return {'forward': self.forward(x), 'expected': y}
 
-    def test_step_end(self, outputs):
-        loss = self.criterion(outputs['forward'].squeeze(1), outputs['expected'])
-        accuracy = self.accuracy(outputs['forward'].squeeze(1), outputs['expected'])
-        logs = {'test_loss': loss, 'test_accuracy': accuracy}
-        return {'test_loss': loss, 'logs': logs, 'test_accuracy': accuracy}
+    # def test_step_end(self, outputs):
+    #     loss = self.criterion(outputs['forward'].squeeze(1), outputs['expected'])
+    #     accuracy = self.accuracy(outputs['forward'].squeeze(1), outputs['expected'])
+    #     logs = {'test_loss': loss, 'test_accuracy': accuracy}
+    #     return {'test_loss': loss, 'logs': logs, 'test_accuracy': accuracy}
 
     def test_epoch_end(self, outputs):
         loss = []
