@@ -19,6 +19,8 @@ import wandb
 
 from pytorch_lightning.loggers import WandbLogger
 
+import matplotlib.pyplot as plt
+
 
 # def custom_transform(img):
 #     return torchvision.transforms.ToTensor(np.array(img))
