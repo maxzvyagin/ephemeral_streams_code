@@ -114,8 +114,10 @@ class PyTorch_UNet(pl.LightningModule):
 def generate_test_segmentations(model):
     model.model.eval()
     fig, ax = plt.subplots(ncols=2, nrows=3, figsize=(10, 4))
+    ax[0][0].set_title("Prediction")
+    ax[0][1].set_title("Real")
     with torch.no_grad():
-        for n, i in enumerate([0, 100, 200]):
+        for n, i in enumerate([0, 75, 150]):
             # run through the model
             x, y = model.test_set[i]
             out = model.model(x.unsqueeze(0).cuda())
@@ -124,9 +126,6 @@ def generate_test_segmentations(model):
             # generate the images
             ax[n][0].imshow(out, cmap="cividis")
             ax[n][1].imshow(y.cpu().numpy(), cmap="cividis")
-            fig.suptitle("Test Sample {}".format(i))
-            ax[n][0].set_title("Prediction")
-            ax[n][1].set_title("Real")
     filename = '/tmp/mzvyagin/segmentation.png'.format(i + 1)
     plt.savefig(filename, dpi=300)
     wandb.log({"segmentation_maps": wandb.Image(filename)})
@@ -150,7 +149,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-b', '--batch_size', default=64)
     args = parser.parse_args()
-    test_config = {'batch_size': args.batch_size, 'learning_rate': .001, 'epochs': 1}
+    test_config = {'batch_size': args.batch_size, 'learning_rate': .001, 'epochs': 25}
     acc, model = segmentation_pt_objective(test_config)
     torch.save(model, "/tmp/mzvyagin/ephemeral_streams_model.pkl")
     # torch.save(model, "initial_model.pkl")
