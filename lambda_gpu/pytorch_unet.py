@@ -34,7 +34,7 @@ class PyTorch_UNet(pl.LightningModule):
         # sigmoid is part of BCE with logits loss
         # self.model = torch.hub.load('mateuszbuda/brain-segmentation-pytorch', 'unet',
         #                             in_channels=in_channels, out_channels=classes, init_features=32, pretrained=True)
-        self.model = smp.DeepLabV3(encoder_weights=None, in_channels=in_channels, classes=classes)
+        self.model = smp.MAnet(encoder_weights=None, in_channels=in_channels, classes=classes)
         self.criterion = nn.BCEWithLogitsLoss()
         self.test_loss = None
         self.test_accuracy = None
