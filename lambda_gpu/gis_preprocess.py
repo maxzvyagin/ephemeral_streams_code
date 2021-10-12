@@ -84,7 +84,7 @@ def split(array):
 #         return False
 
 def process_image(image_array, image_type):
-    if image_type == "full":
+    if image_type == "full_channel":
         return image_array
     elif image_type == "rgb":
         return image_array[:3]
@@ -210,21 +210,7 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
         # process each pair and generate the windows
         else:
             mask = mask_from_shp(pair[0], pair[1])
-            if image_type == "full_channel":
-                windows = get_windows(pair[0], mask, large_image)
-            elif image_type == "rgb":
-                windows = get_rgb_windows(pair[0], mask, large_image)
-            elif image_type == "ir":
-                windows = get_ir_windows(pair[0], mask, large_image)
-            elif image_type == "hsv":
-                windows = get_hsv_windows(pair[0], mask, large_image)
-            elif image_type == "hsv_with_ir":
-                windows = get_hsv_with_ir_windows(pair[0], mask, large_image)
-            elif image_type == "veg_index":
-                windows = get_vegetation_index_windows(pair[0], mask, large_image)
-            else:
-                print("WARNING: no image type match, defaulting to RGB+IR")
-                windows = get_windows(pair[0], mask, large_image)
+            windows = get_windows(pair[0], mask, large_image, image_type=image_type)
             # cache the windows
         samples.extend(windows)
         # now create test train split of samples
