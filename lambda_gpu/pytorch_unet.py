@@ -64,7 +64,7 @@ class PyTorch_UNet(pl.LightningModule):
         # only use when  on dp
         loss = self.criterion(outputs['forward'].squeeze(1), outputs['expected'])
         logs = {'train_loss': loss}
-        self.log(**logs)
+        self.log("performance", logs)
         return {'loss': loss, 'logs': logs}
 
     def val_step(self, val_batch, batch_idx):
@@ -75,7 +75,7 @@ class PyTorch_UNet(pl.LightningModule):
         # only use when  on dp
         loss = self.criterion(outputs['forward'].squeeze(1), outputs['expected'])
         logs = {'val_loss': loss}
-        self.log(**logs)
+        self.log("performance", logs)
         return {'loss': loss, 'logs': logs}
 
     def test_step(self, test_batch, batch_idx):
@@ -86,7 +86,7 @@ class PyTorch_UNet(pl.LightningModule):
         loss = self.criterion(outputs['forward'].squeeze(1), outputs['expected'])
         accuracy = self.accuracy(outputs['forward'].squeeze(1), outputs['expected'])
         logs = {'test_loss': loss, 'test_accuracy': accuracy}
-        self.log(**logs)
+        self.log("performance", logs)
         return {'test_loss': loss, 'logs': logs, 'test_accuracy': accuracy}
 
     def test_epoch_end(self, outputs):
@@ -149,7 +149,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-b', '--batch_size', default=64)
     args = parser.parse_args()
-    test_config = {'batch_size': args.batch_size, 'learning_rate': .00001, 'epochs': 10}
+    test_config = {'batch_size': args.batch_size, 'learning_rate': .001, 'epochs': 25}
     acc, model = segmentation_pt_objective(test_config)
     torch.save(model, "/tmp/mzvyagin/ephemeral_streams_model.pkl")
     # torch.save(model, "initial_model.pkl")
