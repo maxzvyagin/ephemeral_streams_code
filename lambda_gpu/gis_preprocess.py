@@ -94,7 +94,7 @@ def process_image(image_array, image_type):
         new = rgb2hsv(np.moveaxis(image_array[:3], 0, -1))
         new = np.moveaxis(new, -1, 0)
         return new
-    elif image_type == "hsv_with_ir"
+    elif image_type == "hsv_with_ir":
         new = rgb2hsv(np.moveaxis(image_array[:3], 0, -1))
         new = np.moveaxis(new, -1, 0)
         all_channels = np.concatenate((new, np.expand_dims(image_array[3], 0)), axis=0)
