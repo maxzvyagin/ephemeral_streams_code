@@ -206,6 +206,7 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
             try:
                 cache_object = open(name, "rb")
                 train, val, test = pickle.load(cache_object)
+                print("WARNING: Loaded from pickle object at {}...".format(name))
                 return PT_GISDataset(train), PT_GISDataset(val), PT_GISDataset(test)
             except:
                 print("ERROR: could not load from cache file. Please try removing " + name + " and try again.")
