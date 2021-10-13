@@ -18,6 +18,7 @@ import random
 # from imgaug.augmentables.segmaps import SegmentationMapsOnImage
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
+from tqdm import tqdm
 
 
 def mask_from_shp(img_f, shp_f):
@@ -111,9 +112,10 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
     samples = []
     with rasterio.open(img_f) as src:
         image = src.block_windows()
+        image = list(image)
         if rand:
-            random.shuffle(list(image))
-        for ji, window in image:
+            random.shuffle(image)
+        for ji, window in tqdm(image):
             if len(samples) >= num and not get_max:
                 return samples
             # get the window from the mask
@@ -193,6 +195,7 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
 
     samples = []
     for pair in img_and_shps:
+        print("Processing file {}....".format(pair[0]))
         name = "/tmp/mzvyagin/"
         name += "gis_data"
         name += image_type
