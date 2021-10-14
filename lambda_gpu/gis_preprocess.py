@@ -187,12 +187,12 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
     """ Return PT GIS Datasets with Train Test Split"""
 
     if not img_and_shps:
-        # img_and_shps = [("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2012_refl.img",
-        #       "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
-        #      ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
-        #       "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
-        img_and_shps = [("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
-                         "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
+        img_and_shps = [("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2012_refl.img",
+              "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
+             ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
+              "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
+        # img_and_shps = [("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
+        #                  "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
 
 
     samples = []
@@ -219,7 +219,10 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
             windows = get_windows(pair[0], mask, large_image, image_type=image_type)
             # cache the windows
         samples.extend(windows)
-        # now create test train split of samples
+    # now create test train split of samples
+    # for debugging, use a small subset of the dataset
+    print(len(samples))
+    samples = samples[:10000]
     train, test = train_test_split(samples, train_size=0.8, shuffle=True, random_state=0)
     val, test = train_test_split(train, train_size=0.5, shuffle=True, random_state=0)
     cache_object = open(name, "wb")
@@ -250,63 +253,63 @@ def pt_to_tf(x):
     return t
 
 
-def tf_gis_test_train_split(img_and_shps=None, image_type="full_channel", large_image=False, theta=True):
-    """ Returns a Tensorflow dataset of images and masks"""
-    # Default is theta file system location
-    if not img_and_shps:
-        img_and_shps = [("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2012_refl.img",
-              "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
-             ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
-              "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
-
-    x_samples, y_samples = [], []
-    for pair in img_and_shps:
-        name = "/tmp/mzvyagin/"
-        name += "gis_data"
-        name += image_type
-        if large_image:
-            name += "large_image"
-        name += "TFdataset.pkl"
-        if path.exists(name):
-            try:
-                cache_object = open(name, "rb")
-                (x_train, y_train), (x_test, y_test) = pickle.load(cache_object)
-                return (x_train, y_train), (x_test, y_test)
-            except:
-                print("ERROR: could not load from cache file. Please try removing " + name + " and try again.")
-                sys.exit()
-        # process each pair and generate the windows
-        else:
-            mask = mask_from_shp(pair[0], pair[1])
-            if image_type == "full_channel":
-                windows = get_windows(pair[0], mask, large_image)
-            elif image_type == "rgb":
-                windows = get_rgb_windows(pair[0], mask, large_image)
-            elif image_type == "ir":
-                windows = get_ir_windows(pair[0], mask, large_image)
-            elif image_type == "hsv":
-                windows = get_hsv_windows(pair[0], mask, large_image)
-            elif image_type == "hsv_with_ir":
-                windows = get_hsv_with_ir_windows(pair[0], mask, large_image)
-            elif image_type == "veg_index":
-                windows = get_vegetation_index_windows(pair[0], mask, large_image)
-            else:
-                print("WARNING: no image type match, defaulting to RGB+IR")
-                windows = get_windows(pair[0], mask, large_image)
-            # cache the windows
-            # need to convert to the tensorflow tensors instead of pytorch
-            x, y = [], []
-            for sample in windows:
-                x.append(pt_to_tf(sample[0]))
-                y.append(pt_to_tf(sample[1]))
-            x_samples.extend(x)
-            y_samples.extend(y)
-
-    # generate test_train splits
-    x_train, x_test, y_train, y_test = train_test_split(x_samples, y_samples, train_size=0.8, shuffle=False,
-                                                        random_state=0)
-    cache_object = open(name, "wb")
-    #train = tf.data.Dataset.from_tensor_slices((x_train, y_train))
-    #test = tf.data.Dataset.from_tensor_slices((x_test, y_test))
-    pickle.dump(((x_train, y_train), (x_test, y_test)), cache_object)
-    return (x_train, y_train), (x_test, y_test)
+# def tf_gis_test_train_split(img_and_shps=None, image_type="full_channel", large_image=False, theta=True):
+#     """ Returns a Tensorflow dataset of images and masks"""
+#     # Default is theta file system location
+#     if not img_and_shps:
+#         img_and_shps = [("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2012_refl.img",
+#               "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
+#              ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
+#               "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
+#
+#     x_samples, y_samples = [], []
+#     for pair in img_and_shps:
+#         name = "/tmp/mzvyagin/"
+#         name += "gis_data"
+#         name += image_type
+#         if large_image:
+#             name += "large_image"
+#         name += "TFdataset.pkl"
+#         if path.exists(name):
+#             try:
+#                 cache_object = open(name, "rb")
+#                 (x_train, y_train), (x_test, y_test) = pickle.load(cache_object)
+#                 return (x_train, y_train), (x_test, y_test)
+#             except:
+#                 print("ERROR: could not load from cache file. Please try removing " + name + " and try again.")
+#                 sys.exit()
+#         # process each pair and generate the windows
+#         else:
+#             mask = mask_from_shp(pair[0], pair[1])
+#             if image_type == "full_channel":
+#                 windows = get_windows(pair[0], mask, large_image)
+#             elif image_type == "rgb":
+#                 windows = get_rgb_windows(pair[0], mask, large_image)
+#             elif image_type == "ir":
+#                 windows = get_ir_windows(pair[0], mask, large_image)
+#             elif image_type == "hsv":
+#                 windows = get_hsv_windows(pair[0], mask, large_image)
+#             elif image_type == "hsv_with_ir":
+#                 windows = get_hsv_with_ir_windows(pair[0], mask, large_image)
+#             elif image_type == "veg_index":
+#                 windows = get_vegetation_index_windows(pair[0], mask, large_image)
+#             else:
+#                 print("WARNING: no image type match, defaulting to RGB+IR")
+#                 windows = get_windows(pair[0], mask, large_image)
+#             # cache the windows
+#             # need to convert to the tensorflow tensors instead of pytorch
+#             x, y = [], []
+#             for sample in windows:
+#                 x.append(pt_to_tf(sample[0]))
+#                 y.append(pt_to_tf(sample[1]))
+#             x_samples.extend(x)
+#             y_samples.extend(y)
+#
+#     # generate test_train splits
+#     x_train, x_test, y_train, y_test = train_test_split(x_samples, y_samples, train_size=0.8, shuffle=False,
+#                                                         random_state=0)
+#     cache_object = open(name, "wb")
+#     #train = tf.data.Dataset.from_tensor_slices((x_train, y_train))
+#     #test = tf.data.Dataset.from_tensor_slices((x_test, y_test))
+#     pickle.dump(((x_train, y_train), (x_test, y_test)), cache_object)
+#     return (x_train, y_train), (x_test, y_test)
