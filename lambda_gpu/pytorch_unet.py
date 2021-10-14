@@ -57,7 +57,6 @@ class PyTorch_UNet(pl.LightningModule):
 
     def forward(self, x):
         return self.model(x)
-
     def training_step(self, train_batch, batch_idx):
         x, y = train_batch
         return {'forward': self.forward(x), 'expected': y}
