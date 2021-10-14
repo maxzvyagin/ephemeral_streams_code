@@ -112,9 +112,10 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
     samples = []
     with rasterio.open(img_f) as src:
         image = src.block_windows()
-        image = list(image)
+        # image = list(image)
         if rand:
-            random.shuffle(image)
+            print("WARNING: RAND NOT IMPLEMENTED")
+            # random.shuffle(image)
         for ji, window in tqdm(image):
             if len(samples) == num and not get_max:
                 return samples
