@@ -109,6 +109,7 @@ def process_image(image_array, image_type):
     else:
         raise ValueError("Could not find image type {}".format(image_type))
 
+
 def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_max=True, rand=False, image_type="full"):
     samples = []
     with rasterio.open(img_f) as src:
@@ -126,28 +127,29 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
 
             r = src.read(window=window)
 
-            # do the necessary processing of the image
-            r = process_image(r, image_type=image_type)
+            # check if r is the correct size: 
+            if r.shape[1] == 512 and r.shape[2] == 512:
+                # do the necessary processing of the image
+                r = process_image(r, image_type=image_type)
 
-            if large_image:
-                if unlabelled:
-                    samples.append(torch.from_numpy(r).half())
+                if large_image:
+                    if unlabelled:
+                        samples.append(torch.from_numpy(r).half())
+                    else:
+                        samples.append((torch.from_numpy(r).half(), torch.from_numpy(mask_check).half()))
                 else:
-                    samples.append((torch.from_numpy(r).half(), torch.from_numpy(mask_check).half()))
-            else:
-                # need to split into tiles
-                r_chunks = split(r)
-                if unlabelled:
-                    for image_chunk in r_chunks:
-                        samples.append(
-                            (torch.from_numpy(image_chunk).half()))
-                else:
-                    mask_chunks = split(mask_check)
-                    for image_chunk, mask_chunk in zip(r_chunks, mask_chunks):
-                        samples.append(
-                            (torch.from_numpy(image_chunk).half(), torch.from_numpy(mask_chunk).half()))
+                    # need to split into tiles
+                    r_chunks = split(r)
+                    if unlabelled:
+                        for image_chunk in r_chunks:
+                            samples.append(
+                                (torch.from_numpy(image_chunk).half()))
+                    else:
+                        mask_chunks = split(mask_check)
+                        for image_chunk, mask_chunk in zip(r_chunks, mask_chunks):
+                            samples.append(
+                                (torch.from_numpy(image_chunk).half(), torch.from_numpy(mask_chunk).half()))
     return samples
-
 
 
 # given red and infrared reflectance values, calculate the vegetation index (desert version from Yuki's paper)
@@ -190,10 +192,9 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
 
     if not img_and_shps:
         img_and_shps = [("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2012_refl.img",
-              "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
-             ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
-              "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
-
+                         "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
+                        ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
+                         "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
 
     samples = []
     for pair in img_and_shps:
@@ -253,7 +254,6 @@ def pt_to_tf(x):
     n = np.swapaxes(n, 0, -1)
     t = tf.convert_to_tensor(n)
     return t
-
 
 # def tf_gis_test_train_split(img_and_shps=None, image_type="full_channel", large_image=False, theta=True):
 #     """ Returns a Tensorflow dataset of images and masks"""
