@@ -69,11 +69,11 @@ class PyTorch_UNet(pl.LightningModule):
         self.log("training", logs)
         return {'loss': loss, 'logs': logs}
 
-    def val_step(self, val_batch, batch_idx):
+    def validation_step(self, val_batch, batch_idx):
         x, y = val_batch
         return {'forward': self.forward(x), 'expected': y}
 
-    def val_step_end(self, outputs):
+    def validation_step_end(self, outputs):
         # only use when  on dp
         loss = self.criterion(outputs['forward'].squeeze(1), outputs['expected'])
         logs = {'val_loss': loss.detach().cpu()}
