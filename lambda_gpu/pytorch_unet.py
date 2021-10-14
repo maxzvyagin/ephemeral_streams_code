@@ -115,6 +115,7 @@ class PyTorch_UNet(pl.LightningModule):
 
 def generate_test_segmentations(model):
     model.model.eval()
+    model.model.cuda()
     fig, ax = plt.subplots(ncols=2, nrows=3, figsize=(10, 4))
     ax[0][0].set_title("Prediction")
     ax[0][1].set_title("Real")
