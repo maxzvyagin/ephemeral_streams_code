@@ -21,6 +21,7 @@ from pytorch_lightning.loggers import WandbLogger
 
 import matplotlib.pyplot as plt
 
+import torchmetrics
 
 # def custom_transform(img):
 #     return torchvision.transforms.ToTensor(np.array(img))
@@ -39,7 +40,7 @@ class PyTorch_UNet(pl.LightningModule):
         self.test_loss = None
         self.test_accuracy = None
         self.test_iou = None
-        self.accuracy = pl.metrics.Accuracy()
+        self.accuracy = torchmetrics.classification.accuracy.Accuracy()
         self.train_set, self.valid_set, self.test_set = pt_gis_train_test_split(image_type=image_type)
 
     def train_dataloader(self):
