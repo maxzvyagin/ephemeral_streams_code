@@ -136,7 +136,7 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
                     if unlabelled:
                         samples.append(torch.from_numpy(r).half())
                     else:
-                        samples.append((torch.from_numpy(r).half(), torch.from_numpy(mask_check).long()))
+                        samples.append((torch.from_numpy(r).half(), torch.from_numpy(mask_check).float()))
                 else:
                     # need to split into tiles
                     r_chunks = split(r)
@@ -148,7 +148,7 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
                         mask_chunks = split(mask_check)
                         for image_chunk, mask_chunk in zip(r_chunks, mask_chunks):
                             samples.append(
-                                (torch.from_numpy(image_chunk).half(), torch.from_numpy(mask_chunk).long()))
+                                (torch.from_numpy(image_chunk).half(), torch.from_numpy(mask_chunk).float()))
     return samples
 
 
@@ -245,7 +245,7 @@ class PT_GISDataset(Dataset):
 
     def __getitem__(self, index):
         x, y = self.samples[index]
-        return x.float(), y.long()
+        return x.float(), y.float()
 
 
 def pt_to_tf(x):
