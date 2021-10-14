@@ -130,21 +130,21 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
 
             if large_image:
                 if unlabelled:
-                    samples.append(torch.from_numpy(r).float())
+                    samples.append(torch.from_numpy(r).half())
                 else:
-                    samples.append((torch.from_numpy(r).float(), torch.from_numpy(mask_check).float()))
+                    samples.append((torch.from_numpy(r).half(), torch.from_numpy(mask_check).half()))
             else:
                 # need to split into tiles
                 r_chunks = split(r)
                 if unlabelled:
                     for image_chunk in r_chunks:
                         samples.append(
-                            (torch.from_numpy(image_chunk).float()))
+                            (torch.from_numpy(image_chunk).half()))
                 else:
                     mask_chunks = split(mask_check)
                     for image_chunk, mask_chunk in zip(r_chunks, mask_chunks):
                         samples.append(
-                            (torch.from_numpy(image_chunk).float(), torch.from_numpy(mask_chunk).float()))
+                            (torch.from_numpy(image_chunk).half(), torch.from_numpy(mask_chunk).half()))
     return samples
 
 
