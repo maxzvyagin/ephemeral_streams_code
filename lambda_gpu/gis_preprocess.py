@@ -214,7 +214,7 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
         # process each pair and generate the windows
         else:
             mask = mask_from_shp(pair[0], pair[1])
-            windows = get_windows(pair[0], mask, large_image, image_type=image_type)
+            windows = get_windows(pair[0], mask, large_image, image_type=image_type, get_max=False, num=5000)
             # cache the windows
         samples.extend(windows)
         # now create test train split of samples
