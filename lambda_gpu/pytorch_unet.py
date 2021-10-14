@@ -85,7 +85,7 @@ class PyTorch_UNet(pl.LightningModule):
 
     def test_step_end(self, outputs):
         loss = self.criterion(outputs['forward'].squeeze(1), outputs['expected'])
-        accuracy = self.accuracy(outputs['forward'].squeeze(1).int(), outputs['expected'])
+        accuracy = self.accuracy(outputs['forward'].squeeze(1).int(), outputs['expected'].int())
         logs = {'test_loss': loss.detach().cpu(), 'test_accuracy': accuracy.detach().cpu()}
         self.log("testing", logs)
         return {'test_loss': loss, 'logs': logs, 'test_accuracy': accuracy}
