@@ -121,6 +121,11 @@ def generate_test_segmentations(model):
     ax[0][0].set_title("Prediction")
     ax[0][1].set_title("Real")
     with torch.no_grad():
+        selected_indices = []
+        total_num = len(model.test_set)
+        selected_indices.append(3)
+        selected_indices.append(total_num//2)
+        selected_indices.append(total_num - 3)
         for n, i in enumerate([0, 75, 150]):
             # run through the model
             x, y = model.test_set[i]
@@ -153,7 +158,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-b', '--batch_size', default=64)
     args = parser.parse_args()
-    test_config = {'batch_size': args.batch_size, 'learning_rate': .001, 'epochs': 1}
+    test_config = {'batch_size': args.batch_size, 'learning_rate': .001, 'epochs': 25}
     acc, model = segmentation_pt_objective(test_config)
     torch.save(model, "/tmp/mzvyagin/ephemeral_streams_model.pkl")
     # torch.save(model, "initial_model.pkl")
