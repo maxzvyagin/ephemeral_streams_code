@@ -225,7 +225,7 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
     samples = samples[:10000]
     pdb.set_trace()
     train, test = train_test_split(samples, train_size=0.8, shuffle=False, random_state=0)
-    val, test = train_test_split(train, train_size=0.5, shuffle=False, random_state=0)
+    val, test = train_test_split(test, train_size=0.5, shuffle=False, random_state=0)
     cache_object = open(name, "wb")
     pickle.dump((train, val, test), cache_object)
     return PT_GISDataset(train), PT_GISDataset(val), PT_GISDataset(test)
