@@ -192,8 +192,6 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
               "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
              ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
               "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
-        # img_and_shps = [("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
-        #                  "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
 
 
     samples = []
@@ -224,8 +222,9 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
     # for debugging, use a small subset of the dataset
     print(len(samples))
     samples = samples[:10000]
-    train, test = train_test_split(samples, train_size=0.8, shuffle=True, random_state=0)
-    val, test = train_test_split(train, train_size=0.5, shuffle=True, random_state=0)
+    pdb.set_trace()
+    train, test = train_test_split(samples, train_size=0.8, shuffle=False, random_state=0)
+    val, test = train_test_split(train, train_size=0.5, shuffle=False, random_state=0)
     cache_object = open(name, "wb")
     pickle.dump((train, val, test), cache_object)
     return PT_GISDataset(train), PT_GISDataset(val), PT_GISDataset(test)
