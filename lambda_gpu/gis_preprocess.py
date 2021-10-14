@@ -116,7 +116,7 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
         if rand:
             random.shuffle(image)
         for ji, window in tqdm(image):
-            if len(samples) >= num and not get_max:
+            if len(samples) == num and not get_max:
                 return samples
             # get the window from the mask
             mask_check = mask[window.row_off:window.row_off + window.height,
@@ -187,10 +187,12 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
     """ Return PT GIS Datasets with Train Test Split"""
 
     if not img_and_shps:
-        img_and_shps = [("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2012_refl.img",
-              "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
-             ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
-              "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
+        # img_and_shps = [("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2012_refl.img",
+        #       "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
+        #      ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
+        #       "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
+        img_and_shps = [("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
+                         "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
 
 
     samples = []
@@ -214,7 +216,7 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
         # process each pair and generate the windows
         else:
             mask = mask_from_shp(pair[0], pair[1])
-            windows = get_windows(pair[0], mask, large_image, image_type=image_type, get_max=False, num=5000)
+            windows = get_windows(pair[0], mask, large_image, image_type=image_type)
             # cache the windows
         samples.extend(windows)
         # now create test train split of samples
