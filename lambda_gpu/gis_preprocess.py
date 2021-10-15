@@ -220,11 +220,10 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
             windows = get_windows(pair[0], mask, large_image, image_type=image_type)
             # cache the windows
         samples.extend(windows)
-    # now create test train split of samples
-    # for debugging, use a small subset of the dataset
-    print(len(samples))
-    # samples = samples[:10000]
-    pdb.set_trace()
+
+    # split into 50:50 for with streams and no streams
+
+
     train, test = train_test_split(samples, train_size=0.8, shuffle=False, random_state=0)
     val, test = train_test_split(test, train_size=0.5, shuffle=False, random_state=0)
     cache_object = open(name, "wb")
