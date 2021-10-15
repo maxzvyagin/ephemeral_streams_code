@@ -227,7 +227,7 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
     # split into 50:50 for with streams and no streams
     with_streams = []
     without_streams = []
-    for i in tqdm(with_streams):
+    for i in tqdm(samples):
         # check if 1 in mask
         if 1 in i[1]:
             with_streams.append(i)
