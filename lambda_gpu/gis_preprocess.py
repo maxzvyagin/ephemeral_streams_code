@@ -186,6 +186,14 @@ numpy_msavi = np.vectorize(msavi)
 #         augmented_samples.append((i, s))
 #     return augmented_samples
 
+def get_samples(img_and_shps):
+    samples = []
+    for pair in img_and_shps:
+        print("Processing file {}....".format(pair[0]))
+        mask = mask_from_shp(pair[0], pair[1])
+        windows = get_windows(pair[0], mask, large_image, image_type=image_type)
+        samples.extend(windows)
+    return samples
 
 def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=False, theta=True):
     """ Return PT GIS Datasets with Train Test Split"""
@@ -196,35 +204,43 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
                         ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
                          "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
 
-    samples = []
-    for pair in img_and_shps:
-        print("Processing file {}....".format(pair[0]))
-        name = "/tmp/mzvyagin/"
-        name += "gis_data"
-        name += image_type
-        if large_image:
-            name += "large_image"
-        name += "PTdataset.pkl"
-        if path.exists(name):
-            try:
-                cache_object = open(name, "rb")
-                train, val, test = pickle.load(cache_object)
-                print("WARNING: Loaded from pickle object at {}...".format(name))
-                return PT_GISDataset(train), PT_GISDataset(val), PT_GISDataset(test)
-            except:
-                print("ERROR: could not load from cache file. Please try removing " + name + " and try again.")
-                sys.exit()
-        # process each pair and generate the windows
-        else:
-            mask = mask_from_shp(pair[0], pair[1])
-            windows = get_windows(pair[0], mask, large_image, image_type=image_type)
-            # cache the windows
-        samples.extend(windows)
+    # first see if we have a cached object, will use this name to cache if doesn't exist
+    name = "/tmp/mzvyagin/"
+    name += "gis_data"
+    name += image_type
+    if large_image:
+        name += "large_image"
+    name += "PTdataset.pkl"
+    if path.exists(name):
+        try:
+            cache_object = open(name, "rb")
+            train, val, test = pickle.load(cache_object)
+            print("WARNING: Loaded from pickle object at {}...".format(name))
+            return PT_GISDataset(train), PT_GISDataset(val), PT_GISDataset(test)
+        except:
+            print("ERROR: could not load from cache file. Please try removing " + name + " and try again.")
+            sys.exit()
+
+    # no cache object was found, so we generate from scratch
+    samples = get_samples(img_and_shps)
 
     # split into 50:50 for with streams and no streams
+    with_streams = []
+    without_streams = []
+    for i in tqdm(with_streams):
+        # check if 1 in mask
+        if 1 in i[1]:
+            with_streams.append(i)
+        else:
+            without_streams.append(i)
 
+    # get subset of without streams to balance dataset
+    random.seed(0)
+    without_streams_subset = random.sample(without_streams, len(with_streams))
+    full_dataset = with_streams + without_streams_subset
+    random.shuffle(full_dataset)
 
-    train, test = train_test_split(samples, train_size=0.8, shuffle=False, random_state=0)
+    train, test = train_test_split(full_dataset, train_size=0.8, shuffle=False, random_state=0)
     val, test = train_test_split(test, train_size=0.5, shuffle=False, random_state=0)
     cache_object = open(name, "wb")
     pickle.dump((train, val, test), cache_object)
