@@ -186,7 +186,7 @@ numpy_msavi = np.vectorize(msavi)
 #         augmented_samples.append((i, s))
 #     return augmented_samples
 
-def get_samples(img_and_shps):
+def get_samples(img_and_shps, image_type, large_image):
     samples = []
     for pair in img_and_shps:
         print("Processing file {}....".format(pair[0]))
@@ -222,7 +222,7 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
             sys.exit()
 
     # no cache object was found, so we generate from scratch
-    samples = get_samples(img_and_shps)
+    samples = get_samples(img_and_shps, image_type=image_type, large_image=large_image)
 
     # split into 50:50 for with streams and no streams
     with_streams = []
