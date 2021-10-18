@@ -10,7 +10,7 @@ import sys
 import argparse
 import segmentation_models_pytorch as smp
 
-from ephemeral_streams.gis_preprocess import pt_gis_train_test_split
+from ephemeral_streams import pt_gis_train_test_split
 from torch.utils.data import DataLoader
 
 from pytorch_lightning.callbacks.early_stopping import EarlyStopping
@@ -40,7 +40,8 @@ class PyTorch_UNet(pl.LightningModule):
         self.test_loss = None
         self.test_accuracy = None
         self.test_iou = None
-        self.accuracy = torchmetrics.classification.accuracy.Accuracy()
+        self.accuracy = torchmetrics.Accuracy()
+        self.iou = torchmetrics.IoU(num_classes=2)
         self.train_set, self.valid_set, self.test_set = pt_gis_train_test_split(image_type=image_type)
 
     def train_dataloader(self):
@@ -90,28 +91,31 @@ class PyTorch_UNet(pl.LightningModule):
         # for accuracy
         output = torch.nn.Sigmoid()(output).int()
         accuracy = self.accuracy(output, outputs['expected'].int())
-        logs = {'test_loss': loss.detach().cpu(), 'test_accuracy': accuracy.detach().cpu()}
+        iou = self.iou(output, outputs['expected'].int())
+        logs = {'test_loss': loss.detach().cpu(), 'test_accuracy': accuracy.detach().cpu(), 'test_iou': iou.detach().cpu()}
         self.log("testing", logs)
-        return {'test_loss': loss, 'logs': logs, 'test_accuracy': accuracy}
+        return {'test_loss': loss, 'logs': logs, 'test_accuracy': accuracy, 'test_iou': iou}
 
     def test_epoch_end(self, outputs):
         loss = []
+        accuracy = []
+        iou = []
         for x in outputs:
             loss.append(float(x['test_loss']))
-        avg_loss = statistics.mean(loss)
-        tensorboard_logs = {'test_loss': avg_loss}
-        self.test_loss = avg_loss
-        accuracy = []
-        for x in outputs:
             accuracy.append(float(x['test_accuracy']))
+            iou.append(float(x['test_iou']))
+        avg_loss = statistics.mean(loss)
+        self.test_loss = avg_loss
+
         avg_accuracy = statistics.mean(accuracy)
         self.test_accuracy = avg_accuracy
-        # iou = []
-        # for x in outputs:
-        #     iou.append(float(x['test_iou']))
-        # avg_iou = statistics.mean(iou)
-        # self.test_iou = avg_iou
-        return {'avg_test_loss': avg_loss, 'log': tensorboard_logs, 'avg_test_accuracy': avg_accuracy}
+
+        avg_iou = statistics.mean(iou)
+        self.test_iou = avg_iou
+
+        tensorboard_logs = {'test_loss': avg_loss, 'test_accuracy': avg_accuracy, 'test_iou': avg_iou}
+        return {'avg_test_loss': avg_loss, 'log': tensorboard_logs, 'avg_test_accuracy': avg_accuracy,
+                'avg_test_iou': avg_iou}
 
 
 def generate_test_segmentations(model):
@@ -158,7 +162,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-b', '--batch_size', default=64)
     args = parser.parse_args()
-    test_config = {'batch_size': args.batch_size, 'learning_rate': .1, 'epochs': 100}
+    test_config = {'batch_size': args.batch_size, 'learning_rate': .0001, 'epochs': 1}
     acc, model = segmentation_pt_objective(test_config)
     torch.save(model, "/tmp/mzvyagin/ephemeral_streams_model.pkl")
     # torch.save(model, "initial_model.pkl")
