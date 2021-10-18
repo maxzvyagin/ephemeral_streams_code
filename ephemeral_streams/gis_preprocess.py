@@ -191,6 +191,8 @@ def get_samples(img_and_shps, image_type, large_image):
     for pair in img_and_shps:
         print("Processing file {}....".format(pair[0]))
         mask = mask_from_shp(pair[0], pair[1])
+        # trying out this swap
+        mask = np.swapaxes(mask, 0, 1)
         windows = get_windows(pair[0], mask, large_image, image_type=image_type)
         samples.extend(windows)
     return samples
