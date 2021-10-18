@@ -111,44 +111,73 @@ def process_image(image_array, image_type):
 
 
 def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_max=True, rand=False, image_type="full"):
+
+    if large_image:
+        window_size = 512
+    else:
+        window_size = 256
+
     samples = []
+
     with rasterio.open(img_f) as src:
-        image = src.block_windows()
-        # image = list(image)
-        if rand:
-            print("WARNING: RAND NOT IMPLEMENTED")
-            # random.shuffle(image)
-        for ji, window in tqdm(image):
-            if len(samples) == num and not get_max:
-                return samples
-            # get the window from the mask
-            mask_check = mask[window.row_off:window.row_off + window.height,
-                         window.col_off:window.col_off + window.width]
+        full_image = src.read()
 
-            r = src.read(window=window)
+    full_image = np.swapaxes(full_image, 0, 2)
+    full_image = np.swapaxes(full_image, 0, 1)
 
-            # check if r is the correct size:
-            if r.shape[1] == 512 and r.shape[2] == 512:
-                # do the necessary processing of the image
-                r = process_image(r, image_type=image_type)
+    # scale values in place
+    for i in range(4):
+        scaler = MinMaxScaler()
+        full_image[:, :, i] = scaler.fit_transform(full_image[:, :, i])
 
-                if large_image:
-                    if unlabelled:
-                        samples.append(torch.from_numpy(r).half())
-                    else:
-                        samples.append((torch.from_numpy(r).half(), torch.from_numpy(mask_check).float()))
-                else:
-                    # need to split into tiles
-                    r_chunks = split(r)
-                    if unlabelled:
-                        for image_chunk in r_chunks:
-                            samples.append(
-                                (torch.from_numpy(image_chunk).half()))
-                    else:
-                        mask_chunks = split(mask_check)
-                        for image_chunk, mask_chunk in zip(r_chunks, mask_chunks):
-                            samples.append(
-                                (torch.from_numpy(image_chunk).half(), torch.from_numpy(mask_chunk).float()))
+    max_x = mask.shape[0] % 256
+    max_y = mask.shape[1] % 256
+
+    for i in tqdm(range(max_x)):
+        for j in range(max_y):
+            mask_window = mask[i * window_size:(i + 1) * window_size, j * window_size:(j + 1) * window_size]
+            image_window = full_image[i * window_size:(i + 1) * window_size, j * window_size:(j + 1) * window_size]
+            image_window = process_image(image_window, image_type=image_type)
+            window = (torch.from_numpy(image_window).half(), torch.from_numpy(mask_window).int())
+            samples.append(window)
+
+    # with rasterio.open(img_f) as src:
+    #     image = src.block_windows()
+    #     # image = list(image)
+    #     if rand:
+    #         print("WARNING: RAND NOT IMPLEMENTED")
+    #         # random.shuffle(image)
+    #     for ji, window in tqdm(image):
+    #         if len(samples) == num and not get_max:
+    #             return samples
+    #         # get the window from the mask
+    #         mask_check = mask[window.row_off:window.row_off + window.height,
+    #                      window.col_off:window.col_off + window.width]
+    #
+    #         r = src.read(window=window)
+    #
+    #         # check if r is the correct size:
+    #         if r.shape[1] == 512 and r.shape[2] == 512:
+    #             # do the necessary processing of the image
+    #             r = process_image(r, image_type=image_type)
+    #
+    #             if large_image:
+    #                 if unlabelled:
+    #                     samples.append(torch.from_numpy(r).half())
+    #                 else:
+    #                     samples.append((torch.from_numpy(r).half(), torch.from_numpy(mask_check).float()))
+    #             else:
+    #                 # need to split into tiles
+    #                 r_chunks = split(r)
+    #                 if unlabelled:
+    #                     for image_chunk in r_chunks:
+    #                         samples.append(
+    #                             (torch.from_numpy(image_chunk).half()))
+    #                 else:
+    #                     mask_chunks = split(mask_check)
+    #                     for image_chunk, mask_chunk in zip(r_chunks, mask_chunks):
+    #                         samples.append(
+    #                             (torch.from_numpy(image_chunk).half(), torch.from_numpy(mask_chunk).float()))
     return samples
 
 
