@@ -10,7 +10,7 @@ import sys
 import argparse
 import segmentation_models_pytorch as smp
 
-from gis_preprocess import pt_gis_train_test_split
+from ephemeral_streams.gis_preprocess import pt_gis_train_test_split
 from torch.utils.data import DataLoader
 
 from pytorch_lightning.callbacks.early_stopping import EarlyStopping
