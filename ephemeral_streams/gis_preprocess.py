@@ -20,6 +20,7 @@ import tensorflow as tf
 from sklearn.model_selection import train_test_split
 from tqdm import tqdm
 import pdb
+from sklearn.preprocessing import MinMaxScaler
 
 
 def mask_from_shp(img_f, shp_f):
