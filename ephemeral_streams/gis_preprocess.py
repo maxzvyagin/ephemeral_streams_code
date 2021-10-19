@@ -270,12 +270,13 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
             without_streams.append(i)
 
     # get subset of without streams to balance dataset
-    random.seed(0)
-    without_streams_subset = random.sample(without_streams, len(with_streams))
-    full_dataset = with_streams + without_streams_subset
-    random.shuffle(full_dataset)
+    # random.seed(0)
+    # without_streams_subset = random.sample(without_streams, len(with_streams))
+    # full_dataset = with_streams + without_streams_subset
+    # random.shuffle(full_dataset)
 
-    train, test = train_test_split(full_dataset, train_size=0.8, shuffle=False, random_state=0)
+    # need to only be grabbing parts where it's annotated, otherwise we have streams in the photo where it's not labeled
+    train, test = train_test_split(with_streams, train_size=0.8, shuffle=False, random_state=0)
     val, test = train_test_split(test, train_size=0.5, shuffle=False, random_state=0)
     cache_object = open(name, "wb")
     pickle.dump((train, val, test), cache_object)
