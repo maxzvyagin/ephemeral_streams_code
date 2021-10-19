@@ -259,25 +259,18 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
     # no cache object was found, so we generate from scratch
     samples = get_samples(img_and_shps, image_type=image_type, large_image=large_image)
 
-    # split into 50:50 for with streams and no streams
-    with_streams = []
-    without_streams = []
+    # separating out masked sections
+    with_mask = []
     for i in tqdm(samples):
         # check if 1 in mask
         if 1 in i[1]:
-            with_streams.append(i)
+            with_mask.append(i)
         else:
-            without_streams.append(i)
-
-    # get subset of without streams to balance dataset
-    # random.seed(0)
-    # without_streams_subset = random.sample(without_streams, len(with_streams))
-    # full_dataset = with_streams + without_streams_subset
-    # random.shuffle(full_dataset)
+            pass
 
     # need to only be grabbing parts where it's annotated, otherwise we have streams in the photo where it's not labeled
-    train, test = train_test_split(with_streams, train_size=0.8, shuffle=False, random_state=0)
-    val, test = train_test_split(test, train_size=0.5, shuffle=False, random_state=0)
+    train, test = train_test_split(with_mask, train_size=0.8, shuffle=True, random_state=0)
+    val, test = train_test_split(test, train_size=0.5, shuffle=True, random_state=0)
     cache_object = open(name, "wb")
     pickle.dump((train, val, test), cache_object)
     return PT_GISDataset(train), PT_GISDataset(val), PT_GISDataset(test)
