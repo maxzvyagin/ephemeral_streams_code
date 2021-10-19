@@ -133,6 +133,9 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
     max_x = mask.shape[0] % 256
     max_y = mask.shape[1] % 256
 
+    print(mask.shape)
+    print(full_image.shape)
+
     for i in tqdm(range(max_x)):
         for j in range(max_y):
             mask_window = mask[i * window_size:(i + 1) * window_size, j * window_size:(j + 1) * window_size]
