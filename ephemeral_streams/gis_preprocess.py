@@ -123,10 +123,10 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
     with rasterio.open(img_f) as src:
         full_image = src.read()
 
-    pdb.set_trace()
+    # pdb.set_trace()
 
     # full_image = np.swapaxes(full_image, 0, 2)
-    # full_image = np.swapaxes(full_image, 0, 1)
+    full_image = np.swapaxes(full_image, 0, 1)
 
     # scale values in place
     for i in range(4):
@@ -272,7 +272,7 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
             pass
 
     # need to only be grabbing parts where it's annotated, otherwise we have streams in the photo where it's not labeled
-    pdb.set_trace()
+    # pdb.set_trace()
 
     train, test = train_test_split(with_mask, train_size=0.8, shuffle=True, random_state=0)
     val, test = train_test_split(test, train_size=0.5, shuffle=True, random_state=0)
