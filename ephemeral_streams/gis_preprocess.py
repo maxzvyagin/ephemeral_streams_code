@@ -103,8 +103,10 @@ def process_image(image_array, image_type):
         all_channels = np.concatenate((new, np.expand_dims(image_array[3], 0)), axis=0)
         return all_channels
     elif image_type == "veg_index":
-        r = src.read(2, window=window)
-        i = src.read(3, window=window)
+        # red channel
+        r = np.expand_dims(image_array[0], 0)
+        # infrared channel
+        i = np.expand_dims(image_array[3], 0)
         veg = numpy_msavi(r, i)
         return veg
     else:
