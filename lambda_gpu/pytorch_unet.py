@@ -29,7 +29,7 @@ import torchmetrics
 
 ### definition of PyTorch Lightning module in order to run everything
 class PyTorch_UNet(pl.LightningModule):
-    def __init__(self, config, classes, in_channels=3, model_type="deeplabv3", image_type="full_channel"):
+    def __init__(self, config, classes, in_channels=3, model_type="deeplabv3", image_type="veg_index"):
         super(PyTorch_UNet, self).__init__()
         self.config = config
         # sigmoid is part of BCE with logits loss

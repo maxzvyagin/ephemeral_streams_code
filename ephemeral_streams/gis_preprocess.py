@@ -126,7 +126,7 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
     # pdb.set_trace()
 
     # full_image = np.swapaxes(full_image, 0, 2)
-    full_image = np.swapaxes(full_image, 0, 1)
+    full_image = np.swapaxes(full_image, 1, 2)
 
     # scale values in place
     for i in range(4):
