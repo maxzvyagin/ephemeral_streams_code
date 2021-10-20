@@ -146,7 +146,7 @@ def generate_test_segmentations(model):
 
 def segmentation_pt_objective(config):
     torch.manual_seed(0)
-    model = PyTorch_UNet(config, classes=1, in_channels=4)
+    model = PyTorch_UNet(config, classes=1, in_channels=1)
     wandb_logger = WandbLogger()
     trainer = pl.Trainer(max_epochs=config['epochs'], gpus=1, auto_select_gpus=True, logger=wandb_logger)
     trainer.fit(model)
