@@ -29,7 +29,7 @@ import torchmetrics
 
 ### definition of PyTorch Lightning module in order to run everything
 class PyTorch_UNet(pl.LightningModule):
-    def __init__(self, config, classes, in_channels=1, model_type="deeplabv3", image_type="veg_index"):
+    def __init__(self, config, classes, in_channels=1, model_type="deeplabv3", image_type="full_channel"):
         super(PyTorch_UNet, self).__init__()
         self.config = config
         # sigmoid is part of BCE with logits loss
@@ -146,7 +146,7 @@ def generate_test_segmentations(model):
 
 def segmentation_pt_objective(config):
     torch.manual_seed(0)
-    model = PyTorch_UNet(config, classes=1, in_channels=1)
+    model = PyTorch_UNet(config, classes=1, in_channels=4)
     wandb_logger = WandbLogger()
     trainer = pl.Trainer(max_epochs=config['epochs'], gpus=1, auto_select_gpus=True, logger=wandb_logger)
     trainer.fit(model)
