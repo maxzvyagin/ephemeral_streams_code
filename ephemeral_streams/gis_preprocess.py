@@ -269,7 +269,7 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
     for i in tqdm(samples):
         # check if 1 in mask
         mask = i[1]
-        if (np.count_nonzero(mask) / torch.numel(mask)) >= 0.50:
+        if (np.count_nonzero(mask) / torch.numel(mask)) >= 0.05:
             with_mask.append(i)
         else:
             pass
