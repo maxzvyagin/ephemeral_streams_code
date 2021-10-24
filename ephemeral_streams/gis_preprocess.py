@@ -135,8 +135,10 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
     #     scaler = MinMaxScaler()
     #     full_image[i, :, :] = scaler.fit_transform(full_image[i, :, :])
 
-    max_x = mask.shape[0] // window_size
-    max_y = mask.shape[1] // window_size
+    # max_x = mask.shape[0] // window_size
+    # max_y = mask.shape[1] // window_size
+    max_x = mask.shape[0] % window_size
+    max_y = mask.shape[1] % window_size
 
     print(mask.shape)
     print(full_image.shape)
