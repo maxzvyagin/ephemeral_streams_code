@@ -123,15 +123,15 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
     with rasterio.open(img_f) as src:
         full_image = src.read()
 
-    pdb.set_trace()
+    # pdb.set_trace()
 
     # full_image = np.swapaxes(full_image, 0, 2)
     # full_image = np.swapaxes(full_image, 0, 1)
 
     # scale values in place
-    for i in range(4):
-        scaler = MinMaxScaler()
-        full_image[i, :, :] = scaler.fit_transform(full_image[i, :, :])
+    # for i in range(4):
+    #     scaler = MinMaxScaler()
+    #     full_image[i, :, :] = scaler.fit_transform(full_image[i, :, :])
 
     max_x = (mask.shape[0] // window_size)
     max_y = (mask.shape[1] // window_size)
