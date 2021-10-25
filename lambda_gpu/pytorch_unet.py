@@ -75,8 +75,8 @@ class PyTorch_UNet(pl.LightningModule):
         return {'forward': self.forward(x), 'expected': y}
 
     def validation_step_end(self, outputs):
-        # only use when  on dp
-        loss = self.criterion(outputs['forward'].squeeze(1), outputs['expected'])
+        output = outputs['forward'].squeeze(1)
+        loss = self.criterion(output, outputs['expected'])
         output = torch.nn.Sigmoid()(output).int()
         accuracy = self.accuracy(output, outputs['expected'].int())
         iou = self.iou(output, outputs['expected'].int())
