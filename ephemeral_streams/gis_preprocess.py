@@ -113,7 +113,7 @@ def process_image(image_array, image_type):
         raise ValueError("Could not find image type {}".format(image_type))
 
 
-def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_max=True, rand=False, image_type="full"):
+def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_max=True, rand=False, image_type="full", only_mask=True):
 
     if large_image:
         window_size = 512
@@ -128,17 +128,17 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
     # pdb.set_trace()
 
     # full_image = np.swapaxes(full_image, 0, 2)
-    full_image = np.swapaxes(full_image, 1, 2)
+    # full_image = np.swapaxes(full_image, 1, 2)
 
     # scale values in place
     # for i in range(4):
     #     scaler = MinMaxScaler()
     #     full_image[i, :, :] = scaler.fit_transform(full_image[i, :, :])
 
-    # max_x = mask.shape[0] // window_size
-    # max_y = mask.shape[1] // window_size
-    max_x = mask.shape[0] % window_size
-    max_y = mask.shape[1] % window_size
+    max_x = mask.shape[0] // window_size
+    max_y = mask.shape[1] // window_size
+    # max_x = mask.shape[0] % window_size
+    # max_y = mask.shape[1] % window_size
 
     print(mask.shape)
     print(full_image.shape)
@@ -146,11 +146,12 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
     for i in tqdm(range(max_x)):
         for j in range(max_y):
             mask_window = mask[i * window_size:(i + 1) * window_size, j * window_size:(j + 1) * window_size]
-            # need to grab all channels
-            image_window = full_image[:, i * window_size:(i + 1) * window_size, j * window_size:(j + 1) * window_size]
-            image_window = process_image(image_window, image_type=image_type)
-            window = (torch.from_numpy(image_window).half(), torch.from_numpy(mask_window).int())
-            samples.append(window)
+            if (only_mask and 1 in mask_window) or not only_mask:
+                # need to grab all channels
+                image_window = full_image[:, i * window_size:(i + 1) * window_size, j * window_size:(j + 1) * window_size]
+                image_window = process_image(image_window, image_type=image_type)
+                window = (torch.from_numpy(image_window).half(), torch.from_numpy(mask_window).int())
+                samples.append(window)
 
     # with rasterio.open(img_f) as src:
     #     image = src.block_windows()
@@ -232,7 +233,7 @@ def get_samples(img_and_shps, image_type, large_image):
         print("Processing file {}....".format(pair[0]))
         mask = mask_from_shp(pair[0], pair[1])
         # trying out this swap
-        mask = np.swapaxes(mask, 0, 1)
+        # mask = np.swapaxes(mask, 0, 1)
         windows = get_windows(pair[0], mask, large_image, image_type=image_type)
         samples.extend(windows)
     return samples
@@ -264,19 +265,19 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
             sys.exit()
 
     # no cache object was found, so we generate from scratch
-    samples = get_samples(img_and_shps, image_type=image_type, large_image=large_image)
+    with_mask = get_samples(img_and_shps, image_type=image_type, large_image=large_image, only_mask=True)
 
     # separating out masked sections
-    with_mask = []
-    for i in tqdm(samples):
-        # check if 1 in mask
-        mask = i[1]
-        # if (np.count_nonzero(mask) / torch.numel(mask)) >= 0.05:
-        #     with_mask.append(i)
-        if 1 in mask:
-            with_mask.append(i)
-        else:
-            pass
+    # with_mask = []
+    # for i in tqdm(samples):
+    #     # check if 1 in mask
+    #     mask = i[1]
+    #     # if (np.count_nonzero(mask) / torch.numel(mask)) >= 0.05:
+    #     #     with_mask.append(i)
+    #     if 1 in mask:
+    #         with_mask.append(i)
+    #     else:
+    #         pass
 
     # need to only be grabbing parts where it's annotated, otherwise we have streams in the photo where it's not labeled
     # pdb.set_trace()
