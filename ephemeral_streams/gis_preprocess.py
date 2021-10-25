@@ -227,14 +227,14 @@ numpy_msavi = np.vectorize(msavi)
 #         augmented_samples.append((i, s))
 #     return augmented_samples
 
-def get_samples(img_and_shps, image_type, large_image):
+def get_samples(img_and_shps, image_type, large_image, only_mask=False):
     samples = []
     for pair in img_and_shps:
         print("Processing file {}....".format(pair[0]))
         mask = mask_from_shp(pair[0], pair[1])
         # trying out this swap
         # mask = np.swapaxes(mask, 0, 1)
-        windows = get_windows(pair[0], mask, large_image, image_type=image_type)
+        windows = get_windows(pair[0], mask, large_image, image_type=image_type, only_mask=only_mask)
         samples.extend(windows)
     return samples
 
