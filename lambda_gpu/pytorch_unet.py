@@ -78,10 +78,11 @@ class PyTorch_UNet(pl.LightningModule):
         output = outputs['forward'].squeeze(1)
         loss = self.criterion(output, outputs['expected'])
         output = torch.nn.Sigmoid()(output).int()
-        accuracy = self.accuracy(output, outputs['expected'].int())
-        iou = self.iou(output, outputs['expected'].int())
-        logs = {'val_loss': loss.detach().cpu(), 'val_accuracy': accuracy.detach().cpu(), 'val_iou': iou.detach().cpu()}
+        accuracy = self.accuracy(output, outputs['expected'].int()).detach().cpu()
+        iou = self.iou(output, outputs['expected'].int()).detach().cpu()
+        logs = {'val_loss': loss.detach().cpu(), 'val_accuracy': accuracy, 'val_iou': iou}
         self.log("validation", logs)
+        self.log("val_accuracy", accuracy)
         return {'loss': loss, 'logs': logs}
 
     def test_step(self, test_batch, batch_idx):
