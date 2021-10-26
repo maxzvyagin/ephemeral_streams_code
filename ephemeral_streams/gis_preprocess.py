@@ -125,6 +125,8 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
     with rasterio.open(img_f) as src:
         full_image = src.read()
 
+    full_image = full_image[0]
+
     # pdb.set_trace()
 
     # full_image = np.swapaxes(full_image, 0, 2)
@@ -148,8 +150,10 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
             mask_window = mask[i * window_size:(i + 1) * window_size, j * window_size:(j + 1) * window_size]
             if (only_mask and 1 in mask_window) or not only_mask:
                 # need to grab all channels
-                image_window = full_image[:, i * window_size:(i + 1) * window_size, j * window_size:(j + 1) * window_size]
-                image_window = process_image(image_window, image_type=image_type)
+                # image_window = full_image[:, i * window_size:(i + 1) * window_size, j * window_size:(j + 1) * window_size]
+                # image_window = process_image(image_window, image_type=image_type)
+                image_window = full_image[i * window_size:(i + 1) * window_size,
+                               j * window_size:(j + 1) * window_size]
                 window = (torch.from_numpy(image_window).half(), torch.from_numpy(mask_window).int())
                 samples.append(window)
 
