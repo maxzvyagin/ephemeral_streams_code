@@ -306,7 +306,7 @@ class PT_GISDataset(Dataset):
 
     def __getitem__(self, index):
         x, y = self.samples[index]
-        return x.float().unsqueeze(0), y.float().unsqueeze(0)
+        return x.float().unsqueeze(0), y.float()
 
 
 def pt_to_tf(x):
