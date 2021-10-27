@@ -127,7 +127,7 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
 
     # full_image = full_image[0]
 
-    full_image = np.moveaxis(full_image, 0, -1)
+    # full_image = np.moveaxis(full_image, 0, -1)
 
     # pdb.set_trace()
 
@@ -154,7 +154,7 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
                 # need to grab all channels
                 # image_window = full_image[:, i * window_size:(i + 1) * window_size, j * window_size:(j + 1) * window_size]
                 # image_window = process_image(image_window, image_type=image_type)
-                image_window = full_image[i * window_size:(i + 1) * window_size,
+                image_window = full_image[:, i * window_size:(i + 1) * window_size,
                                j * window_size:(j + 1) * window_size]
                 window = (torch.from_numpy(image_window).half(), torch.from_numpy(mask_window).int())
                 samples.append(window)
