@@ -239,8 +239,8 @@ def generate_rotated_samples(samples):
     for sample in tqdm(samples):
         rotated_image, rotated_mask = sample
         for _ in range(3):
-            rotated_image = np.rot90(rotated_image)
-            rotated_mask = np.rot90(rotated_mask)
+            rotated_image = np.rot90(rotated_image).copy()
+            rotated_mask = np.rot90(rotated_mask).copy()
             window = (torch.from_numpy(rotated_image).half(), torch.from_numpy(rotated_mask).int())
             rotated_samples.append(window)
 
