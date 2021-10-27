@@ -125,7 +125,9 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
     with rasterio.open(img_f) as src:
         full_image = src.read()
 
-    full_image = full_image[0]
+    # full_image = full_image[0]
+
+    full_image = np.moveaxis(full_image, 0, -1)
 
     # pdb.set_trace()
 
@@ -205,31 +207,31 @@ def msavi(red, infrared):
 numpy_msavi = np.vectorize(msavi)
 
 
-# def augment_dataset(dataset):
-#     # generate augmented samples of dataset
-#     ia.seed(1)
-#     # flip from left to right
-#     seq = iaa.Sequential([iaa.Fliplr()])
-#     augmented_samples = []
-#     for sample in dataset:
-#         img = sample['image'].numpy()
-#         img = np.moveaxis(img, 0, -1)
-#         seg = SegmentationMapsOnImage(sample['mask'].numpy().astype(bool), shape=img.shape)
-#         i, s = seq(image=img, segmentation_maps=seg)
-#         s = torch.FloatTensor(s.get_arr().copy())
-#         i = torch.FloatTensor(np.moveaxis(i, -1, 0).copy())
-#         augmented_samples.append((i, s))
-#     # do the same thing but flip images upside down
-#     seq = iaa.Sequential([iaa.Flipud()])
-#     for sample in dataset:
-#         img = sample['image'].numpy()
-#         img = np.moveaxis(img, 0, -1)
-#         seg = SegmentationMapsOnImage(sample['mask'].numpy().astype(bool), shape=img.shape)
-#         i, s = seq(image=img, segmentation_maps=seg)
-#         s = torch.FloatTensor(s.get_arr().copy())
-#         i = torch.FloatTensor(np.moveaxis(i, -1, 0).copy())
-#         augmented_samples.append((i, s))
-#     return augmented_samples
+def augment_dataset(dataset):
+    # generate augmented samples of dataset
+    ia.seed(1)
+    # flip from left to right
+    seq = iaa.Sequential([iaa.Fliplr()])
+    augmented_samples = []
+    for sample in dataset:
+        img = sample['image'].numpy()
+        img = np.moveaxis(img, 0, -1)
+        seg = SegmentationMapsOnImage(sample['mask'].numpy().astype(bool), shape=img.shape)
+        i, s = seq(image=img, segmentation_maps=seg)
+        s = torch.FloatTensor(s.get_arr().copy())
+        i = torch.FloatTensor(np.moveaxis(i, -1, 0).copy())
+        augmented_samples.append((i, s))
+    # do the same thing but flip images upside down
+    seq = iaa.Sequential([iaa.Flipud()])
+    for sample in dataset:
+        img = sample['image'].numpy()
+        img = np.moveaxis(img, 0, -1)
+        seg = SegmentationMapsOnImage(sample['mask'].numpy().astype(bool), shape=img.shape)
+        i, s = seq(image=img, segmentation_maps=seg)
+        s = torch.FloatTensor(s.get_arr().copy())
+        i = torch.FloatTensor(np.moveaxis(i, -1, 0).copy())
+        augmented_samples.append((i, s))
+    return augmented_samples
 
 def get_samples(img_and_shps, image_type, large_image, only_mask=False):
     samples = []
