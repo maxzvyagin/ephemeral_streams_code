@@ -113,8 +113,8 @@ def process_image(image_array, image_type):
         raise ValueError("Could not find image type {}".format(image_type))
 
 
-def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_max=True, rand=False, image_type="full", only_mask=True):
-
+def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_max=True, rand=False, image_type="full",
+                only_mask=True):
     if large_image:
         window_size = 512
     else:
@@ -238,13 +238,19 @@ def generate_rotated_samples(samples):
     rotated_samples = []
     for sample in tqdm(samples):
         rotated_image, rotated_mask = sample
+        rotated_image = rotated_image.squeeze()
+        rotated_mask = rotated_mask.squeeze()
         for _ in range(3):
             rotated_image = np.rot90(rotated_image).copy()
             rotated_mask = np.rot90(rotated_mask).copy()
-            window = (torch.from_numpy(rotated_image).half(), torch.from_numpy(rotated_mask).int())
+            # generate tensors
+            saved_image = torch.from_numpy(np.expand_dims(rotated_image, 1)).half()
+            saved_mask = torch.from_numpy(np.expand_dims(rotated_mask, 1)).int()
+            window = (saved_image, saved_mask)
             rotated_samples.append(window)
 
     return rotated_samples
+
 
 def get_samples(img_and_shps, image_type, large_image, only_mask=False):
     samples = []
@@ -256,6 +262,7 @@ def get_samples(img_and_shps, image_type, large_image, only_mask=False):
         windows = get_windows(pair[0], mask, large_image, image_type=image_type, only_mask=only_mask)
         samples.extend(windows)
     return samples
+
 
 def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=False, theta=True):
     """ Return PT GIS Datasets with Train Test Split"""
@@ -325,6 +332,7 @@ class PT_GISDataset(Dataset):
         x, y = self.samples[index]
         # return x.float().unsqueeze(0), y.float()
         return x.float(), y.float()
+
 
 def pt_to_tf(x):
     """ Converts a pytorch tensor to a tensorflow tensor and returns it"""
