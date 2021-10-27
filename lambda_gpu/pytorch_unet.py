@@ -35,7 +35,7 @@ class PyTorch_UNet(pl.LightningModule):
         # sigmoid is part of BCE with logits loss
         # self.model = torch.hub.load('mateuszbuda/brain-segmentation-pytorch', 'unet',
         #                             in_channels=in_channels, out_channels=classes, init_features=32, pretrained=True)
-        self.model = smp.Unet(encoder_name="resnet34", encoder_weights=None, in_channels=in_channels, classes=classes)
+        self.model = smp.MAnet(encoder_name="resnet34", encoder_weights=None, in_channels=in_channels, classes=classes)
         self.criterion = nn.BCEWithLogitsLoss()
         self.test_loss = None
         self.test_accuracy = None
@@ -150,7 +150,7 @@ def generate_test_segmentations(model):
 
 def segmentation_pt_objective(config):
     torch.manual_seed(0)
-    model = PyTorch_UNet(config, classes=1, in_channels=1)
+    model = PyTorch_UNet(config, classes=1, in_channels=4)
     wandb_logger = WandbLogger()
     trainer = pl.Trainer(max_epochs=config['epochs'], gpus=1, auto_select_gpus=True, logger=wandb_logger,
                          callbacks=[EarlyStopping(monitor="val_accuracy")])
@@ -167,7 +167,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-b', '--batch_size', default=64)
     args = parser.parse_args()
-    test_config = {'batch_size': args.batch_size, 'learning_rate': .001, 'epochs': 50}
+    test_config = {'batch_size': args.batch_size, 'learning_rate': .00001, 'epochs': 50}
     acc, model = segmentation_pt_objective(test_config)
     torch.save(model, "/tmp/mzvyagin/ephemeral_streams_model.pkl")
     # torch.save(model, "initial_model.pkl")
