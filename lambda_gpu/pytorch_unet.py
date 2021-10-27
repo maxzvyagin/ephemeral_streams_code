@@ -152,8 +152,8 @@ def segmentation_pt_objective(config):
     torch.manual_seed(0)
     model = PyTorch_UNet(config, classes=1, in_channels=1)
     wandb_logger = WandbLogger()
-    trainer = pl.Trainer(max_epochs=config['epochs'], gpus=1, auto_select_gpus=True, logger=wandb_logger,
-                         callbacks=[EarlyStopping(monitor="val_accuracy")])
+    trainer = pl.Trainer(max_epochs=config['epochs'], gpus=1, auto_select_gpus=True, logger=wandb_logger,)
+                         # callbacks=[EarlyStopping(monitor="val_accuracy")])
     trainer.fit(model)
     trainer.test(model)
     generate_test_segmentations(model)
