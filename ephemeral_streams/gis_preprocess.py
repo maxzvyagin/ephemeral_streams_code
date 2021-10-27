@@ -207,31 +207,43 @@ def msavi(red, infrared):
 numpy_msavi = np.vectorize(msavi)
 
 
-def augment_dataset(dataset):
-    # generate augmented samples of dataset
-    ia.seed(1)
-    # flip from left to right
-    seq = iaa.Sequential([iaa.Fliplr()])
-    augmented_samples = []
-    for sample in dataset:
-        img = sample['image'].numpy()
-        img = np.moveaxis(img, 0, -1)
-        seg = SegmentationMapsOnImage(sample['mask'].numpy().astype(bool), shape=img.shape)
-        i, s = seq(image=img, segmentation_maps=seg)
-        s = torch.FloatTensor(s.get_arr().copy())
-        i = torch.FloatTensor(np.moveaxis(i, -1, 0).copy())
-        augmented_samples.append((i, s))
-    # do the same thing but flip images upside down
-    seq = iaa.Sequential([iaa.Flipud()])
-    for sample in dataset:
-        img = sample['image'].numpy()
-        img = np.moveaxis(img, 0, -1)
-        seg = SegmentationMapsOnImage(sample['mask'].numpy().astype(bool), shape=img.shape)
-        i, s = seq(image=img, segmentation_maps=seg)
-        s = torch.FloatTensor(s.get_arr().copy())
-        i = torch.FloatTensor(np.moveaxis(i, -1, 0).copy())
-        augmented_samples.append((i, s))
-    return augmented_samples
+# def augment_dataset(dataset):
+#     # generate augmented samples of dataset
+#     ia.seed(1)
+#     # flip from left to right
+#     seq = iaa.Sequential([iaa.Fliplr()])
+#     augmented_samples = []
+#     for sample in dataset:
+#         img = sample['image'].numpy()
+#         img = np.moveaxis(img, 0, -1)
+#         seg = SegmentationMapsOnImage(sample['mask'].numpy().astype(bool), shape=img.shape)
+#         i, s = seq(image=img, segmentation_maps=seg)
+#         s = torch.FloatTensor(s.get_arr().copy())
+#         i = torch.FloatTensor(np.moveaxis(i, -1, 0).copy())
+#         augmented_samples.append((i, s))
+#     # do the same thing but flip images upside down
+#     seq = iaa.Sequential([iaa.Flipud()])
+#     for sample in dataset:
+#         img = sample['image'].numpy()
+#         img = np.moveaxis(img, 0, -1)
+#         seg = SegmentationMapsOnImage(sample['mask'].numpy().astype(bool), shape=img.shape)
+#         i, s = seq(image=img, segmentation_maps=seg)
+#         s = torch.FloatTensor(s.get_arr().copy())
+#         i = torch.FloatTensor(np.moveaxis(i, -1, 0).copy())
+#         augmented_samples.append((i, s))
+#     return augmented_samples
+
+def generate_rotated_samples(samples):
+    """For each sample, generate 3 90 degree rotations"""
+    rotated_samples = []
+    for sample in tqdm(samples):
+        rotated_image, rotated_mask = sample
+        for _ in range(3):
+            rotated_image = np.rot90(rotated_image)
+            rotated_mask = np.rot90(rotated_mask)
+            rotated_samples.append((rotated_image, rotated_mask))
+
+    return rotated_samples
 
 def get_samples(img_and_shps, image_type, large_image, only_mask=False):
     samples = []
@@ -272,6 +284,8 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
 
     # no cache object was found, so we generate from scratch
     with_mask = get_samples(img_and_shps, image_type=image_type, large_image=large_image, only_mask=True)
+    rotated_samples = generate_rotated_samples(with_mask)
+    with_mask = with_mask + rotated_samples
 
     # separating out masked sections
     # with_mask = []
