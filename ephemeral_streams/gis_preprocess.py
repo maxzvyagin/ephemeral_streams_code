@@ -244,8 +244,8 @@ def generate_rotated_samples(samples):
             rotated_image = np.rot90(rotated_image).copy()
             rotated_mask = np.rot90(rotated_mask).copy()
             # generate tensors
-            saved_image = torch.from_numpy(np.expand_dims(rotated_image, 1)).half()
-            saved_mask = torch.from_numpy(np.expand_dims(rotated_mask, 1)).int()
+            saved_image = torch.from_numpy(np.expand_dims(rotated_image, 0)).half()
+            saved_mask = torch.from_numpy(np.expand_dims(rotated_mask, 0)).int()
             window = (saved_image, saved_mask)
             rotated_samples.append(window)
 
