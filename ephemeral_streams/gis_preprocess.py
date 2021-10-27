@@ -293,6 +293,9 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
     # no cache object was found, so we generate from scratch
     with_mask = get_samples(img_and_shps, image_type=image_type, large_image=large_image, only_mask=True)
     rotated_samples = generate_rotated_samples(with_mask)
+
+    pdb.set_trace()
+
     with_mask = with_mask + rotated_samples
 
     # separating out masked sections
