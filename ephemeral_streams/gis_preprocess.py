@@ -254,8 +254,8 @@ def generate_rotated_samples(samples):
             rotated_samples.append(window)
         # flip up down and left right
         for flip_function in [np.flipud, np.fliplr]:
-            flip_image = flip_function(sample_image)
-            flip_mask = flip_function(sample_mask)
+            flip_image = flip_function(sample_image).copy()
+            flip_mask = flip_function(sample_mask).copy()
             saved_image = torch.from_numpy(np.expand_dims(flip_image, 0)).half()
             saved_mask = torch.from_numpy(flip_mask).int()
             window = (saved_image, saved_mask)
