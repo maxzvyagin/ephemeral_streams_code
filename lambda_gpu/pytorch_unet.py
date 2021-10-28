@@ -35,7 +35,7 @@ class PyTorch_UNet(pl.LightningModule):
         # sigmoid is part of BCE with logits loss
         # self.model = torch.hub.load('mateuszbuda/brain-segmentation-pytorch', 'unet',
         #                             in_channels=in_channels, out_channels=classes, init_features=32, pretrained=True)
-        self.model = smp.MAnet(encoder_name="vgg19_bn", encoder_weights=None, in_channels=in_channels, classes=classes)
+        self.model = smp.MAnet(encoder_name="resnet34", encoder_weights=None, in_channels=in_channels, classes=classes)
         self.criterion = nn.BCEWithLogitsLoss()
         self.test_loss = None
         self.test_accuracy = None
@@ -167,7 +167,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-b', '--batch_size', default=64)
     args = parser.parse_args()
-    test_config = {'batch_size': args.batch_size, 'learning_rate': .01, 'epochs': 50}
+    test_config = {'batch_size': args.batch_size, 'learning_rate': .00001, 'epochs': 50}
     wandb.init(project='ephemeral_streams', entity='mzvyagin', config=test_config)
     acc, model = segmentation_pt_objective(test_config)
     torch.save(model, "/tmp/mzvyagin/ephemeral_streams_model.pkl")
