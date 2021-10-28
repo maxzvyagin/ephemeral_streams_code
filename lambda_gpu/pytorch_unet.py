@@ -55,7 +55,7 @@ class PyTorch_UNet(pl.LightningModule):
 
     def configure_optimizers(self):
         # optimizer = torch.optim.Adam(self.parameters(), lr=self.config['learning_rate'])
-        optimizer = torch.optim.RMSProp(self.parameters(), lr=self.config['learning_rate'])
+        optimizer = torch.optim.RMSprop(self.parameters(), lr=self.config['learning_rate'])
         return optimizer
 
     def forward(self, x):
