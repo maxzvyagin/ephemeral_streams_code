@@ -281,9 +281,9 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
 
     if not img_and_shps:
         img_and_shps = [("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2012_refl.img",
-                         "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
-                        ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
-                         "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
+                         "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),]
+                        # ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
+                        #  "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
 
     # first see if we have a cached object, will use this name to cache if doesn't exist
     name = "/tmp/mzvyagin/"
