@@ -240,6 +240,8 @@ def generate_rotated_samples(samples):
         rotated_image, rotated_mask = sample
         rotated_image = rotated_image.squeeze()
         rotated_mask = rotated_mask.squeeze()
+        sample_image = rotated_image
+        sample_mask = rotated_mask
         if len(rotate_image.shape) > 2:
             raise NotImplementedError
         for _ in range(3):
@@ -248,6 +250,14 @@ def generate_rotated_samples(samples):
             # generate tensors
             saved_image = torch.from_numpy(np.expand_dims(rotated_image, 0)).half()
             saved_mask = torch.from_numpy(rotated_mask).int()
+            window = (saved_image, saved_mask)
+            rotated_samples.append(window)
+        # flip up down and left right
+        for flip_function in [np.flipud, np.fliplr]:
+            flip_image = flip_function(sample_image)
+            flip_mask = flip_function(sample_mask)
+            saved_image = torch.from_numpy(np.expand_dims(flip_image, 0)).half()
+            saved_mask = torch.from_numpy(flip_mask).int()
             window = (saved_image, saved_mask)
             rotated_samples.append(window)
 
