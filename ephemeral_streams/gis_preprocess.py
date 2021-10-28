@@ -242,7 +242,7 @@ def generate_rotated_samples(samples):
         rotated_mask = rotated_mask.squeeze()
         sample_image = rotated_image
         sample_mask = rotated_mask
-        if len(rotate_image.shape) > 2:
+        if len(rotated_image.shape) > 2:
             raise NotImplementedError
         for _ in range(3):
             rotated_image = np.rot90(rotated_image).copy()
