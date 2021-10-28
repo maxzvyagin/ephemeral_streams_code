@@ -302,29 +302,22 @@ def pt_gis_train_test_split(img_and_shps=None, image_type="rgb", large_image=Fal
             print("ERROR: could not load from cache file. Please try removing " + name + " and try again.")
             sys.exit()
 
-    # no cache object was found, so we generate from scratch
+    # no cache object was found, so we generate from scratch - training first
     with_mask = get_samples(img_and_shps, image_type=image_type, large_image=large_image, only_mask=True)
     rotated_samples = generate_rotated_samples(with_mask)
-
     with_mask = with_mask + rotated_samples
+    random.shuffle(with_mask)
 
-    # separating out masked sections
-    # with_mask = []
-    # for i in tqdm(samples):
-    #     # check if 1 in mask
-    #     mask = i[1]
-    #     # if (np.count_nonzero(mask) / torch.numel(mask)) >= 0.05:
-    #     #     with_mask.append(i)
-    #     if 1 in mask:
-    #         with_mask.append(i)
-    #     else:
-    #         pass
+    # then test
+    img_and_shps = [("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
+                         "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
+    with_mask_test = get_samples(img_and_shps, image_type=image_type, large_image=large_image, only_mask=True)
+    rotated_samples_test = generate_rotated_samples(with_mask_test)
+    with_mask_test = with_mask_test + rotated_samples_test
 
-    # need to only be grabbing parts where it's annotated, otherwise we have streams in the photo where it's not labeled
-    # pdb.set_trace()
-
-    train, test = train_test_split(with_mask, train_size=0.8, shuffle=True, random_state=0)
-    val, test = train_test_split(test, train_size=0.5, shuffle=True, random_state=0)
+    # train, test = train_test_split(with_mask, train_size=0.8, shuffle=True, random_state=0)
+    train = with_mask
+    val, test = train_test_split(with_mask_test, train_size=0.1, shuffle=True, random_state=0)
     cache_object = open(name, "wb")
     pickle.dump((train, val, test), cache_object)
     return PT_GISDataset(train), PT_GISDataset(val), PT_GISDataset(test)
