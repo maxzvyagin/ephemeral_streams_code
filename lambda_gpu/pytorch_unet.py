@@ -23,7 +23,7 @@ import matplotlib.pyplot as plt
 
 import torchmetrics
 
-from transformers import SegformerModel, SegformerConfig
+from transformers import SegformerModel, SegformerConfig, SegformerForSemanticSegmentation
 
 # def custom_transform(img):
 #     return torchvision.transforms.ToTensor(np.array(img))
