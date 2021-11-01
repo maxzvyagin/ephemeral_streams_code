@@ -63,7 +63,8 @@ class PyTorch_UNet(pl.LightningModule):
         return optimizer
 
     def forward(self, x):
-        return self.model(x)
+        return self.model(x).logits
+    
     def training_step(self, train_batch, batch_idx):
         x, y = train_batch
         return {'forward': self.forward(x), 'expected': y}
