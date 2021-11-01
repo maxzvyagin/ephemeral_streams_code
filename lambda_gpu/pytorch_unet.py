@@ -41,7 +41,7 @@ class PyTorch_UNet(pl.LightningModule):
         #                             in_channels=in_channels, out_channels=classes, init_features=32, pretrained=True)
         # self.model = smp.MAnet(encoder_name="resnet34", encoder_weights=None, in_channels=in_channels, classes=classes)
         configuration = SegformerConfig(image_size=256, num_channels=1)
-        self.model = SegformerModel(configuration)
+        self.model = SegformerForSemanticSegmentation(configuration)
         self.criterion = nn.BCEWithLogitsLoss()
         self.test_loss = None
         self.test_accuracy = None
@@ -66,6 +66,9 @@ class PyTorch_UNet(pl.LightningModule):
 
     def forward(self, x):
         pdb.set_trace()
+        out = self.model(x).logits
+        # need to scale up resolution
+
         return self.model(x).logits
 
     def training_step(self, train_batch, batch_idx):
