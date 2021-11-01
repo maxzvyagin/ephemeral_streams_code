@@ -24,6 +24,7 @@ import matplotlib.pyplot as plt
 import torchmetrics
 
 from transformers import SegformerModel, SegformerConfig, SegformerForSemanticSegmentation
+from skimage.transform import rescale
 
 import pdb
 
@@ -66,10 +67,18 @@ class PyTorch_UNet(pl.LightningModule):
 
     def forward(self, x):
         pdb.set_trace()
-        out = self.model(x).logits
+        out = self.model(x).logits.cpu()
         # need to scale up resolution
-
-        return self.model(x).logits
+        rescaled = []
+        for sample in out:
+            channels = []
+            for channel in sample:
+                s = rescale(channel, (256, 256))
+                channels.append(s)
+            rescaled.append(channels)
+        rescaled = np.array(rescaled)
+        rescaled = torch.from_numpy(rescaled)
+        return rescaled
 
     def training_step(self, train_batch, batch_idx):
         x, y = train_batch
