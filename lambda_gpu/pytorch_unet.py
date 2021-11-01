@@ -130,9 +130,10 @@ class PyTorch_UNet(pl.LightningModule):
 def generate_test_segmentations(model):
     model.model.eval()
     model.model.cuda()
-    fig, ax = plt.subplots(ncols=2, nrows=3, figsize=(10, 4))
+    fig, ax = plt.subplots(ncols=3, nrows=3, figsize=(10, 4))
     ax[0][0].set_title("Prediction")
     ax[0][1].set_title("Real")
+    ax[0][2].set_title("Image")
     with torch.no_grad():
         selected_indices = []
         total_num = len(model.test_set)
@@ -148,7 +149,8 @@ def generate_test_segmentations(model):
             # generate the images
             ax[n][0].imshow(out, cmap="cividis")
             ax[n][1].imshow(y.cpu().numpy(), cmap="cividis")
-    filename = '/tmp/mzvyagin/segmentation.png'.format(i + 1)
+            ax[n][2].imshow(x.cpu().numpy(), cmap="binary")
+    filename = '/tmp/mzvyagin/segmentation.png'
     plt.savefig(filename, dpi=300)
     wandb.log({"segmentation_maps": wandb.Image(filename)})
 
