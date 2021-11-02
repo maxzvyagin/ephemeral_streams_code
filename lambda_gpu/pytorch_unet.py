@@ -171,6 +171,7 @@ def segmentation_pt_objective(config):
     trainer = pl.Trainer(max_epochs=config['epochs'], gpus=1, auto_select_gpus=True, logger=wandb_logger,
                         auto_lr_find=True)
                          # callbacks=[EarlyStopping(monitor="val_accuracy")])
+    trainer.tune(model)
     trainer.fit(model)
     trainer.test(model)
     generate_test_segmentations(model)
