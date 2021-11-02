@@ -43,7 +43,8 @@ class PyTorch_UNet(pl.LightningModule):
         # self.model = smp.MAnet(encoder_name="resnet34", encoder_weights=None, in_channels=in_channels, classes=classes)
         configuration = SegformerConfig(image_size=256, num_channels=1, num_labels=1)
         self.model = SegformerForSemanticSegmentation(configuration)
-        self.criterion = nn.BCEWithLogitsLoss()
+        # self.criterion = nn.BCEWithLogitsLoss()
+        self.criterion = smp.losses.JaccardLoss(mode="binary")
         self.test_loss = None
         self.test_accuracy = None
         self.test_iou = None
