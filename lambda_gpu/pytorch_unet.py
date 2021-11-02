@@ -44,7 +44,7 @@ class PyTorch_UNet(pl.LightningModule):
         configuration = SegformerConfig(image_size=256, num_channels=1, num_labels=1)
         self.model = SegformerForSemanticSegmentation(configuration)
         # self.criterion = nn.BCEWithLogitsLoss()
-        self.criterion = smp.losses.JaccardLoss(mode="binary")
+        self.criterion = smp.losses.DiceLoss(mode="binary")
         self.test_loss = None
         self.test_accuracy = None
         self.test_iou = None
