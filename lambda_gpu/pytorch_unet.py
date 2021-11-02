@@ -180,7 +180,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-b', '--batch_size', default=64)
     args = parser.parse_args()
-    test_config = {'batch_size': args.batch_size, 'learning_rate': .00001, 'epochs': 50}
+    test_config = {'batch_size': args.batch_size, 'learning_rate': .001, 'epochs': 50}
     wandb.init(project='ephemeral_streams', entity='mzvyagin', config=test_config)
     acc, model = segmentation_pt_objective(test_config)
     torch.save(model, "/tmp/mzvyagin/ephemeral_streams_model.pkl")
