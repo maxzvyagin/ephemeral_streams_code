@@ -156,7 +156,7 @@ def generate_test_segmentations(model):
             # generate the images
             ax[n][0].imshow(out, cmap="cividis")
             ax[n][1].imshow(y.cpu().numpy(), cmap="cividis")
-            ax[n][2].imshow(x.cpu().numpy(), cmap="binary")
+            ax[n][2].imshow(x.cpu().squeeze().numpy(), cmap="binary")
     filename = '/tmp/mzvyagin/segmentation.png'
     plt.savefig(filename, dpi=300)
     wandb.log({"segmentation_maps": wandb.Image(filename)})
