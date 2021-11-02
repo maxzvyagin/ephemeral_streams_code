@@ -41,7 +41,7 @@ class PyTorch_UNet(pl.LightningModule):
         # self.model = torch.hub.load('mateuszbuda/brain-segmentation-pytorch', 'unet',
         #                             in_channels=in_channels, out_channels=classes, init_features=32, pretrained=True)
         # self.model = smp.MAnet(encoder_name="resnet34", encoder_weights=None, in_channels=in_channels, classes=classes)
-        configuration = SegformerConfig(image_size=256, num_channels=1)
+        configuration = SegformerConfig(image_size=256, num_channels=1, num_labels=1)
         self.model = SegformerForSemanticSegmentation(configuration)
         self.criterion = nn.BCEWithLogitsLoss()
         self.test_loss = None
