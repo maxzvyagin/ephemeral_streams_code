@@ -77,7 +77,7 @@ class PyTorch_UNet(pl.LightningModule):
                 channels.append(s)
             rescaled.append(channels)
         rescaled = np.array(rescaled)
-        rescaled = torch.from_numpy(rescaled)
+        rescaled = torch.from_numpy(rescaled).to("cuda")
         return rescaled
 
     def training_step(self, train_batch, batch_idx):
