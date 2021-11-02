@@ -168,8 +168,8 @@ def segmentation_pt_objective(config):
     torch.manual_seed(0)
     model = PyTorch_UNet(config, classes=1, in_channels=1)
     wandb_logger = WandbLogger()
-    trainer = pl.Trainer(max_epochs=config['epochs'], gpus=8, auto_select_gpus=True, logger=wandb_logger,
-                         accelerator='dp', num_nodes=1, auto_lr_find=True)
+    trainer = pl.Trainer(max_epochs=config['epochs'], gpus=1, auto_select_gpus=True, logger=wandb_logger,
+                        auto_lr_find=True)
                          # callbacks=[EarlyStopping(monitor="val_accuracy")])
     trainer.fit(model)
     trainer.test(model)
