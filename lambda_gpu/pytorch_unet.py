@@ -66,19 +66,10 @@ class PyTorch_UNet(pl.LightningModule):
         return optimizer
 
     def forward(self, x):
-        pdb.set_trace()
-        out = self.model(x).logits.cpu()
+        out = self.model(x).logits
         # need to scale up resolution
-        rescaled = []
-        for sample in out:
-            channels = []
-            for channel in sample:
-                s = resize(channel.numpy(), (256, 256))
-                channels.append(s)
-            rescaled.append(channels)
-        rescaled = np.array(rescaled)
-        rescaled = torch.from_numpy(rescaled).to("cuda")
-        return rescaled
+        out = torchvision.transforms.functional.resize(out, [256, 256])
+        return out
 
     def training_step(self, train_batch, batch_idx):
         x, y = train_batch
