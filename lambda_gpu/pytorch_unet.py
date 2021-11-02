@@ -150,7 +150,7 @@ def generate_test_segmentations(model):
         for n, i in enumerate([0, 75, 150]):
             # run through the model
             x, y = model.test_set[i]
-            out = model.model(x.unsqueeze(0).cuda())
+            out = model.forward(x.unsqueeze(0).cuda())
             out = torch.nn.Sigmoid()(out)
             out = np.rint(out.cpu().numpy().reshape(256, 256))
             # generate the images
