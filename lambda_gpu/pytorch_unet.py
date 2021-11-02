@@ -61,7 +61,9 @@ class PyTorch_UNet(pl.LightningModule):
         return DataLoader(self.test_set, batch_size=int(self.config['batch_size']), num_workers=5)
 
     def configure_optimizers(self):
-        optimizer = torch.optim.Adam(self.parameters(), lr=self.config['learning_rate'])
+        # auto finding learning rate
+        optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate)
+        wandb.log({'learning_rate': self.learning_rate})
         # optimizer = torch.optim.RMSprop(self.parameters(), lr=self.config['learning_rate'])
         return optimizer
 
@@ -167,7 +169,7 @@ def segmentation_pt_objective(config):
     model = PyTorch_UNet(config, classes=1, in_channels=1)
     wandb_logger = WandbLogger()
     trainer = pl.Trainer(max_epochs=config['epochs'], gpus=8, auto_select_gpus=True, logger=wandb_logger,
-                         accelerator='dp', num_nodes=1)
+                         accelerator='dp', num_nodes=1, auto_lr_find=True)
                          # callbacks=[EarlyStopping(monitor="val_accuracy")])
     trainer.fit(model)
     trainer.test(model)
