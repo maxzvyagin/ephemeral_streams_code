@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 import torchmetrics
 
 from transformers import SegformerModel, SegformerConfig, SegformerForSemanticSegmentation
-from skimage.transform import rescale
+from cv2 import resize
 
 import pdb
 
@@ -73,7 +73,7 @@ class PyTorch_UNet(pl.LightningModule):
         for sample in out:
             channels = []
             for channel in sample:
-                s = rescale(channel, (256, 256))
+                s = resize(channel, (256, 256))
                 channels.append(s)
             rescaled.append(channels)
         rescaled = np.array(rescaled)
