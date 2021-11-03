@@ -74,10 +74,11 @@ class PyTorch_UNet(pl.LightningModule):
         return optimizer
 
     def forward(self, x):
-        out = self.model(x).logits
+        # out = self.model(x).logits
         # need to scale up resolution
-        out = torchvision.transforms.functional.resize(out, [256, 256])
-        return out
+        # out = torchvision.transforms.functional.resize(out, [256, 256])
+        # return out
+        return self.model(x)
 
     def training_step(self, train_batch, batch_idx):
         x, y = train_batch
