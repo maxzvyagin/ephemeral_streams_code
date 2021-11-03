@@ -155,9 +155,11 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
                 # image_window = full_image[:, i * window_size:(i + 1) * window_size, j * window_size:(j + 1) * window_size]
                 image_window = full_image[:, i * window_size:(i + 1) * window_size,
                                j * window_size:(j + 1) * window_size]
-                image_window = process_image(image_window, image_type=image_type)
-                window = (torch.from_numpy(image_window).half(), torch.from_numpy(mask_window).int())
-                samples.append(window)
+                # need to check if image is alright - some portions are masked but not image actually present
+                if np.std(image_window) != 0:
+                    image_window = process_image(image_window, image_type=image_type)
+                    window = (torch.from_numpy(image_window).half(), torch.from_numpy(mask_window).int())
+                    samples.append(window)
 
     # with rasterio.open(img_f) as src:
     #     image = src.block_windows()
