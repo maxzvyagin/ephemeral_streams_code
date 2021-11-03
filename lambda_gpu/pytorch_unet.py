@@ -43,8 +43,8 @@ class PyTorch_UNet(pl.LightningModule):
         # self.model = smp.MAnet(encoder_name="resnet34", encoder_weights=None, in_channels=in_channels, classes=classes)
         configuration = SegformerConfig(image_size=256, num_channels=1, num_labels=1)
         self.model = SegformerForSemanticSegmentation(configuration)
-        # self.criterion = nn.BCEWithLogitsLoss()
-        self.criterion = smp.losses.DiceLoss(mode="binary")
+        self.criterion = nn.BCEWithLogitsLoss()
+        # self.criterion = smp.losses.DiceLoss(mode="binary")
         self.test_loss = None
         self.test_accuracy = None
         self.test_iou = None
@@ -64,8 +64,9 @@ class PyTorch_UNet(pl.LightningModule):
 
     def configure_optimizers(self):
         # auto finding learning rate
-        optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate)
-        wandb.log({'learning_rate': self.learning_rate})
+        # optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate)
+        # wandb.log({'learning_rate': self.learning_rate})
+        optimizer = torch.optim.Adam(self.parameters(), lr=self.config['learning_rate'])
         # optimizer = torch.optim.RMSprop(self.parameters(), lr=self.config['learning_rate'])
         return optimizer
 
@@ -170,8 +171,7 @@ def segmentation_pt_objective(config):
     torch.manual_seed(0)
     model = PyTorch_UNet(config, classes=1, in_channels=1)
     wandb_logger = WandbLogger()
-    trainer = pl.Trainer(max_epochs=config['epochs'], gpus=1, auto_select_gpus=True, logger=wandb_logger,
-                        auto_lr_find=0.0001)
+    trainer = pl.Trainer(max_epochs=config['epochs'], gpus=1, auto_select_gpus=True, logger=wandb_logger)
                          # callbacks=[EarlyStopping(monitor="val_accuracy")])
     trainer.tune(model)
     trainer.fit(model)
