@@ -53,8 +53,8 @@ class PyTorch_UNet(pl.LightningModule):
         self.test_iou = None
         self.learning_rate = 0.0
         self.accuracy = torchmetrics.Accuracy(num_classes=2)
-        self.precision = torchmetrics.Precision(num_classes=2)
-        self.recall = torchmetrics.Recall(num_classes=2)
+        self.precision_metric = torchmetrics.Precision(num_classes=2)
+        self.recall_metric = torchmetrics.Recall(num_classes=2)
         self.iou = torchmetrics.IoU(num_classes=2)
         self.train_set, self.valid_set, self.test_set = pt_gis_train_test_split(image_type=image_type)
 
@@ -93,8 +93,8 @@ class PyTorch_UNet(pl.LightningModule):
         output = torch.nn.Sigmoid()(output).int()
         accuracy = self.accuracy(output, outputs['expected'].int()).detach().cpu()
         iou = self.iou(output, outputs['expected'].int()).detach().cpu()
-        recall = self.recall(output, outputs['expected'].int()).detach().cpu()
-        precision = self.precision(output, outputs['expected'].int()).detach().cpu()
+        recall = self.recall_metric(output, outputs['expected'].int()).detach().cpu()
+        precision = self.precision_metric(output, outputs['expected'].int()).detach().cpu()
         logs = {'train_loss': loss.detach().cpu(), 'train_accuracy': accuracy, 'train_iou': iou,
                 'train_recall': recall, 'train_precision': precision}
         self.log("training", logs)
@@ -111,8 +111,8 @@ class PyTorch_UNet(pl.LightningModule):
         output = torch.nn.Sigmoid()(output).int()
         accuracy = self.accuracy(output, outputs['expected'].int()).detach().cpu()
         iou = self.iou(output, outputs['expected'].int()).detach().cpu()
-        recall = self.recall(output, outputs['expected'].int()).detach().cpu()
-        precision = self.precision(output, outputs['expected'].int()).detach().cpu()
+        recall = self.recall_metric(output, outputs['expected'].int()).detach().cpu()
+        precision = self.precision_metric(output, outputs['expected'].int()).detach().cpu()
         logs = {'val_loss': loss.detach().cpu(), 'val_accuracy': accuracy, 'val_iou': iou,
                 'val_recall': recall, 'val_precision': precision}
         self.log("validation", logs)
@@ -131,8 +131,8 @@ class PyTorch_UNet(pl.LightningModule):
         output = torch.nn.Sigmoid()(output).int()
         accuracy = self.accuracy(output, outputs['expected'].int()).detach().cpu()
         iou = self.iou(output, outputs['expected'].int()).detach().cpu()
-        recall = self.recall(output, outputs['expected'].int()).detach().cpu()
-        precision = self.precision(output, outputs['expected'].int()).detach().cpu()
+        recall = self.recall_metric(output, outputs['expected'].int()).detach().cpu()
+        precision = self.precision_metric(output, outputs['expected'].int()).detach().cpu()
         logs = {'test_loss': loss.detach().cpu(), 'test_accuracy': accuracy, 'test_iou': iou, 'test_recall': recall,
                 'test_precision': precision}
         self.log("testing", logs)
