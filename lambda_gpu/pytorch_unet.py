@@ -53,8 +53,8 @@ class PyTorch_UNet(pl.LightningModule):
         self.test_iou = None
         self.learning_rate = 0.0
         self.accuracy = torchmetrics.Accuracy()
-        self.precision_metric = torchmetrics.Precision(num_classes=2, multiclass=False)
-        self.recall_metric = torchmetrics.Recall(num_classes=2, multiclass=False)
+        self.precision_metric = torchmetrics.Precision(multiclass=False)
+        self.recall_metric = torchmetrics.Recall(multiclass=False)
         self.iou = torchmetrics.IoU(num_classes=2)
         self.train_set, self.valid_set, self.test_set = pt_gis_train_test_split(image_type=image_type)
 
