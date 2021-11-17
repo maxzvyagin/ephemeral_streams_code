@@ -52,7 +52,9 @@ class PyTorch_UNet(pl.LightningModule):
         self.test_accuracy = None
         self.test_iou = None
         self.learning_rate = 0.0
-        self.accuracy = torchmetrics.Accuracy()
+        self.accuracy = torchmetrics.Accuracy(num_classes=2)
+        self.precision = torchmetrics.Precision(num_classes=2)
+        self.recall = torchmetrics.Recall(num_classes=2)
         self.iou = torchmetrics.IoU(num_classes=2)
         self.train_set, self.valid_set, self.test_set = pt_gis_train_test_split(image_type=image_type)
 
@@ -86,10 +88,18 @@ class PyTorch_UNet(pl.LightningModule):
 
     def training_step_end(self, outputs):
         # only use when  on dp
-        loss = self.criterion(outputs['forward'].squeeze(1), outputs['expected'])
-        logs = {'train_loss': loss.detach().cpu()}
+        output = outputs['forward'].squeeze(1)
+        loss = self.criterion(output, outputs['expected'])
+        output = torch.nn.Sigmoid()(output).int()
+        accuracy = self.accuracy(output, outputs['expected'].int()).detach().cpu()
+        iou = self.iou(output, outputs['expected'].int()).detach().cpu()
+        recall = self.recall(output, outputs['expected'].int()).detach().cpu()
+        precision = self.precision(output, outputs['expected'].int()).detach().cpu()
+        logs = {'train_loss': loss.detach().cpu(), 'train_accuracy': accuracy, 'train_iou': iou,
+                'train_recall': recall, 'train_precision': precision}
         self.log("training", logs)
-        return {'loss': loss, 'logs': logs}
+        return {'loss': loss, 'logs': logs, 'train_accuracy': accuracy, 'train_iou': iou, 'train_recall': recall,
+                'train_precision': precision}
 
     def validation_step(self, val_batch, batch_idx):
         x, y = val_batch
@@ -101,10 +111,14 @@ class PyTorch_UNet(pl.LightningModule):
         output = torch.nn.Sigmoid()(output).int()
         accuracy = self.accuracy(output, outputs['expected'].int()).detach().cpu()
         iou = self.iou(output, outputs['expected'].int()).detach().cpu()
-        logs = {'val_loss': loss.detach().cpu(), 'val_accuracy': accuracy, 'val_iou': iou}
+        recall = self.recall(output, outputs['expected'].int()).detach().cpu()
+        precision = self.precision(output, outputs['expected'].int()).detach().cpu()
+        logs = {'val_loss': loss.detach().cpu(), 'val_accuracy': accuracy, 'val_iou': iou,
+                'val_recall': recall, 'val_precision': precision}
         self.log("validation", logs)
         self.log("val_accuracy", accuracy)
-        return {'loss': loss, 'logs': logs}
+        return {'loss': loss, 'logs': logs, 'val_accuracy': accuracy, 'val_iou': iou, 'val_recall': recall,
+                'val_precision': precision}
 
     def test_step(self, test_batch, batch_idx):
         x, y = test_batch
@@ -115,11 +129,15 @@ class PyTorch_UNet(pl.LightningModule):
         loss = self.criterion(output, outputs['expected'])
         # for accuracy
         output = torch.nn.Sigmoid()(output).int()
-        accuracy = self.accuracy(output, outputs['expected'].int())
-        iou = self.iou(output, outputs['expected'].int())
-        logs = {'test_loss': loss.detach().cpu(), 'test_accuracy': accuracy.detach().cpu(), 'test_iou': iou.detach().cpu()}
+        accuracy = self.accuracy(output, outputs['expected'].int()).detach().cpu()
+        iou = self.iou(output, outputs['expected'].int()).detach().cpu()
+        recall = self.recall(output, outputs['expected'].int()).detach().cpu()
+        precision = self.precision(output, outputs['expected'].int()).detach().cpu()
+        logs = {'test_loss': loss.detach().cpu(), 'test_accuracy': accuracy, 'test_iou': iou, 'test_recall': recall,
+                'test_precision': precision}
         self.log("testing", logs)
-        return {'test_loss': loss, 'logs': logs, 'test_accuracy': accuracy, 'test_iou': iou}
+        return {'test_loss': loss, 'logs': logs, 'test_accuracy': accuracy, 'test_iou': iou, 'test_recall': recall,
+                'test_precision': precision}
 
     def test_epoch_end(self, outputs):
         loss = []
