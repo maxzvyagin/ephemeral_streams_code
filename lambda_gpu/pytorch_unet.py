@@ -53,10 +53,14 @@ class PyTorch_UNet(pl.LightningModule):
         self.test_iou = None
         self.learning_rate = 0.0
         self.accuracy = torchmetrics.Accuracy()
-        self.precision_metric = torchmetrics.Precision(multiclass=False)
-        self.recall_metric = torchmetrics.Recall(multiclass=False)
-        self.iou = torchmetrics.IoU(num_classes=1)
+        self.f1 = torchmetrics.F1()
+        # self.iou = torchmetrics.IoU(num_classes=1)
         self.train_set, self.valid_set, self.test_set = pt_gis_train_test_split(image_type=image_type)
+
+    def iou(self, pred, target):
+        intersection = torch.logical_and(pred, target)
+        union = torch.logical_or(pred, target)
+        return torch.sum(intersection) / torch.sum(union)
 
     def train_dataloader(self):
         return DataLoader(self.train_set, batch_size=int(self.config['batch_size']), num_workers=5)
@@ -88,19 +92,20 @@ class PyTorch_UNet(pl.LightningModule):
 
     def training_step_end(self, outputs):
         # only use when  on dp
-        pdb.set_trace()
         output = outputs['forward'].squeeze(1)
         loss = self.criterion(output, outputs['expected'])
+        f1 = self.f1(output, outputs['expected'].int())
+        # now compute iou
         output = torch.nn.Sigmoid()(output).int()
         accuracy = self.accuracy(output, outputs['expected'].int()).detach().cpu()
         iou = self.iou(output, outputs['expected'].int()).detach().cpu()
-        recall = self.recall_metric(output, outputs['expected'].int()).detach().cpu()
-        precision = self.precision_metric(output, outputs['expected'].int()).detach().cpu()
+        # iou = self.iou(output, outputs['expected'].int()).detach().cpu()
+        # recall = self.recall_metric(output, outputs['expected'].int()).detach().cpu()
+        # precision = self.precision_metric(output, outputs['expected'].int()).detach().cpu()
         logs = {'train_loss': loss.detach().cpu(), 'train_accuracy': accuracy, 'train_iou': iou,
-                'train_recall': recall, 'train_precision': precision}
+                'train_f1': f1}
         self.log("training", logs)
-        return {'loss': loss, 'logs': logs, 'train_accuracy': accuracy, 'train_iou': iou, 'train_recall': recall,
-                'train_precision': precision}
+        return {'loss': loss, 'logs': logs, 'train_accuracy': accuracy, 'train_iou': iou, 'train_f1': f1}
 
     def validation_step(self, val_batch, batch_idx):
         x, y = val_batch
@@ -109,17 +114,18 @@ class PyTorch_UNet(pl.LightningModule):
     def validation_step_end(self, outputs):
         output = outputs['forward'].squeeze(1)
         loss = self.criterion(output, outputs['expected'])
+        f1 = self.f1(output, outputs['expected'].int())
+        # now compute iou
         output = torch.nn.Sigmoid()(output).int()
         accuracy = self.accuracy(output, outputs['expected'].int()).detach().cpu()
         iou = self.iou(output, outputs['expected'].int()).detach().cpu()
-        recall = self.recall_metric(output, outputs['expected'].int()).detach().cpu()
-        precision = self.precision_metric(output, outputs['expected'].int()).detach().cpu()
+        # iou = self.iou(output, outputs['expected'].int()).detach().cpu()
+        # recall = self.recall_metric(output, outputs['expected'].int()).detach().cpu()
+        # precision = self.precision_metric(output, outputs['expected'].int()).detach().cpu()
         logs = {'val_loss': loss.detach().cpu(), 'val_accuracy': accuracy, 'val_iou': iou,
-                'val_recall': recall, 'val_precision': precision}
+                'val_f1': f1}
         self.log("validation", logs)
-        self.log("val_accuracy", accuracy)
-        return {'loss': loss, 'logs': logs, 'val_accuracy': accuracy, 'val_iou': iou, 'val_recall': recall,
-                'val_precision': precision}
+        return {'loss': loss, 'logs': logs, 'val_accuracy': accuracy, 'val_iou': iou, 'val_f1': f1}
 
     def test_step(self, test_batch, batch_idx):
         x, y = test_batch
@@ -128,17 +134,18 @@ class PyTorch_UNet(pl.LightningModule):
     def test_step_end(self, outputs):
         output = outputs['forward'].squeeze(1)
         loss = self.criterion(output, outputs['expected'])
-        # for accuracy
+        f1 = self.f1(output, outputs['expected'].int())
+        # now compute iou
         output = torch.nn.Sigmoid()(output).int()
         accuracy = self.accuracy(output, outputs['expected'].int()).detach().cpu()
         iou = self.iou(output, outputs['expected'].int()).detach().cpu()
-        recall = self.recall_metric(output, outputs['expected'].int()).detach().cpu()
-        precision = self.precision_metric(output, outputs['expected'].int()).detach().cpu()
-        logs = {'test_loss': loss.detach().cpu(), 'test_accuracy': accuracy, 'test_iou': iou, 'test_recall': recall,
-                'test_precision': precision}
+        # iou = self.iou(output, outputs['expected'].int()).detach().cpu()
+        # recall = self.recall_metric(output, outputs['expected'].int()).detach().cpu()
+        # precision = self.precision_metric(output, outputs['expected'].int()).detach().cpu()
+        logs = {'test_loss': loss.detach().cpu(), 'test_accuracy': accuracy, 'test_iou': iou,
+                'test_f1': f1}
         self.log("testing", logs)
-        return {'test_loss': loss, 'logs': logs, 'test_accuracy': accuracy, 'test_iou': iou, 'test_recall': recall,
-                'test_precision': precision}
+        return {'loss': loss, 'logs': logs, 'test_accuracy': accuracy, 'test_iou': iou, 'test_f1': f1}
 
     def test_epoch_end(self, outputs):
         loss = []
