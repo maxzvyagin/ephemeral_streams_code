@@ -42,7 +42,9 @@ def iou_loss(iou_value):
 def iou(pred, target):
     intersection = torch.logical_and(pred, target)
     union = torch.logical_or(pred, target)
-    return torch.sum(intersection) / torch.sum(union)
+    value = torch.sum(intersection) / torch.sum(union)
+    value.requires_grad = True
+    return value
 
 
 class PyTorch_UNet(pl.LightningModule):
