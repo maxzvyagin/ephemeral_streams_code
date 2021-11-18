@@ -29,15 +29,18 @@ from cv2 import resize
 
 import pdb
 
+
 # def custom_transform(img):
 #     return torchvision.transforms.ToTensor(np.array(img))
 
 
 ### definition of PyTorch Lightning module in order to run everything
+@torch.enable_grad()
 def iou_loss(iou_value):
     return -torch.log(iou_value)
 
 
+@torch.enable_grad()
 def iou(pred, target):
     intersection = torch.logical_and(pred, target)
     union = torch.logical_or(pred, target)
@@ -193,7 +196,7 @@ def generate_test_segmentations(model):
         selected_indices = []
         total_num = len(model.test_set)
         selected_indices.append(3)
-        selected_indices.append(total_num//2)
+        selected_indices.append(total_num // 2)
         selected_indices.append(total_num - 3)
         for n, i in enumerate([0, 75, 150]):
             # run through the model
@@ -215,7 +218,7 @@ def segmentation_pt_objective(config):
     model = PyTorch_UNet(config, classes=1, in_channels=1)
     wandb_logger = WandbLogger()
     trainer = pl.Trainer(max_epochs=config['epochs'], gpus=1, auto_select_gpus=True, logger=wandb_logger)
-                         # callbacks=[EarlyStopping(monitor="val_accuracy")])
+    # callbacks=[EarlyStopping(monitor="val_accuracy")])
     trainer.tune(model)
     trainer.fit(model)
     trainer.test(model)
