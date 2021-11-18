@@ -102,7 +102,6 @@ class PyTorch_UNet(pl.LightningModule):
 
     def training_step_end(self, outputs):
         # only use when  on dp
-        pdb.set_trace()
         output = outputs['forward'].squeeze(1)
         # loss = self.criterion(output, outputs['expected'])
         f1 = self.f1(output, outputs['expected'].int())
