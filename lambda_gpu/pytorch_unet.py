@@ -35,12 +35,10 @@ import pdb
 
 
 ### definition of PyTorch Lightning module in order to run everything
-@torch.enable_grad()
 def iou_loss(iou_value):
     return -torch.log(iou_value)
 
 
-@torch.enable_grad()
 def iou(pred, target):
     intersection = torch.logical_and(pred, target)
     union = torch.logical_or(pred, target)
@@ -107,10 +105,11 @@ class PyTorch_UNet(pl.LightningModule):
         f1 = self.f1(output, outputs['expected'].int())
         # now compute iou
         output = torch.nn.Sigmoid()(output).int()
-        accuracy = self.accuracy(output, outputs['expected'].int()).detach().cpu()
+        accuracy = self.accuracy(output, outputs['expected'].int())
         iou_value = iou(output, outputs['expected'].int())
         loss = iou_loss(iou_value)
         iou_value = iou_value.detach().cpu()
+        accuracy = accuracy.detach().cpu()
         # iou = self.iou(output, outputs['expected'].int()).detach().cpu()
         # recall = self.recall_metric(output, outputs['expected'].int()).detach().cpu()
         # precision = self.precision_metric(output, outputs['expected'].int()).detach().cpu()
