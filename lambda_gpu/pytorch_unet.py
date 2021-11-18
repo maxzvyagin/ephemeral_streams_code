@@ -35,8 +35,9 @@ import pdb
 
 
 ### definition of PyTorch Lightning module in order to run everything
-def iou_loss(iou_value):
-    return -torch.log(iou_value)
+class iou_loss(torch.autograd.Function):
+    def forward(self, iou_value):
+        return -torch.log(iou_value)
 
 
 def iou(pred, target):
