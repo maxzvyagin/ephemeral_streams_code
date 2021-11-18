@@ -108,12 +108,12 @@ class PyTorch_UNet(pl.LightningModule):
         accuracy = self.accuracy(output, outputs['expected'].int())
         iou_value = iou(output, outputs['expected'].int())
         loss = iou_loss(iou_value)
-        iou_value = iou_value.detach().cpu()
-        accuracy = accuracy.detach().cpu()
+        # iou_value = iou_value.detach().cpu()
+        # accuracy = accuracy.detach().cpu()
         # iou = self.iou(output, outputs['expected'].int()).detach().cpu()
         # recall = self.recall_metric(output, outputs['expected'].int()).detach().cpu()
         # precision = self.precision_metric(output, outputs['expected'].int()).detach().cpu()
-        logs = {'train_loss': loss.detach().cpu(), 'train_accuracy': accuracy, 'train_iou': iou_value,
+        logs = {'train_loss': loss, 'train_accuracy': accuracy, 'train_iou': iou_value,
                 'train_f1': f1}
         self.log("training", logs)
         return {'loss': loss, 'logs': logs, 'train_accuracy': accuracy, 'train_iou': iou_value, 'train_f1': f1}
