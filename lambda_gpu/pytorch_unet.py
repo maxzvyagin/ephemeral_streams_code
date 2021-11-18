@@ -65,8 +65,8 @@ class PyTorch_UNet(pl.LightningModule):
     def train_dataloader(self):
         return DataLoader(self.train_set, batch_size=int(self.config['batch_size']), num_workers=5)
 
-    # def val_dataloader(self):
-    #     return DataLoader(self.valid_set, batch_size=int(self.config['batch_size']), num_workers=5)
+    def val_dataloader(self):
+        return DataLoader(self.valid_set, batch_size=int(self.config['batch_size']), num_workers=5)
 
     def test_dataloader(self):
         return DataLoader(self.test_set, batch_size=int(self.config['batch_size']), num_workers=5)
