@@ -13,9 +13,6 @@ import pickle
 from os import path
 import sys
 import random
-# import imgaug as ia
-# import imgaug.augmenters as iaa
-# from imgaug.augmentables.segmaps import SegmentationMapsOnImage
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
 from tqdm import tqdm
@@ -41,7 +38,7 @@ def mask_from_shp(img_f, shp_f):
 
 
 def mask_from_output(model_output):
-    # given model output, softmax probability for 2 classes, generate a mask corresponding to segmentation
+    """Given model output, softmax probability for 2 classes, generate a mask corresponding to segmentation"""
     # get final shape of output
     final_shape = model_output.shape[-2:]
     print(final_shape)
@@ -58,7 +55,7 @@ def mask_from_output(model_output):
 
 
 def split(array):
-    # split a given 3d array into 4 equal chunks
+    """split a given 3d array into 4 equal quarters"""
     if len(array.shape) == 2:
         mid_x = int(array.shape[0] / 2)
         mid_y = int(array.shape[1] / 2)
@@ -75,16 +72,6 @@ def split(array):
         fourth = array[:, mid_x:, mid_y:]
     chunks = [first, second, third, fourth]
     return chunks
-
-
-# def check_if_good_sample(mask_sample):
-#     # num_pos = np.count_nonzero(mask_sample == 255)
-#     num_pos = np.count_nonzero(mask_sample)
-#     # only collect as a sample if it makes up at least 10 percent of the image
-#     if num_pos / mask_sample.size >= .05:
-#         return True
-#     else:
-#         return False
 
 def process_image(image_array, image_type):
     if image_type == "full_channel":
@@ -125,24 +112,8 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
     with rasterio.open(img_f) as src:
         full_image = src.read()
 
-    # full_image = full_image[0]
-
-    # full_image = np.moveaxis(full_image, 0, -1)
-
-    # pdb.set_trace()
-
-    # full_image = np.swapaxes(full_image, 0, 2)
-    # full_image = np.swapaxes(full_image, 1, 2)
-
-    # scale values in place
-    # for i in range(4):
-    #     scaler = MinMaxScaler()
-    #     full_image[i, :, :] = scaler.fit_transform(full_image[i, :, :])
-
     max_x = mask.shape[0] // window_size
     max_y = mask.shape[1] // window_size
-    # max_x = mask.shape[0] % window_size
-    # max_y = mask.shape[1] % window_size
 
     print(mask.shape)
     print(full_image.shape)
@@ -161,43 +132,6 @@ def get_windows(img_f, mask, large_image=False, unlabelled=False, num=500, get_m
                     window = (torch.from_numpy(image_window).half(), torch.from_numpy(mask_window).int())
                     samples.append(window)
 
-    # with rasterio.open(img_f) as src:
-    #     image = src.block_windows()
-    #     # image = list(image)
-    #     if rand:
-    #         print("WARNING: RAND NOT IMPLEMENTED")
-    #         # random.shuffle(image)
-    #     for ji, window in tqdm(image):
-    #         if len(samples) == num and not get_max:
-    #             return samples
-    #         # get the window from the mask
-    #         mask_check = mask[window.row_off:window.row_off + window.height,
-    #                      window.col_off:window.col_off + window.width]
-    #
-    #         r = src.read(window=window)
-    #
-    #         # check if r is the correct size:
-    #         if r.shape[1] == 512 and r.shape[2] == 512:
-    #             # do the necessary processing of the image
-    #             r = process_image(r, image_type=image_type)
-    #
-    #             if large_image:
-    #                 if unlabelled:
-    #                     samples.append(torch.from_numpy(r).half())
-    #                 else:
-    #                     samples.append((torch.from_numpy(r).half(), torch.from_numpy(mask_check).float()))
-    #             else:
-    #                 # need to split into tiles
-    #                 r_chunks = split(r)
-    #                 if unlabelled:
-    #                     for image_chunk in r_chunks:
-    #                         samples.append(
-    #                             (torch.from_numpy(image_chunk).half()))
-    #                 else:
-    #                     mask_chunks = split(mask_check)
-    #                     for image_chunk, mask_chunk in zip(r_chunks, mask_chunks):
-    #                         samples.append(
-    #                             (torch.from_numpy(image_chunk).half(), torch.from_numpy(mask_chunk).float()))
     return samples
 
 
@@ -209,34 +143,8 @@ def msavi(red, infrared):
 numpy_msavi = np.vectorize(msavi)
 
 
-# def augment_dataset(dataset):
-#     # generate augmented samples of dataset
-#     ia.seed(1)
-#     # flip from left to right
-#     seq = iaa.Sequential([iaa.Fliplr()])
-#     augmented_samples = []
-#     for sample in dataset:
-#         img = sample['image'].numpy()
-#         img = np.moveaxis(img, 0, -1)
-#         seg = SegmentationMapsOnImage(sample['mask'].numpy().astype(bool), shape=img.shape)
-#         i, s = seq(image=img, segmentation_maps=seg)
-#         s = torch.FloatTensor(s.get_arr().copy())
-#         i = torch.FloatTensor(np.moveaxis(i, -1, 0).copy())
-#         augmented_samples.append((i, s))
-#     # do the same thing but flip images upside down
-#     seq = iaa.Sequential([iaa.Flipud()])
-#     for sample in dataset:
-#         img = sample['image'].numpy()
-#         img = np.moveaxis(img, 0, -1)
-#         seg = SegmentationMapsOnImage(sample['mask'].numpy().astype(bool), shape=img.shape)
-#         i, s = seq(image=img, segmentation_maps=seg)
-#         s = torch.FloatTensor(s.get_arr().copy())
-#         i = torch.FloatTensor(np.moveaxis(i, -1, 0).copy())
-#         augmented_samples.append((i, s))
-#     return augmented_samples
-
 def generate_rotated_samples(samples):
-    """For each sample, generate 3 90 degree rotations"""
+    """For each sample, generate 3 90 degree rotations - data augmentation method"""
     rotated_samples = []
     for sample in tqdm(samples):
         rotated_image, rotated_mask = sample
@@ -348,64 +256,3 @@ def pt_to_tf(x):
     n = np.swapaxes(n, 0, -1)
     t = tf.convert_to_tensor(n)
     return t
-
-# def tf_gis_test_train_split(img_and_shps=None, image_type="full_channel", large_image=False, theta=True):
-#     """ Returns a Tensorflow dataset of images and masks"""
-#     # Default is theta file system location
-#     if not img_and_shps:
-#         img_and_shps = [("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2012_refl.img",
-#               "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2012_merge.shp"),
-#              ("/scratch/mzvyagin/Ephemeral_Channels/Imagery/vhr_2014_refl.img",
-#               "/scratch/mzvyagin/Ephemeral_Channels/Reference/reference_2014_merge.shp")]
-#
-#     x_samples, y_samples = [], []
-#     for pair in img_and_shps:
-#         name = "/tmp/mzvyagin/"
-#         name += "gis_data"
-#         name += image_type
-#         if large_image:
-#             name += "large_image"
-#         name += "TFdataset.pkl"
-#         if path.exists(name):
-#             try:
-#                 cache_object = open(name, "rb")
-#                 (x_train, y_train), (x_test, y_test) = pickle.load(cache_object)
-#                 return (x_train, y_train), (x_test, y_test)
-#             except:
-#                 print("ERROR: could not load from cache file. Please try removing " + name + " and try again.")
-#                 sys.exit()
-#         # process each pair and generate the windows
-#         else:
-#             mask = mask_from_shp(pair[0], pair[1])
-#             if image_type == "full_channel":
-#                 windows = get_windows(pair[0], mask, large_image)
-#             elif image_type == "rgb":
-#                 windows = get_rgb_windows(pair[0], mask, large_image)
-#             elif image_type == "ir":
-#                 windows = get_ir_windows(pair[0], mask, large_image)
-#             elif image_type == "hsv":
-#                 windows = get_hsv_windows(pair[0], mask, large_image)
-#             elif image_type == "hsv_with_ir":
-#                 windows = get_hsv_with_ir_windows(pair[0], mask, large_image)
-#             elif image_type == "veg_index":
-#                 windows = get_vegetation_index_windows(pair[0], mask, large_image)
-#             else:
-#                 print("WARNING: no image type match, defaulting to RGB+IR")
-#                 windows = get_windows(pair[0], mask, large_image)
-#             # cache the windows
-#             # need to convert to the tensorflow tensors instead of pytorch
-#             x, y = [], []
-#             for sample in windows:
-#                 x.append(pt_to_tf(sample[0]))
-#                 y.append(pt_to_tf(sample[1]))
-#             x_samples.extend(x)
-#             y_samples.extend(y)
-#
-#     # generate test_train splits
-#     x_train, x_test, y_train, y_test = train_test_split(x_samples, y_samples, train_size=0.8, shuffle=False,
-#                                                         random_state=0)
-#     cache_object = open(name, "wb")
-#     #train = tf.data.Dataset.from_tensor_slices((x_train, y_train))
-#     #test = tf.data.Dataset.from_tensor_slices((x_test, y_test))
-#     pickle.dump(((x_train, y_train), (x_test, y_test)), cache_object)
-#     return (x_train, y_train), (x_test, y_test)

@@ -10,31 +10,17 @@ import sys
 import argparse
 import segmentation_models_pytorch as smp
 import math
-
 from ephemeral_streams import pt_gis_train_test_split
 from torch.utils.data import DataLoader
-
 from pytorch_lightning.callbacks.early_stopping import EarlyStopping
-
 import wandb
-
 from pytorch_lightning.loggers import WandbLogger
-
 import matplotlib.pyplot as plt
-
 import torchmetrics
-
 from transformers import SegformerModel, SegformerConfig, SegformerForSemanticSegmentation
 from cv2 import resize
-
 import pdb
 
-
-# def custom_transform(img):
-#     return torchvision.transforms.ToTensor(np.array(img))
-
-
-### definition of PyTorch Lightning module in order to run everything
 def iou_loss(iou_value):
     return -torch.log(iou_value)
 
@@ -51,17 +37,8 @@ class PyTorch_UNet(pl.LightningModule):
     def __init__(self, config, classes, in_channels=1, model_type="deeplabv3", image_type="veg_index"):
         super(PyTorch_UNet, self).__init__()
         self.config = config
-        # sigmoid is part of BCE with logits loss
-        # self.model = torch.hub.load('mateuszbuda/brain-segmentation-pytorch', 'unet',
-        #                             in_channels=in_channels, out_channels=classes, init_features=32, pretrained=True)
-        # self.model = smp.MAnet(encoder_name="resnet34", encoder_weights=None, in_channels=in_channels, classes=classes)
         self.model = smp.UnetPlusPlus(encoder_name="resnet34", encoder_weights=None, in_channels=in_channels,
                                       classes=classes, decoder_attention_type="scse")
-        # configuration = SegformerConfig(image_size=256, num_channels=1, num_labels=1, hidden_dropout_prob=0.5, attention_probs_dropout_prob=0.5,
-        #                                 classifier_dropout_prob=0.5)
-        # self.model = SegformerForSemanticSegmentation(configuration)
-        # self.criterion = nn.BCEWithLogitsLoss()
-        # self.criterion = smp.losses.DiceLoss(mode="binary")
         self.criterion = iou_loss
         self.test_loss = None
         self.test_accuracy = None
@@ -69,7 +46,6 @@ class PyTorch_UNet(pl.LightningModule):
         self.learning_rate = 0.0
         self.accuracy = torchmetrics.Accuracy()
         self.f1 = torchmetrics.F1()
-        # self.iou = torchmetrics.IoU(num_classes=1)
         self.train_set, self.valid_set, self.test_set = pt_gis_train_test_split(image_type=image_type)
 
     def train_dataloader(self):
@@ -82,18 +58,11 @@ class PyTorch_UNet(pl.LightningModule):
         return DataLoader(self.test_set, batch_size=int(self.config['batch_size']), num_workers=5)
 
     def configure_optimizers(self):
-        # auto finding learning rate
-        # optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate)
-        # wandb.log({'learning_rate': self.learning_rate})
         optimizer = torch.optim.Adam(self.parameters(), lr=self.config['learning_rate'])
         # optimizer = torch.optim.RMSprop(self.parameters(), lr=self.config['learning_rate'])
         return optimizer
 
     def forward(self, x):
-        # out = self.model(x).logits
-        # need to scale up resolution
-        # out = torchvision.transforms.functional.resize(out, [256, 256])
-        # return out
         return self.model(x)
 
     def training_step(self, train_batch, batch_idx):
@@ -101,20 +70,14 @@ class PyTorch_UNet(pl.LightningModule):
         return {'forward': self.forward(x), 'expected': y}
 
     def training_step_end(self, outputs):
-        # only use when  on dp
+        # only used when  on data parallel mode
         output = outputs['forward'].squeeze(1)
-        # loss = self.criterion(output, outputs['expected'])
         f1 = self.f1(output, outputs['expected'].int())
         # now compute iou
         output = torch.nn.Sigmoid()(output).int()
         accuracy = self.accuracy(output, outputs['expected'].int())
         iou_value = iou(output, outputs['expected'].int())
         loss = iou_loss(iou_value)
-        # iou_value = iou_value.detach().cpu()
-        # accuracy = accuracy.detach().cpu()
-        # iou = self.iou(output, outputs['expected'].int()).detach().cpu()
-        # recall = self.recall_metric(output, outputs['expected'].int()).detach().cpu()
-        # precision = self.precision_metric(output, outputs['expected'].int()).detach().cpu()
         logs = {'train_loss': loss, 'train_accuracy': accuracy, 'train_iou': iou_value,
                 'train_f1': f1}
         self.log("training", logs)
@@ -126,7 +89,6 @@ class PyTorch_UNet(pl.LightningModule):
 
     def validation_step_end(self, outputs):
         output = outputs['forward'].squeeze(1)
-        # loss = self.criterion(output, outputs['expected'])
         f1 = self.f1(output, outputs['expected'].int())
         # now compute iou
         output = torch.nn.Sigmoid()(output).int()
@@ -134,9 +96,6 @@ class PyTorch_UNet(pl.LightningModule):
         iou_value = iou(output, outputs['expected'].int())
         loss = iou_loss(iou_value)
         iou_value = iou_value.detach().cpu()
-        # iou = self.iou(output, outputs['expected'].int()).detach().cpu()
-        # recall = self.recall_metric(output, outputs['expected'].int()).detach().cpu()
-        # precision = self.precision_metric(output, outputs['expected'].int()).detach().cpu()
         logs = {'val_loss': loss.detach().cpu(), 'val_accuracy': accuracy, 'val_iou': iou_value,
                 'val_f1': f1}
         self.log("validation", logs)
@@ -148,7 +107,6 @@ class PyTorch_UNet(pl.LightningModule):
 
     def test_step_end(self, outputs):
         output = outputs['forward'].squeeze(1)
-        # loss = self.criterion(output, outputs['expected'])
         f1 = self.f1(output, outputs['expected'].int())
         # now compute iou
         output = torch.nn.Sigmoid()(output).int()
@@ -156,9 +114,6 @@ class PyTorch_UNet(pl.LightningModule):
         iou_value = iou(output, outputs['expected'].int())
         loss = iou_loss(iou_value)
         iou_value = iou_value.detach().cpu()
-        # iou = self.iou(output, outputs['expected'].int()).detach().cpu()
-        # recall = self.recall_metric(output, outputs['expected'].int()).detach().cpu()
-        # precision = self.precision_metric(output, outputs['expected'].int()).detach().cpu()
         logs = {'test_loss': loss.detach().cpu(), 'test_accuracy': accuracy, 'test_iou': iou_value,
                 'test_f1': f1}
         self.log("testing", logs)
@@ -227,8 +182,6 @@ def segmentation_pt_objective(config):
     return model.test_accuracy, model.model
 
 
-### two different objective functions, one for cityscapes and one for GIS
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-b', '--batch_size', default=8)
@@ -237,4 +190,3 @@ if __name__ == "__main__":
     wandb.init(project='ephemeral_streams', entity='mzvyagin', config=test_config)
     acc, model = segmentation_pt_objective(test_config)
     torch.save(model, "/tmp/mzvyagin/ephemeral_streams_model.pkl")
-    # torch.save(model, "initial_model.pkl")
