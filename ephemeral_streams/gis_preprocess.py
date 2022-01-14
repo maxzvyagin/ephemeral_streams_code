@@ -246,7 +246,6 @@ class PT_GISDataset(Dataset):
 
     def __getitem__(self, index):
         x, y = self.samples[index]
-        # return x.float().unsqueeze(0), y.float()
         return x.float(), y.float()
 
 

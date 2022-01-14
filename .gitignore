@@ -14,3 +14,4 @@ latest_unet_exp475_horizontal.png
 *.onnx
 /.ipynb_checkpoints/
 .DS_Store
+.idea/workspace.xml
